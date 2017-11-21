@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "concurrently 'yarn run build:watch' 'yarn run livereload .' -c blue,magenta",
+    "start": "concurrently 'yarn run build:watch' 'watchify dist/index.js -o dist/bundle.js' 'yarn run livereload .' -c blue,magenta",
     "build": "rm -rf dist && babel -d dist src",
     "build:watch": "yarn run build -- --watch",
     "test": "echo 'Write some plz'",
@@ -29,10 +29,10 @@
   "homepage": "https://github.com/chatterbugapp/chatterslate#readme",
   "dependencies": {
     "is-hotkey": "^0.1.1",
-    "livereload": "^0.6.3",
     "react": "^16.1.1",
     "slate": "^0.31.3",
-    "slate-react": "^0.10.17"
+    "slate-react": "^0.10.17",
+    "watchify": "^3.9.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -40,6 +40,9 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "concurrently": "^3.5.1",
-    "prettier-eslint": "^8.2.2"
+    "immutable": "^3.8.2",
+    "livereload": "^0.6.3",
+    "prettier-eslint": "^8.2.2",
+    "react-dom": "^16.1.1"
   }
 }

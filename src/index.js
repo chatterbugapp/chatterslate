@@ -1,8 +1,114 @@
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
-
-import React from 'react'
 import { isKeyHotkey } from 'is-hotkey'
+
+console.log("HI")
+import React from 'react'
+const initialValue = {
+  "document": {
+    "nodes": [
+      {
+        "kind": "block",
+        "type": "paragraph",
+        "nodes": [
+          {
+            "kind": "text",
+            "leaves": [
+              {
+                "text": "This is editable "
+              },
+              {
+                "text": "rich",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },
+              {
+                "text": " text, "
+              },
+              {
+                "text": "MUCH",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ]
+              },
+              {
+                "text": " better than a "
+              },
+              {
+                "text": "<textarea>",
+                "marks": [
+                  {
+                    "type": "code"
+                  }
+                ]
+              },
+              {
+                "text": "!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "block",
+        "type": "paragraph",
+        "nodes": [
+          {
+            "kind": "text",
+            "leaves": [
+              {
+                "text": "Since it's rich text, you can do things like turn a selection of text "
+              },
+              {
+                "text": "bold",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ]
+              },{
+                "text": ", or add a semantically rendered block quote in the middle of the page, like this:"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "block",
+        "type": "block-quote",
+        "nodes": [
+          {
+            "kind": "text",
+            "leaves": [
+              {
+                "text": "A wise quote."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "block",
+        "type": "paragraph",
+        "nodes": [
+          {
+            "kind": "text",
+            "leaves": [
+              {
+                "text": "Try it out for yourself!"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
 
 /**
  * Define the default node type.
@@ -38,7 +144,7 @@ class Chatterslate extends React.Component {
    */
 
   state = {
-    value: Value.fromJSON(''),
+    value: Value.fromJSON(initialValue),
   }
 
   /**
