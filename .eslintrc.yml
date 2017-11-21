@@ -1,0 +1,35 @@
+parser:
+  babel-eslint
+
+extends:
+  - eslint-config-airbnb
+  - eslint-config-standard
+
+globals:
+  fetch: true
+  render: true
+  shallow: true
+  __DEV__: true
+
+env:
+  jest: true
+
+rules:
+  arrow-parens:
+    - 2
+    - as-needed
+  comma-dangle:
+    - 2
+    - always-multiline
+  new-cap: 0
+  arrow-body-style: 0
+  import/no-extraneous-dependencies: 0
+  import/no-unresolved: 0
+  import/extensions: 0
+  import/prefer-default-export: 0
+  react/jsx-filename-extension: 0
+  react/prefer-stateless-function: 0
+  react/forbid-prop-types: 0
+  react/no-unescaped-entities: 0
+  react/require-default-props: 0
+  react/sort-comp: 0

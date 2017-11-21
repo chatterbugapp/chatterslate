@@ -1,0 +1,39 @@
+{
+  "name": "chatterslate",
+  "version": "0.0.0",
+  "description": "SlateJS editor for Chatterbug",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && babel -d dist src",
+    "build:watch": "npm run build -- --watch",
+    "test": "echo 'Write some plz'",
+    "lint": "eslint src || exit 0",
+    "prepublishOnly": "npm run build",
+    "ci": "npm run lint && npm run test",
+    "format": "prettier-eslint \"src/**/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/chatterbugapp/chatterslate.git"
+  },
+  "author": "Nick Quaranto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chatterbugapp/chatterslate/issues"
+  },
+  "homepage": "https://github.com/chatterbugapp/chatterslate#readme",
+  "dependencies": {
+    "react": "^16.1.1",
+    "slate": "^0.31.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "prettier-eslint": "^8.2.2"
+  }
+}
