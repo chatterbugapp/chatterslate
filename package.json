@@ -28,12 +28,15 @@
   },
   "homepage": "https://github.com/chatterbugapp/chatterslate#readme",
   "dependencies": {
+    "is-hotkey": "^0.1.1",
     "livereload": "^0.6.3",
     "react": "^16.1.1",
-    "slate": "^0.31.3"
+    "slate": "^0.31.3",
+    "slate-react": "^0.10.17"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "concurrently": "^3.5.1",
