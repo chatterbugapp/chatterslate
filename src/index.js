@@ -191,6 +191,26 @@ class TopicEditor extends React.Component {
   }
 
   /**
+   * When a void button is clicked, insert an element.
+   *
+   * @param {Event} event
+   * @param {String} type
+   */
+
+  onClickVoid = (event, type) => {
+    event.preventDefault()
+    const { value } = this.state
+    const change = value.change()
+
+    change.insertInline({
+      type: type,
+      isVoid: true
+    })
+
+    this.onChange(change)
+  }
+
+  /**
    * Render.
    *
    * @return {Element}
@@ -217,11 +237,12 @@ class TopicEditor extends React.Component {
         {this.renderMarkButton('bold', 'bold')}
         {this.renderMarkButton('italic', 'italic')}
         {this.renderMarkButton('underlined', 'underline')}
-        {this.renderBlockButton('heading-one', 'angle-up')}
-        {this.renderBlockButton('heading-two', 'angle-double-up')}
         {this.renderBlockButton('block-quote', 'quote-right')}
         {this.renderBlockButton('numbered-list', 'list-ol')}
         {this.renderBlockButton('bulleted-list', 'list-ul')}
+        {this.renderBlockButton('heading-one', 'angle-up')}
+        {this.renderBlockButton('heading-two', 'angle-double-up')}
+        {this.renderVoidButton('horizontal-rule', 'window-minimize')}
       </div>
     )
   }
@@ -265,6 +286,24 @@ class TopicEditor extends React.Component {
   }
 
   /**
+   * Render a void element insertion button.
+   *
+   * @param {String} type
+   * @param {String} icon
+   * @return {Element}
+   */
+
+  renderVoidButton = (type, icon) => {
+    const onMouseDown = event => this.onClickVoid(event, type)
+
+    return (
+      <span className="button" onMouseDown={onMouseDown}>
+        <i className={`fa fa-${icon}`} aria-hidden="true"></i>
+      </span>
+    )
+  }
+
+  /**
    * Render the Slate editor.
    *
    * @return {Element}
@@ -302,6 +341,7 @@ class TopicEditor extends React.Component {
       case 'heading-two': return <h2 {...attributes}>{children}</h2>
       case 'list-item': return <li {...attributes}>{children}</li>
       case 'numbered-list': return <ol {...attributes}>{children}</ol>
+      case 'horizontal-rule': return <hr />
     }
   }
 
