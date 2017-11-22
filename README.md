@@ -1,4 +1,4 @@
-# Chatterslate
+# ✒️ Chatterslate
 
 SlateJS editor for Chatterbug.
 
