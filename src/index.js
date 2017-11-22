@@ -214,14 +214,14 @@ class TopicEditor extends React.Component {
   renderToolbar = () => {
     return (
       <div className="menu toolbar-menu">
-        {this.renderMarkButton('bold', 'format_bold')}
-        {this.renderMarkButton('italic', 'format_italic')}
-        {this.renderMarkButton('underlined', 'format_underlined')}
-        {this.renderBlockButton('heading-one', 'looks_one')}
-        {this.renderBlockButton('heading-two', 'looks_two')}
-        {this.renderBlockButton('block-quote', 'format_quote')}
-        {this.renderBlockButton('numbered-list', 'format_list_numbered')}
-        {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
+        {this.renderMarkButton('bold', 'bold')}
+        {this.renderMarkButton('italic', 'italic')}
+        {this.renderMarkButton('underlined', 'underline')}
+        {this.renderBlockButton('heading-one', 'angle-up')}
+        {this.renderBlockButton('heading-two', 'angle-double-up')}
+        {this.renderBlockButton('block-quote', 'quote-right')}
+        {this.renderBlockButton('numbered-list', 'list-ol')}
+        {this.renderBlockButton('bulleted-list', 'list-ul')}
       </div>
     )
   }
@@ -240,7 +240,7 @@ class TopicEditor extends React.Component {
 
     return (
       <span className="button" onMouseDown={onMouseDown} data-active={isActive}>
-        <span className="material-icons">{icon}</span>
+        <i className={`fa fa-${icon}`} aria-hidden="true"></i>
       </span>
     )
   }
@@ -259,7 +259,7 @@ class TopicEditor extends React.Component {
 
     return (
       <span className="button" onMouseDown={onMouseDown} data-active={isActive}>
-        <span className="material-icons">{icon}</span>
+        <i className={`fa fa-${icon}`} aria-hidden="true"></i>
       </span>
     )
   }
