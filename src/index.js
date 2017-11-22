@@ -14,93 +14,8 @@ const initialValue = {
             "kind": "text",
             "leaves": [
               {
-                "text": "This is editable "
+                "text": "A new topic..."
               },
-              {
-                "text": "rich",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ]
-              },
-              {
-                "text": " text, "
-              },
-              {
-                "text": "MUCH",
-                "marks": [
-                  {
-                    "type": "italic"
-                  }
-                ]
-              },
-              {
-                "text": " better than a "
-              },
-              {
-                "text": "<textarea>",
-                "marks": [
-                  {
-                    "type": "code"
-                  }
-                ]
-              },
-              {
-                "text": "!"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "kind": "block",
-        "type": "paragraph",
-        "nodes": [
-          {
-            "kind": "text",
-            "leaves": [
-              {
-                "text": "Since it's rich text, you can do things like turn a selection of text "
-              },
-              {
-                "text": "bold",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ]
-              },{
-                "text": ", or add a semantically rendered block quote in the middle of the page, like this:"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "kind": "block",
-        "type": "block-quote",
-        "nodes": [
-          {
-            "kind": "text",
-            "leaves": [
-              {
-                "text": "A wise quote."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "kind": "block",
-        "type": "paragraph",
-        "nodes": [
-          {
-            "kind": "text",
-            "leaves": [
-              {
-                "text": "Try it out for yourself!"
-              }
             ]
           }
         ]
@@ -126,7 +41,6 @@ const DEFAULT_NODE = 'paragraph'
 const isBoldHotkey = isKeyHotkey('mod+b')
 const isItalicHotkey = isKeyHotkey('mod+i')
 const isUnderlinedHotkey = isKeyHotkey('mod+u')
-const isCodeHotkey = isKeyHotkey('mod+`')
 
 /**
  * The rich text example.
@@ -196,8 +110,6 @@ class TopicEditor extends React.Component {
       mark = 'italic'
     } else if (isUnderlinedHotkey(event)) {
       mark = 'underlined'
-    } else if (isCodeHotkey(event)) {
-      mark = 'code'
     } else {
       return
     }
@@ -305,7 +217,6 @@ class TopicEditor extends React.Component {
         {this.renderMarkButton('bold', 'format_bold')}
         {this.renderMarkButton('italic', 'format_italic')}
         {this.renderMarkButton('underlined', 'format_underlined')}
-        {this.renderMarkButton('code', 'code')}
         {this.renderBlockButton('heading-one', 'looks_one')}
         {this.renderBlockButton('heading-two', 'looks_two')}
         {this.renderBlockButton('block-quote', 'format_quote')}
@@ -405,7 +316,6 @@ class TopicEditor extends React.Component {
     const { children, mark } = props
     switch (mark.type) {
       case 'bold': return <strong>{children}</strong>
-      case 'code': return <code>{children}</code>
       case 'italic': return <em>{children}</em>
       case 'underlined': return <u>{children}</u>
     }
