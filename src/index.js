@@ -45,7 +45,6 @@ const isBoldHotkey = isKeyHotkey('mod+b')
 const isItalicHotkey = isKeyHotkey('mod+i')
 const isUnderlinedHotkey = isKeyHotkey('mod+u')
 
-
 /**
  * The rich text example.
  *
@@ -60,7 +59,7 @@ class TopicEditor extends React.Component {
 
   state = {
     value: Value.fromJSON(initialValue),
-    displayColorMenu: 'none'
+    displayColorMenu: 'none',
   };
 
   /**
@@ -241,18 +240,18 @@ class TopicEditor extends React.Component {
     return value.marks.some(mark => mark.type === 'color')
   }
 
-  hasColor = (color) => {
+  hasColor = color => {
     const { value } = this.state
     return value.marks.some(mark => mark.type === 'color' && mark.data.get('color') === color)
   }
 
-  onClickColorMenu = (event) => {
+  onClickColorMenu = event => {
     event.preventDefault()
     const { displayColorMenu } = this.state
     if (displayColorMenu === 'none') {
-      this.setState({displayColorMenu: 'block'})
+      this.setState({ displayColorMenu: 'block' })
     } else {
-      this.setState({displayColorMenu: 'none'})
+      this.setState({ displayColorMenu: 'none' })
     }
   }
 
@@ -275,17 +274,15 @@ class TopicEditor extends React.Component {
         })
 
         if (color !== DEFAULT_COLOR) {
-          change.addMark({type: 'color', data: {'color': color}}).focus()
+          change.addMark({ type: 'color', data: { color } }).focus()
         }
       }
-    } else {
-      if (value.isExpanded && color !== DEFAULT_COLOR) {
-        change.addMark({type: 'color', data: {'color': color}}).focus()
-      }
+    } else if (value.isExpanded && color !== DEFAULT_COLOR) {
+      change.addMark({ type: 'color', data: { color } }).focus()
     }
 
     // hide menu
-    this.setState({displayColorMenu: 'none'})
+    this.setState({ displayColorMenu: 'none' })
     this.onChange(change)
   }
 
@@ -322,7 +319,7 @@ class TopicEditor extends React.Component {
         {this.renderBlockButton('heading-one', 'angle-double-up', 'Heading One')}
         {this.renderBlockButton('heading-two', 'angle-up', 'Heading Two')}
         <ToolbarButton icon="eyedropper" title="Font Color" onMouseDown={this.onClickColorMenu} />
-        <div className="color-menu" style={{display: this.state.displayColorMenu}}>
+        <div className="color-menu" style={{ display: this.state.displayColorMenu }}>
           <div className="menu">
             {this.renderColorButton(DEFAULT_COLOR, 'font', 'Black')}
             {this.renderColorButton('#cccccc', 'font', 'Grey')}
@@ -398,7 +395,7 @@ class TopicEditor extends React.Component {
       icon={icon}
       title={title}
       onMouseDown={onMouseDown}
-      style={{color}}
+      style={{ color }}
       data-active={isActive}
     />)
   };
@@ -463,11 +460,11 @@ class TopicEditor extends React.Component {
         return <ol {...attributes}>{children}</ol>
       case 'horizontal-rule':
         return <hr />
-      //case 'color': {
+      // case 'color': {
       //  const { data } = node
       //  const color = data.get('color')
       //  return <span {...attributes} style={{color}}>{children}</span>
-      //}
+      // }
       default:
         return null
     }
@@ -490,7 +487,7 @@ class TopicEditor extends React.Component {
       case 'underlined':
         return <u>{children}</u>
       case 'color':
-        return <span style={{color: mark.data.get('color')}}>{children}</span>
+        return <span style={{ color: mark.data.get('color') }}>{children}</span>
       default:
         return null
     }
