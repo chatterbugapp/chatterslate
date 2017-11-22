@@ -33,6 +33,7 @@ const initialValue = {
  */
 
 const DEFAULT_NODE = 'paragraph'
+const DEFAULT_COLOR = 'black'
 
 /**
  * Define hotkey matchers.
@@ -43,6 +44,7 @@ const DEFAULT_NODE = 'paragraph'
 const isBoldHotkey = isKeyHotkey('mod+b')
 const isItalicHotkey = isKeyHotkey('mod+i')
 const isUnderlinedHotkey = isKeyHotkey('mod+u')
+
 
 /**
  * The rich text example.
@@ -58,6 +60,7 @@ class TopicEditor extends React.Component {
 
   state = {
     value: Value.fromJSON(initialValue),
+    displayColorMenu: 'none'
   };
 
   /**
@@ -228,6 +231,65 @@ class TopicEditor extends React.Component {
   }
 
   /**
+   * Check whether the current selection has a color in it.
+   *
+   * @return {Boolean} hasColor
+   */
+
+  hasAnyColor = () => {
+    const { value } = this.state
+    return value.marks.some(mark => mark.type === 'color')
+  }
+
+  hasColor = (color) => {
+    const { value } = this.state
+    return value.marks.some(mark => mark.type === 'color' && mark.data.get('color') === color)
+  }
+
+  onClickColorMenu = (event) => {
+    event.preventDefault()
+    const { displayColorMenu } = this.state
+    if (displayColorMenu === 'none') {
+      this.setState({displayColorMenu: 'block'})
+    } else {
+      this.setState({displayColorMenu: 'none'})
+    }
+  }
+
+  /**
+   * When clicking a color block, if the selection has a color in it, remove it.
+   * Otherwise, add a new color!
+   * @param {Event} event
+   */
+  onClickColor = (event, color) => {
+    event.preventDefault()
+    const { value } = this.state
+    const hasAnyColor = this.hasAnyColor()
+    const change = value.change()
+
+    // Adapted from https://github.com/nossas/slate-editor/blob/master/lib/plugins/slate-color-plugin/ColorUtils.js
+    if (hasAnyColor) {
+      if (value.isExpanded) {
+        value.marks.filter(mark => mark.type === 'color').forEach(mark => {
+          change.removeMark(mark)
+        })
+
+        if (color !== DEFAULT_COLOR) {
+          change.addMark({type: 'color', data: {'color': color}}).focus()
+        }
+      }
+    } else {
+      if (value.isExpanded && color !== DEFAULT_COLOR) {
+        change.addMark({type: 'color', data: {'color': color}}).focus()
+      }
+    }
+
+    // hide menu
+    this.setState({displayColorMenu: 'none'})
+    this.onChange(change)
+  }
+
+  /**
    * Render.
    *
    * @return {Element}
@@ -259,6 +321,13 @@ class TopicEditor extends React.Component {
         {this.renderBlockButton('bulleted-list', 'list-ul', 'Bulleted List')}
         {this.renderBlockButton('heading-one', 'angle-double-up', 'Heading One')}
         {this.renderBlockButton('heading-two', 'angle-up', 'Heading Two')}
+        <ToolbarButton icon="eyedropper" title="Font Color" onMouseDown={this.onClickColorMenu} />
+        <div className="menu color-menu" style={{display: this.state.displayColorMenu}}>
+          {this.renderColorButton(DEFAULT_COLOR, 'Black')}
+          {this.renderColorButton('red', 'Red')}
+          {this.renderColorButton('orange', 'Orange')}
+          {this.renderColorButton('blue', 'Blue')}
+        </div>
         {this.renderVoidButton('horizontal-rule', 'minus', 'Horizontal Rule')}
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
@@ -302,6 +371,19 @@ class TopicEditor extends React.Component {
       icon={icon}
       title={title}
       onMouseDown={onMouseDown}
+      data-active={isActive}
+    />)
+  };
+
+  renderColorButton = (color, title) => {
+    const isActive = this.hasColor(color)
+    const onMouseDown = event => this.onClickColor(event, color)
+
+    return (<ToolbarButton
+      icon="font"
+      title={title}
+      onMouseDown={onMouseDown}
+      style={{color}}
       data-active={isActive}
     />)
   };
@@ -366,6 +448,11 @@ class TopicEditor extends React.Component {
         return <ol {...attributes}>{children}</ol>
       case 'horizontal-rule':
         return <hr />
+      //case 'color': {
+      //  const { data } = node
+      //  const color = data.get('color')
+      //  return <span {...attributes} style={{color}}>{children}</span>
+      //}
       default:
         return null
     }
@@ -387,6 +474,8 @@ class TopicEditor extends React.Component {
         return <em>{children}</em>
       case 'underlined':
         return <u>{children}</u>
+      case 'color':
+        return <span style={{color: mark.data.get('color')}}>{children}</span>
       default:
         return null
     }
