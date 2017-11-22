@@ -45,6 +45,22 @@ const isItalicHotkey = isKeyHotkey('mod+i')
 const isUnderlinedHotkey = isKeyHotkey('mod+u')
 
 /**
+ * A change helper to standardize wrapping colors.
+ *
+ * @param {Change} change
+ * @param {String} color
+ */
+
+const wrapColor = function (change, color) {
+  change.wrapInline({
+    type: 'color',
+    data: { color }
+  })
+
+  change.collapseToEnd()
+}
+
+/**
  * The rich text example.
  *
  * @type {Component}
@@ -228,6 +244,39 @@ class TopicEditor extends React.Component {
   }
 
   /**
+   * Check whether the current selection has a color in it.
+   *
+   * @return {Boolean} hasColor
+   */
+
+  hasColor = () => {
+    const { value } = this.state
+    return value.inlines.some(inline => inline.type == 'color')
+  }
+
+  /**
+   * When clicking a color block, if the selection has a color in it, remove it.
+   * Otherwise, add a new color!
+   *
+   * @param {Event} event
+   */
+  onClickColor = (event) => {
+    event.preventDefault()
+    const { value } = this.state
+    const hasColor = this.hasColor()
+    const change = value.change()
+
+    if (hasColor) {
+      change.unwrapInline('color')
+    } else if (value.isExpanded) {
+      const color = window.prompt('Enter the color:')
+      change.call(wrapColor, color)
+    }
+
+    this.onChange(change)
+  }
+
+  /**
    * Render.
    *
    * @return {Element}
@@ -259,6 +308,7 @@ class TopicEditor extends React.Component {
         {this.renderBlockButton('bulleted-list', 'list-ul', 'Bulleted List')}
         {this.renderBlockButton('heading-one', 'angle-double-up', 'Heading One')}
         {this.renderBlockButton('heading-two', 'angle-up', 'Heading Two')}
+        <ToolbarButton icon="paint-brush" title="Font Color" onMouseDown={this.onClickColor} />
         {this.renderVoidButton('horizontal-rule', 'minus', 'Horizontal Rule')}
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
@@ -366,6 +416,11 @@ class TopicEditor extends React.Component {
         return <ol {...attributes}>{children}</ol>
       case 'horizontal-rule':
         return <hr />
+      case 'color': {
+        const { data } = node
+        const color = data.get('color')
+        return <span {...attributes} style={{color}}>{children}</span>
+      }
       default:
         return null
     }
