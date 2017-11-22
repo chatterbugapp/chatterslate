@@ -1,0 +1,13 @@
+language: node
+sudo: false
+dist: trusty
+cache:
+  yarn: true
+  directories:
+    - node_modules
+before_install:
+  - nvm install 8.8.1
+install:
+  - $HOME/.yarn/bin/yarn install
+script:
+  - $HOME/.yarn/bin/yarn ci
