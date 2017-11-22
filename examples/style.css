@@ -207,16 +207,25 @@ input:focus {
   margin-bottom: 20px;
 }
 
+.toolbar-menu i {
+  width: 20px;
+}
+
 .toolbar-menu .search {
   position: relative;
 }
 
 .toolbar-menu .color-menu {
   position: absolute;
-  background: #ccc;
+  background: #fff;
   border: 1px solid #000;
   padding: 5px;
-  left: 225px;
+  left: 280px;
+  z-index: 100;
+}
+
+.toolbar-menu .color-menu .menu {
+  padding: 5px;
 }
 
 .toolbar-menu .search-icon {

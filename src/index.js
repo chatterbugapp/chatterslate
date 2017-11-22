@@ -322,11 +322,26 @@ class TopicEditor extends React.Component {
         {this.renderBlockButton('heading-one', 'angle-double-up', 'Heading One')}
         {this.renderBlockButton('heading-two', 'angle-up', 'Heading Two')}
         <ToolbarButton icon="eyedropper" title="Font Color" onMouseDown={this.onClickColorMenu} />
-        <div className="menu color-menu" style={{display: this.state.displayColorMenu}}>
-          {this.renderColorButton(DEFAULT_COLOR, 'Black')}
-          {this.renderColorButton('red', 'Red')}
-          {this.renderColorButton('orange', 'Orange')}
-          {this.renderColorButton('blue', 'Blue')}
+        <div className="color-menu" style={{display: this.state.displayColorMenu}}>
+          <div className="menu">
+            {this.renderColorButton(DEFAULT_COLOR, 'font', 'Black')}
+            {this.renderColorButton('#cccccc', 'font', 'Grey')}
+            {this.renderColorButton('#555555', 'font', 'Dark Grey')}
+          </div>
+          <div className="menu">
+            {this.renderColorButton('#FD4242', 'font', 'Red')}
+            {this.renderColorButton('#FEDA32', 'font', 'Yellow')}
+            {this.renderColorButton('#25CCED', 'font', 'Blue')}
+          </div>
+          <div className="menu">
+            {this.renderColorButton('#25CCED', 'mars', 'Male')}
+            {this.renderColorButton('#FD426E', 'venus', 'Female')}
+            {this.renderColorButton('#B3B3B3', 'neuter', 'Neuter')}
+          </div>
+          <div className="menu">
+            {this.renderColorButton('#00E6C2', 'arrows-h', 'Dative')}
+            {this.renderColorButton('#baa2ee', 'times', 'Accusative')}
+          </div>
         </div>
         {this.renderVoidButton('horizontal-rule', 'minus', 'Horizontal Rule')}
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
@@ -375,12 +390,12 @@ class TopicEditor extends React.Component {
     />)
   };
 
-  renderColorButton = (color, title) => {
+  renderColorButton = (color, icon, title) => {
     const isActive = this.hasColor(color)
     const onMouseDown = event => this.onClickColor(event, color)
 
     return (<ToolbarButton
-      icon="font"
+      icon={icon}
       title={title}
       onMouseDown={onMouseDown}
       style={{color}}
