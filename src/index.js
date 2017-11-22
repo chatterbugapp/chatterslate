@@ -14,7 +14,7 @@ const initialValue = {
             "kind": "text",
             "leaves": [
               {
-                "text": "A new topic..."
+                "text": ""
               },
             ]
           }
@@ -274,7 +274,7 @@ class TopicEditor extends React.Component {
     return (
       <div className="editor">
         <Editor
-          placeholder="Enter some rich text..."
+          placeholder="Teach a topic..."
           value={this.state.value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
