@@ -225,15 +225,15 @@ class TopicEditor extends React.Component {
   renderToolbar = () => {
     return (
       <div className="menu toolbar-menu">
-        {this.renderMarkButton('bold', 'bold')}
-        {this.renderMarkButton('italic', 'italic')}
-        {this.renderMarkButton('underlined', 'underline')}
-        {this.renderBlockButton('block-quote', 'quote-right')}
-        {this.renderBlockButton('numbered-list', 'list-ol')}
-        {this.renderBlockButton('bulleted-list', 'list-ul')}
-        {this.renderBlockButton('heading-one', 'angle-up')}
-        {this.renderBlockButton('heading-two', 'angle-double-up')}
-        {this.renderVoidButton('horizontal-rule', 'window-minimize')}
+        {this.renderMarkButton('bold', 'bold', 'Bold')}
+        {this.renderMarkButton('italic', 'italic', 'Italic')}
+        {this.renderMarkButton('underlined', 'underline', 'Underline')}
+        {this.renderBlockButton('block-quote', 'quote-right', 'Block Quote')}
+        {this.renderBlockButton('numbered-list', 'list-ol', 'Numbered List')}
+        {this.renderBlockButton('bulleted-list', 'list-ul', 'Bulleted List')}
+        {this.renderBlockButton('heading-one', 'angle-double-up', 'Heading One')}
+        {this.renderBlockButton('heading-two', 'angle-up', 'Heading Two')}
+        {this.renderVoidButton('horizontal-rule', 'minus', 'Horizontal Rule')}
       </div>
     )
   };
@@ -246,12 +246,12 @@ class TopicEditor extends React.Component {
    * @return {Element}
    */
 
-  renderMarkButton = (type, icon) => {
+  renderMarkButton = (type, icon, title) => {
     const isActive = this.hasMark(type)
     const onMouseDown = event => this.onClickMark(event, type)
 
     return (
-      <button className="button" onMouseDown={onMouseDown} data-active={isActive}>
+      <button className="button" title={title} onMouseDown={onMouseDown} data-active={isActive}>
         <i className={`fa fa-${icon}`} aria-hidden="true" />
       </button>
     )
@@ -265,30 +265,30 @@ class TopicEditor extends React.Component {
    * @return {Element}
    */
 
-  renderBlockButton = (type, icon) => {
+  renderBlockButton = (type, icon, title) => {
     const isActive = this.hasBlock(type)
     const onMouseDown = event => this.onClickBlock(event, type)
 
     return (
-      <button className="button" onMouseDown={onMouseDown} data-active={isActive}>
+      <button className="button" title={title} onMouseDown={onMouseDown} data-active={isActive}>
         <i className={`fa fa-${icon}`} aria-hidden="true" />
       </button>
     )
   };
 
   /**
-   * Render a void element insertion button.
+   * Render a void element toolbar button.
    *
    * @param {String} type
    * @param {String} icon
    * @return {Element}
    */
 
-  renderVoidButton = (type, icon) => {
+  renderVoidButton = (type, icon, title) => {
     const onMouseDown = event => this.onClickVoid(event, type)
 
     return (
-      <button className="button" onMouseDown={onMouseDown}>
+      <button className="button" title={title} onMouseDown={onMouseDown}>
         <i className={`fa fa-${icon}`} aria-hidden="true" />
       </button>
     )

@@ -182,6 +182,17 @@ input:focus {
 .button {
   color: #ccc;
   cursor: pointer;
+  border: none;
+  background: none;
+  border: 0;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-appearance: button; /* for input */
+  -webkit-user-select: none; /* for button */
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .button[data-active="true"] {
