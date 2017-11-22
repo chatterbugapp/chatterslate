@@ -1,9 +1,8 @@
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import { isKeyHotkey } from 'is-hotkey'
-
-console.log("HI")
 import React from 'react'
+
 const initialValue = {
   "document": {
     "nodes": [
@@ -134,8 +133,7 @@ const isCodeHotkey = isKeyHotkey('mod+`')
  *
  * @type {Component}
  */
-
-class Chatterslate extends React.Component {
+class TopicEditor extends React.Component {
 
   /**
    * Deserialize the initial editor value.
@@ -419,4 +417,4 @@ class Chatterslate extends React.Component {
  * Export.
  */
 
-export default Chatterslate
+export {TopicEditor}
