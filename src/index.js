@@ -3,6 +3,8 @@ import { Value } from 'slate'
 import { isKeyHotkey } from 'is-hotkey'
 import React from 'react'
 
+import ToolbarButton from './components/ToolbarButton'
+
 const initialValue = {
   document: {
     nodes: [
@@ -202,6 +204,30 @@ class TopicEditor extends React.Component {
   };
 
   /**
+   * On undo in history.
+   *
+   */
+
+  onClickUndo = event => {
+    event.preventDefault()
+    const { value } = this.state
+    const change = value.change().undo()
+    this.onChange(change)
+  }
+
+  /**
+   * On redo in history.
+   *
+   */
+
+  onClickRedo = event => {
+    event.preventDefault()
+    const { value } = this.state
+    const change = value.change().redo()
+    this.onChange(change)
+  }
+
+  /**
    * Render.
    *
    * @return {Element}
@@ -234,6 +260,8 @@ class TopicEditor extends React.Component {
         {this.renderBlockButton('heading-one', 'angle-double-up', 'Heading One')}
         {this.renderBlockButton('heading-two', 'angle-up', 'Heading Two')}
         {this.renderVoidButton('horizontal-rule', 'minus', 'Horizontal Rule')}
+        <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
+        <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
       </div>
     )
   };
@@ -250,11 +278,12 @@ class TopicEditor extends React.Component {
     const isActive = this.hasMark(type)
     const onMouseDown = event => this.onClickMark(event, type)
 
-    return (
-      <button className="button" title={title} onMouseDown={onMouseDown} data-active={isActive}>
-        <i className={`fa fa-${icon}`} aria-hidden="true" />
-      </button>
-    )
+    return (<ToolbarButton
+      icon={icon}
+      title={title}
+      onMouseDown={onMouseDown}
+      data-active={isActive}
+    />)
   };
 
   /**
@@ -269,11 +298,12 @@ class TopicEditor extends React.Component {
     const isActive = this.hasBlock(type)
     const onMouseDown = event => this.onClickBlock(event, type)
 
-    return (
-      <button className="button" title={title} onMouseDown={onMouseDown} data-active={isActive}>
-        <i className={`fa fa-${icon}`} aria-hidden="true" />
-      </button>
-    )
+    return (<ToolbarButton
+      icon={icon}
+      title={title}
+      onMouseDown={onMouseDown}
+      data-active={isActive}
+    />)
   };
 
   /**
@@ -287,11 +317,7 @@ class TopicEditor extends React.Component {
   renderVoidButton = (type, icon, title) => {
     const onMouseDown = event => this.onClickVoid(event, type)
 
-    return (
-      <button className="button" title={title} onMouseDown={onMouseDown}>
-        <i className={`fa fa-${icon}`} aria-hidden="true" />
-      </button>
-    )
+    return <ToolbarButton icon={icon} title={title} onMouseDown={onMouseDown} />
   };
 
   /**
