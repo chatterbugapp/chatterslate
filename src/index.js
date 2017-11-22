@@ -4,24 +4,24 @@ import { isKeyHotkey } from 'is-hotkey'
 import React from 'react'
 
 const initialValue = {
-  "document": {
-    "nodes": [
+  document: {
+    nodes: [
       {
-        "kind": "block",
-        "type": "paragraph",
-        "nodes": [
+        kind: 'block',
+        type: 'paragraph',
+        nodes: [
           {
-            "kind": "text",
-            "leaves": [
+            kind: 'text',
+            leaves: [
               {
-                "text": ""
+                text: '',
               },
-            ]
-          }
-        ]
-      }
-    ]
-  }
+            ],
+          },
+        ],
+      },
+    ],
+  },
 }
 
 /**
@@ -48,7 +48,6 @@ const isUnderlinedHotkey = isKeyHotkey('mod+u')
  * @type {Component}
  */
 class TopicEditor extends React.Component {
-
   /**
    * Deserialize the initial editor value.
    *
@@ -57,7 +56,7 @@ class TopicEditor extends React.Component {
 
   state = {
     value: Value.fromJSON(initialValue),
-  }
+  };
 
   /**
    * Check if the current selection has a mark with `type` in it.
@@ -66,10 +65,10 @@ class TopicEditor extends React.Component {
    * @return {Boolean}
    */
 
-  hasMark = (type) => {
+  hasMark = type => {
     const { value } = this.state
-    return value.activeMarks.some(mark => mark.type == type)
-  }
+    return value.activeMarks.some(mark => mark.type === type)
+  };
 
   /**
    * Check if the any of the currently selected blocks are of `type`.
@@ -78,10 +77,10 @@ class TopicEditor extends React.Component {
    * @return {Boolean}
    */
 
-  hasBlock = (type) => {
+  hasBlock = type => {
     const { value } = this.state
-    return value.blocks.some(node => node.type == type)
-  }
+    return value.blocks.some(node => node.type === type)
+  };
 
   /**
    * On change, save the new `value`.
@@ -91,7 +90,7 @@ class TopicEditor extends React.Component {
 
   onChange = ({ value }) => {
     this.setState({ value })
-  }
+  };
 
   /**
    * On key down, if it's a formatting command toggle a mark.
@@ -116,8 +115,7 @@ class TopicEditor extends React.Component {
 
     event.preventDefault()
     change.toggleMark(mark)
-    return true
-  }
+  };
 
   /**
    * When a mark button is clicked, toggle the current mark.
@@ -131,7 +129,7 @@ class TopicEditor extends React.Component {
     const { value } = this.state
     const change = value.change().toggleMark(type)
     this.onChange(change)
-  }
+  };
 
   /**
    * When a block button is clicked, toggle the block type.
@@ -147,7 +145,7 @@ class TopicEditor extends React.Component {
     const { document } = value
 
     // Handle everything but list buttons.
-    if (type != 'bulleted-list' && type != 'numbered-list') {
+    if (type !== 'bulleted-list' && type !== 'numbered-list') {
       const isActive = this.hasBlock(type)
       const isList = this.hasBlock('list-item')
 
@@ -156,19 +154,14 @@ class TopicEditor extends React.Component {
           .setBlock(isActive ? DEFAULT_NODE : type)
           .unwrapBlock('bulleted-list')
           .unwrapBlock('numbered-list')
+      } else {
+        change.setBlock(isActive ? DEFAULT_NODE : type)
       }
-
-      else {
-        change
-          .setBlock(isActive ? DEFAULT_NODE : type)
-      }
-    }
-
-    // Handle the extra wrapping required for list buttons.
-    else {
+    } else {
+      // Handle the extra wrapping required for list buttons.
       const isList = this.hasBlock('list-item')
-      const isType = value.blocks.some((block) => {
-        return !!document.getClosest(block.key, parent => parent.type == type)
+      const isType = value.blocks.some(block => {
+        return !!document.getClosest(block.key, parent => parent.type === type)
       })
 
       if (isList && isType) {
@@ -178,17 +171,15 @@ class TopicEditor extends React.Component {
           .unwrapBlock('numbered-list')
       } else if (isList) {
         change
-          .unwrapBlock(type == 'bulleted-list' ? 'numbered-list' : 'bulleted-list')
+          .unwrapBlock(type === 'bulleted-list' ? 'numbered-list' : 'bulleted-list')
           .wrapBlock(type)
       } else {
-        change
-          .setBlock('list-item')
-          .wrapBlock(type)
+        change.setBlock('list-item').wrapBlock(type)
       }
     }
 
     this.onChange(change)
-  }
+  };
 
   /**
    * When a void button is clicked, insert an element.
@@ -203,12 +194,12 @@ class TopicEditor extends React.Component {
     const change = value.change()
 
     change.insertInline({
-      type: type,
-      isVoid: true
+      type,
+      isVoid: true,
     })
 
     this.onChange(change)
-  }
+  };
 
   /**
    * Render.
@@ -216,7 +207,7 @@ class TopicEditor extends React.Component {
    * @return {Element}
    */
 
-  render() {
+  render () {
     return (
       <div>
         {this.renderToolbar()}
@@ -245,7 +236,7 @@ class TopicEditor extends React.Component {
         {this.renderVoidButton('horizontal-rule', 'window-minimize')}
       </div>
     )
-  }
+  };
 
   /**
    * Render a mark-toggling toolbar button.
@@ -260,11 +251,11 @@ class TopicEditor extends React.Component {
     const onMouseDown = event => this.onClickMark(event, type)
 
     return (
-      <span className="button" onMouseDown={onMouseDown} data-active={isActive}>
-        <i className={`fa fa-${icon}`} aria-hidden="true"></i>
-      </span>
+      <button className="button" onMouseDown={onMouseDown} data-active={isActive}>
+        <i className={`fa fa-${icon}`} aria-hidden="true" />
+      </button>
     )
-  }
+  };
 
   /**
    * Render a block-toggling toolbar button.
@@ -279,11 +270,11 @@ class TopicEditor extends React.Component {
     const onMouseDown = event => this.onClickBlock(event, type)
 
     return (
-      <span className="button" onMouseDown={onMouseDown} data-active={isActive}>
-        <i className={`fa fa-${icon}`} aria-hidden="true"></i>
-      </span>
+      <button className="button" onMouseDown={onMouseDown} data-active={isActive}>
+        <i className={`fa fa-${icon}`} aria-hidden="true" />
+      </button>
     )
-  }
+  };
 
   /**
    * Render a void element insertion button.
@@ -297,11 +288,11 @@ class TopicEditor extends React.Component {
     const onMouseDown = event => this.onClickVoid(event, type)
 
     return (
-      <span className="button" onMouseDown={onMouseDown}>
-        <i className={`fa fa-${icon}`} aria-hidden="true"></i>
-      </span>
+      <button className="button" onMouseDown={onMouseDown}>
+        <i className={`fa fa-${icon}`} aria-hidden="true" />
+      </button>
     )
-  }
+  };
 
   /**
    * Render the Slate editor.
@@ -323,48 +314,61 @@ class TopicEditor extends React.Component {
         />
       </div>
     )
-  }
+  };
 
   /**
    * Render a Slate node.
    *
-   * @param {Object} props
+   * @param {Object} nodeProps
    * @return {Element}
    */
 
-  renderNode = (props) => {
-    const { attributes, children, node } = props
+  renderNode = nodeProps => {
+    const { attributes, children, node } = nodeProps
     switch (node.type) {
-      case 'block-quote': return <blockquote {...attributes}>{children}</blockquote>
-      case 'bulleted-list': return <ul {...attributes}>{children}</ul>
-      case 'heading-one': return <h1 {...attributes}>{children}</h1>
-      case 'heading-two': return <h2 {...attributes}>{children}</h2>
-      case 'list-item': return <li {...attributes}>{children}</li>
-      case 'numbered-list': return <ol {...attributes}>{children}</ol>
-      case 'horizontal-rule': return <hr />
+      case 'block-quote':
+        return <blockquote {...attributes}>{children}</blockquote>
+      case 'bulleted-list':
+        return <ul {...attributes}>{children}</ul>
+      case 'heading-one':
+        return <h1 {...attributes}>{children}</h1>
+      case 'heading-two':
+        return <h2 {...attributes}>{children}</h2>
+      case 'list-item':
+        return <li {...attributes}>{children}</li>
+      case 'numbered-list':
+        return <ol {...attributes}>{children}</ol>
+      case 'horizontal-rule':
+        return <hr />
+      default:
+        return null
     }
-  }
+  };
 
   /**
    * Render a Slate mark.
    *
-   * @param {Object} props
+   * @param {Object} markProps
    * @return {Element}
    */
 
-  renderMark = (props) => {
-    const { children, mark } = props
+  renderMark = markProps => {
+    const { children, mark } = markProps
     switch (mark.type) {
-      case 'bold': return <strong>{children}</strong>
-      case 'italic': return <em>{children}</em>
-      case 'underlined': return <u>{children}</u>
+      case 'bold':
+        return <strong>{children}</strong>
+      case 'italic':
+        return <em>{children}</em>
+      case 'underlined':
+        return <u>{children}</u>
+      default:
+        return null
     }
-  }
-
+  };
 }
 
 /**
  * Export.
  */
 
-export {TopicEditor}
+export { TopicEditor }
