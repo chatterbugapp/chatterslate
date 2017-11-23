@@ -216,7 +216,8 @@ input:focus {
 }
 
 .toolbar-menu .color-menu,
-.toolbar-menu .character-menu {
+.toolbar-menu .character-menu,
+.toolbar-menu .rule-menu {
   position: absolute;
   background: #fff;
   border: 1px solid #000;
@@ -229,14 +230,20 @@ input:focus {
 }
 
 .toolbar-menu .character-menu {
-  left: 318px;
+  left: 320px;
 }
+
+.toolbar-menu .rule-menu {
+  left: 360px;
+}
+
 .toolbar-menu .character-menu button {
   width: 15px;
 }
 
 .toolbar-menu .color-menu .menu,
-.toolbar-menu .character-menu .menu {
+.toolbar-menu .character-menu .menu,
+.toolbar-menu .rule-menu .menu {
   padding: 5px;
 }
 
@@ -309,4 +316,33 @@ input:focus {
   padding: 12px;
   background-color: #EBEBEB;
   display: inline-block;
+}
+
+.underbar {
+  display: inline-block;
+  border-bottom: 1px solid grey;
+  width: 3em;
+  padding: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
+  line-height: 14px;
+  height: 14px;
+}
+.underbar_l {
+  display: inline-block;
+  border-bottom: 1px solid grey;
+  width: 5em;
+  margin-left: 3px;
+  margin-right: 3px;
+  line-height: 14px;
+  height: 14px;
+}
+.underbar_xl {
+  display: inline-block;
+  border-bottom: 1px solid grey;
+  width: 8em;
+  margin-left: 3px;
+  margin-right: 3px;
+  line-height: 14px;
+  height: 14px;
 }

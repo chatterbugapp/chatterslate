@@ -20,6 +20,9 @@ const plugins = [
   Block.BlockPlugin({ block: 'heading-one', tag: 'h1' }),
   Block.BlockPlugin({ block: 'heading-two', tag: 'h2' }),
   Void.VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
+  Void.VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
+  Void.VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
+  Void.VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
   Color.ColorPlugin({ type: 'color' }),
 ]
 
@@ -51,6 +54,7 @@ class TopicEditor extends React.Component {
     value: Value.fromJSON(initialValue),
     displayColorMenu: 'none',
     displayCharacterMenu: 'none',
+    displayRuleMenu: 'none',
     debug: false,
   };
 
@@ -64,7 +68,12 @@ class TopicEditor extends React.Component {
     if (this.state.debug) {
       console.log(JSON.stringify(value.toJSON()))
     }
-    this.setState({ value, displayColorMenu: 'none', displayCharacterMenu: 'none' })
+    this.setState({
+      value,
+      displayColorMenu: 'none',
+      displayCharacterMenu: 'none',
+      displayRuleMenu: 'none'
+    })
   };
 
   /**
@@ -113,6 +122,16 @@ class TopicEditor extends React.Component {
       this.setState({ displayCharacterMenu: 'block' })
     } else {
       this.setState({ displayCharacterMenu: 'none' })
+    }
+  }
+
+  onClickRuleMenu = event => {
+    event.preventDefault()
+    const { displayRuleMenu } = this.state
+    if (displayRuleMenu === 'none') {
+      this.setState({ displayRuleMenu: 'block' })
+    } else {
+      this.setState({ displayRuleMenu: 'none' })
     }
   }
 
@@ -190,8 +209,14 @@ class TopicEditor extends React.Component {
             <Plain.PlainButton text="”" title="Double Angle Right Quote" {...sharedProps} />
           </div>
         </div>
+        <ToolbarButton icon="reorder" title="rules" onMouseDown={this.onClickRuleMenu} />
+        <div className="rule-menu menu" style={{ display: this.state.displayRuleMenu }}>
+          <Void.VoidButton type="underbar" text="____" title="Small Space" {...sharedProps} />
+          <Void.VoidButton type="underbar_l" text="______" title="Medium Space" {...sharedProps} />
+          <Void.VoidButton type="underbar_xl" text="________" title="Large Space" {...sharedProps} />
+          <Void.VoidButton type="horizontal-rule" text="———" title="Horizontal Rule" {...sharedProps} />
+        </div>
 
-        <Void.VoidButton type="horizontal-rule" icon="minus" title="Horizontal Rule" {...sharedProps} />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
       </div>
