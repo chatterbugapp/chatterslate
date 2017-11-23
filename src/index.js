@@ -13,6 +13,7 @@ const plugins = [
   Mark.MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
   Mark.MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
   Mark.MarkPlugin({ mark: 'underline', tag: 'u', hotkey: 'mod+u' }),
+  Mark.MarkPlugin({ mark: 'strikethrough', tag: 's' }),
   Block.BlockPlugin({ block: 'block-quote', tag: 'blockquote' }),
   Block.BlockPlugin({ block: 'numbered-list', tag: 'ol' }),
   Block.BlockPlugin({ block: 'bulleted-list', tag: 'ul' }),
@@ -165,6 +166,7 @@ class TopicEditor extends React.Component {
         <Mark.MarkButton mark="bold" icon="bold" title="Bold" {...sharedProps} />
         <Mark.MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
         <Mark.MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
+        <Mark.MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
         <Block.BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <Block.BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <Block.BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
