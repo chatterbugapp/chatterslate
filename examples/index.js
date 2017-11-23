@@ -1,4 +1,3 @@
-//import Chatterslate from '../dist'
 const Chatterslate = require("../dist")
 const React = require("react")
 const ReactDOM = require("react-dom")

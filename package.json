@@ -13,6 +13,7 @@
     "build:watch": "yarn run build -- --watch",
     "test": "echo 'Write some plz'",
     "lint": "eslint src || exit 0",
+    "lint:fix": "eslint src --fix || exit 0",
     "prepublishOnly": "yarn run build",
     "ci": "yarn run lint && yarn run test",
     "format": "yarn run prettier-eslint \"src/**/*.js\""
@@ -31,18 +32,29 @@
     "is-hotkey": "^0.1.1",
     "react": "^16.1.1",
     "slate": "^0.31.3",
-    "slate-react": "^0.10.17",
-    "watchify": "^3.9.0"
+    "slate-react": "^0.10.17"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "concurrently": "^3.5.1",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-standard": "^3.0.1",
     "immutable": "^3.8.2",
     "livereload": "^0.6.3",
     "prettier-eslint": "^8.2.2",
-    "react-dom": "^16.1.1"
+    "prettier-eslint-cli": "^4.4.0",
+    "react-dom": "^16.1.1",
+    "watchify": "^3.9.0"
   }
 }

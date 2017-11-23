@@ -1,54 +1,51 @@
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
-import { isKeyHotkey } from 'is-hotkey'
 import React from 'react'
+import ToolbarButton from './components/ToolbarButton'
+import ToolbarMenu from './components/ToolbarMenu'
+
+import { MarkPlugin, MarkButton } from './plugins/Mark'
+import { BlockPlugin, BlockButton } from './plugins/Block'
+import { VoidPlugin, VoidButton } from './plugins/Void'
+import { ColorPlugin, ColorButton } from './plugins/Color'
+import { PlainButton } from './plugins/Plain'
+
+const plugins = [
+  MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
+  MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
+  MarkPlugin({ mark: 'underline', tag: 'u', hotkey: 'mod+u' }),
+  MarkPlugin({ mark: 'strikethrough', tag: 's' }),
+  BlockPlugin({ block: 'block-quote', tag: 'blockquote' }),
+  BlockPlugin({ block: 'numbered-list', tag: 'ol' }),
+  BlockPlugin({ block: 'bulleted-list', tag: 'ul' }),
+  BlockPlugin({ block: 'list-item', tag: 'li' }),
+  BlockPlugin({ block: 'heading-one', tag: 'h1' }),
+  BlockPlugin({ block: 'heading-two', tag: 'h2' }),
+  VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
+  VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
+  VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
+  VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
+  ColorPlugin({ type: 'color' }),
+]
 
 const initialValue = {
-  "document": {
-    "nodes": [
+  document: {
+    nodes: [
       {
-        "kind": "block",
-        "type": "paragraph",
-        "nodes": [
-          {
-            "kind": "text",
-            "leaves": [
-              {
-                "text": ""
-              },
-            ]
-          }
-        ]
-      }
-    ]
-  }
+        kind: 'block',
+        type: 'paragraph',
+        nodes: [],
+      },
+    ],
+  },
 }
 
 /**
- * Define the default node type.
- *
- * @type {String}
- */
-
-const DEFAULT_NODE = 'paragraph'
-
-/**
- * Define hotkey matchers.
- *
- * @type {Function}
- */
-
-const isBoldHotkey = isKeyHotkey('mod+b')
-const isItalicHotkey = isKeyHotkey('mod+i')
-const isUnderlinedHotkey = isKeyHotkey('mod+u')
-
-/**
- * The rich text example.
+ * Our editor!
  *
  * @type {Component}
  */
 class TopicEditor extends React.Component {
-
   /**
    * Deserialize the initial editor value.
    *
@@ -57,136 +54,47 @@ class TopicEditor extends React.Component {
 
   state = {
     value: Value.fromJSON(initialValue),
-  }
+    menus: {},
+    debug: false,
+  };
 
   /**
-   * Check if the current selection has a mark with `type` in it.
-   *
-   * @param {String} type
-   * @return {Boolean}
-   */
-
-  hasMark = (type) => {
-    const { value } = this.state
-    return value.activeMarks.some(mark => mark.type == type)
-  }
-
-  /**
-   * Check if the any of the currently selected blocks are of `type`.
-   *
-   * @param {String} type
-   * @return {Boolean}
-   */
-
-  hasBlock = (type) => {
-    const { value } = this.state
-    return value.blocks.some(node => node.type == type)
-  }
-
-  /**
-   * On change, save the new `value`.
+   * On change, save the new `value`, and hide the color menu
    *
    * @param {Change} change
    */
 
   onChange = ({ value }) => {
-    this.setState({ value })
-  }
-
-  /**
-   * On key down, if it's a formatting command toggle a mark.
-   *
-   * @param {Event} event
-   * @param {Change} change
-   * @return {Change}
-   */
-
-  onKeyDown = (event, change) => {
-    let mark
-
-    if (isBoldHotkey(event)) {
-      mark = 'bold'
-    } else if (isItalicHotkey(event)) {
-      mark = 'italic'
-    } else if (isUnderlinedHotkey(event)) {
-      mark = 'underlined'
-    } else {
-      return
+    if (this.state.debug) {
+      console.log(JSON.stringify(value.toJSON()))
     }
-
-    event.preventDefault()
-    change.toggleMark(mark)
-    return true
-  }
+    this.setState({
+      value,
+      menus: {},
+    })
+  };
 
   /**
-   * When a mark button is clicked, toggle the current mark.
+   * On undo in history.
    *
-   * @param {Event} event
-   * @param {String} type
    */
 
-  onClickMark = (event, type) => {
+  onClickUndo = event => {
     event.preventDefault()
     const { value } = this.state
-    const change = value.change().toggleMark(type)
+    const change = value.change().undo()
     this.onChange(change)
   }
 
   /**
-   * When a block button is clicked, toggle the block type.
+   * On redo in history.
    *
-   * @param {Event} event
-   * @param {String} type
    */
 
-  onClickBlock = (event, type) => {
+  onClickRedo = event => {
     event.preventDefault()
     const { value } = this.state
-    const change = value.change()
-    const { document } = value
-
-    // Handle everything but list buttons.
-    if (type != 'bulleted-list' && type != 'numbered-list') {
-      const isActive = this.hasBlock(type)
-      const isList = this.hasBlock('list-item')
-
-      if (isList) {
-        change
-          .setBlock(isActive ? DEFAULT_NODE : type)
-          .unwrapBlock('bulleted-list')
-          .unwrapBlock('numbered-list')
-      }
-
-      else {
-        change
-          .setBlock(isActive ? DEFAULT_NODE : type)
-      }
-    }
-
-    // Handle the extra wrapping required for list buttons.
-    else {
-      const isList = this.hasBlock('list-item')
-      const isType = value.blocks.some((block) => {
-        return !!document.getClosest(block.key, parent => parent.type == type)
-      })
-
-      if (isList && isType) {
-        change
-          .setBlock(DEFAULT_NODE)
-          .unwrapBlock('bulleted-list')
-          .unwrapBlock('numbered-list')
-      } else if (isList) {
-        change
-          .unwrapBlock(type == 'bulleted-list' ? 'numbered-list' : 'bulleted-list')
-          .wrapBlock(type)
-      } else {
-        change
-          .setBlock('list-item')
-          .wrapBlock(type)
-      }
-    }
-
+    const change = value.change().redo()
     this.onChange(change)
   }
 
@@ -196,7 +104,7 @@ class TopicEditor extends React.Component {
    * @return {Element}
    */
 
-  render() {
+  render () {
     return (
       <div>
         {this.renderToolbar()}
@@ -206,63 +114,89 @@ class TopicEditor extends React.Component {
   }
 
   /**
+   * Keeping menu state top-level
+   *
+   */
+
+  onMenuToggle = (event, type) => {
+    event.preventDefault()
+    const menus = {}
+    if (!this.state.menus[type]) {
+      menus[type] = true
+    }
+    this.setState({ menus })
+  }
+
+  /**
    * Render the toolbar.
    *
+
    * @return {Element}
    */
 
   renderToolbar = () => {
+    const sharedProps = { value: this.state.value, onChange: this.onChange }
+    const menuProps = { menus: this.state.menus, onMenuToggle: this.onMenuToggle }
+
     return (
       <div className="menu toolbar-menu">
-        {this.renderMarkButton('bold', 'bold')}
-        {this.renderMarkButton('italic', 'italic')}
-        {this.renderMarkButton('underlined', 'underline')}
-        {this.renderBlockButton('heading-one', 'angle-up')}
-        {this.renderBlockButton('heading-two', 'angle-double-up')}
-        {this.renderBlockButton('block-quote', 'quote-right')}
-        {this.renderBlockButton('numbered-list', 'list-ol')}
-        {this.renderBlockButton('bulleted-list', 'list-ul')}
+        <MarkButton mark="bold" icon="bold" title="Bold" {...sharedProps} />
+        <MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
+        <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
+        <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
+        <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
+        <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
+        <BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
+        <BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />
+        <BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" {...sharedProps} />
+        <ToolbarMenu type="color" icon="eyedropper" title="Font Color" {...menuProps}>
+          <div className="menu">
+            <ColorButton color="black" icon="font" title="Block" {...sharedProps} />
+            <ColorButton color="grey" icon="font" title="Grey" {...sharedProps} />
+            <ColorButton color="darkgrey" icon="font" title="Dark Grey" {...sharedProps} />
+          </div>
+          <div className="menu">
+            <ColorButton color="red" icon="font" title="Red" {...sharedProps} />
+            <ColorButton color="yellow" icon="font" title="Yellow" {...sharedProps} />
+            <ColorButton color="blue" icon="font" title="Blue" {...sharedProps} />
+          </div>
+          <div className="menu">
+            <ColorButton color="male" icon="mars" title="Male" {...sharedProps} />
+            <ColorButton color="female" icon="venus" title="Female" {...sharedProps} />
+            <ColorButton color="neuter" icon="neuter" title="Neuter" {...sharedProps} />
+          </div>
+          <div className="menu">
+            <ColorButton color="dative" icon="arrows-h" title="Dative" {...sharedProps} />
+            <ColorButton color="accusative" icon="times" title="Accusative" {...sharedProps} />
+          </div>
+        </ToolbarMenu>
+        <ToolbarMenu type="character" icon="keyboard-o" title="Character Map" {...menuProps}>
+          <div className="menu">
+            <PlainButton text="←" title="Left Arrow" {...sharedProps} />
+            <PlainButton text="→" title="Right Arrow" {...sharedProps} />
+            <PlainButton text="↔" title="Left Right Arrow" {...sharedProps} />
+            <PlainButton text="⇐" title="Leftwards Double Arrow" {...sharedProps} />
+            <PlainButton text="⇒" title="Rightwards Double Arrow" {...sharedProps} />
+          </div>
+          <div className="menu">
+            <PlainButton text="…" title="Ellipsis" {...sharedProps} />
+            <PlainButton text="«" title="Double Low Quote" {...sharedProps} />
+            <PlainButton text="»" title="Double High Quote" {...sharedProps} />
+            <PlainButton text="„" title="Double Angle Left Quote" {...sharedProps} />
+            <PlainButton text="”" title="Double Angle Right Quote" {...sharedProps} />
+          </div>
+        </ToolbarMenu>
+        <ToolbarMenu type="rule" icon="reorder" title="Rules" {...menuProps}>
+          <VoidButton type="underbar" text="4: ____" title="Small Space" {...sharedProps} />
+          <VoidButton type="underbar_l" text="6: ______" title="Medium Space" {...sharedProps} />
+          <VoidButton type="underbar_xl" text="8: ________" title="Large Space" {...sharedProps} />
+          <VoidButton type="horizontal-rule" text="HR: ———" title="Horizontal Rule" {...sharedProps} />
+        </ToolbarMenu>
+        <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
+        <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
       </div>
     )
-  }
-
-  /**
-   * Render a mark-toggling toolbar button.
-   *
-   * @param {String} type
-   * @param {String} icon
-   * @return {Element}
-   */
-
-  renderMarkButton = (type, icon) => {
-    const isActive = this.hasMark(type)
-    const onMouseDown = event => this.onClickMark(event, type)
-
-    return (
-      <span className="button" onMouseDown={onMouseDown} data-active={isActive}>
-        <i className={`fa fa-${icon}`} aria-hidden="true"></i>
-      </span>
-    )
-  }
-
-  /**
-   * Render a block-toggling toolbar button.
-   *
-   * @param {String} type
-   * @param {String} icon
-   * @return {Element}
-   */
-
-  renderBlockButton = (type, icon) => {
-    const isActive = this.hasBlock(type)
-    const onMouseDown = event => this.onClickBlock(event, type)
-
-    return (
-      <span className="button" onMouseDown={onMouseDown} data-active={isActive}>
-        <i className={`fa fa-${icon}`} aria-hidden="true"></i>
-      </span>
-    )
-  }
+  };
 
   /**
    * Render the Slate editor.
@@ -277,54 +211,17 @@ class TopicEditor extends React.Component {
           placeholder="Teach a topic..."
           value={this.state.value}
           onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          renderNode={this.renderNode}
-          renderMark={this.renderMark}
+          plugins={plugins}
+          autoFocus
           spellCheck
         />
       </div>
     )
-  }
-
-  /**
-   * Render a Slate node.
-   *
-   * @param {Object} props
-   * @return {Element}
-   */
-
-  renderNode = (props) => {
-    const { attributes, children, node } = props
-    switch (node.type) {
-      case 'block-quote': return <blockquote {...attributes}>{children}</blockquote>
-      case 'bulleted-list': return <ul {...attributes}>{children}</ul>
-      case 'heading-one': return <h1 {...attributes}>{children}</h1>
-      case 'heading-two': return <h2 {...attributes}>{children}</h2>
-      case 'list-item': return <li {...attributes}>{children}</li>
-      case 'numbered-list': return <ol {...attributes}>{children}</ol>
-    }
-  }
-
-  /**
-   * Render a Slate mark.
-   *
-   * @param {Object} props
-   * @return {Element}
-   */
-
-  renderMark = (props) => {
-    const { children, mark } = props
-    switch (mark.type) {
-      case 'bold': return <strong>{children}</strong>
-      case 'italic': return <em>{children}</em>
-      case 'underlined': return <u>{children}</u>
-    }
-  }
-
+  };
 }
 
 /**
  * Export.
  */
 
-export {TopicEditor}
+export { TopicEditor }
