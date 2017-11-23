@@ -146,9 +146,9 @@ class TopicEditor extends React.Component {
         <Mark.MarkButton mark="bold" icon="bold" title="Bold" {...sharedProps} />
         <Mark.MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
         <Mark.MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
-        <Block.BlockButton block="block-quote" icon="terminal" title="Block Quote" {...sharedProps} />
         <Block.BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <Block.BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
+        <Block.BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
         <Block.BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />
         <Block.BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" {...sharedProps} />
         <ToolbarButton icon="eyedropper" title="Font Color" onMouseDown={this.onClickColorMenu} />
