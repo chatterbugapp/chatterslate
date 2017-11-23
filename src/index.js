@@ -48,6 +48,7 @@ class TopicEditor extends React.Component {
   state = {
     value: Value.fromJSON(initialValue),
     displayColorMenu: 'none',
+    debug: false
   };
 
   /**
@@ -57,7 +58,9 @@ class TopicEditor extends React.Component {
    */
 
   onChange = ({ value }) => {
-    console.log(JSON.stringify(value.toJSON()))
+    if (this.state.debug) {
+      console.log(JSON.stringify(value.toJSON()))
+    }
     this.setState({ value, displayColorMenu: 'none' })
   };
 
@@ -123,39 +126,41 @@ class TopicEditor extends React.Component {
    */
 
   renderToolbar = () => {
+    const sharedProps = { value: this.state.value, onChange: this.onChange }
+
     return (
       <div className="menu toolbar-menu">
-        <Mark.MarkButton mark="bold" icon="bold" title="Bold" value={this.state.value} onChange={this.onChange} />
-        <Mark.MarkButton mark="italic" icon="italic" title="Italic" value={this.state.value} onChange={this.onChange} />
-        <Mark.MarkButton mark="underline" icon="underline" title="Underline" value={this.state.value} onChange={this.onChange} />
-        <Block.BlockButton block="block-quote" icon="quote-right" title="Block Quote" value={this.state.value} onChange={this.onChange} />
-        <Block.BlockButton block="heading-one" icon="angle-double-up" title="Heading One" value={this.state.value} onChange={this.onChange} />
-        <Block.BlockButton block="heading-two" icon="angle-up" title="Heading Two" value={this.state.value} onChange={this.onChange} />
-        <Block.BlockButton block="numbered-list" icon="list-ol" title="Numbered List" value={this.state.value} onChange={this.onChange} />
-        <Block.BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" value={this.state.value} onChange={this.onChange} />
+        <Mark.MarkButton mark="bold" icon="bold" title="Bold" {...sharedProps} />
+        <Mark.MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
+        <Mark.MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
+        <Block.BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
+        <Block.BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
+        <Block.BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
+        <Block.BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />
+        <Block.BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" {...sharedProps} />
         <ToolbarButton icon="eyedropper" title="Font Color" onMouseDown={this.onClickColorMenu} />
         <div className="color-menu" style={{ display: this.state.displayColorMenu }}>
           <div className="menu">
-            <Color.ColorButton color="black" icon="font" title="Block" value={this.state.value} onChange={this.onChange} />
-            <Color.ColorButton color="#cccccc" icon="font" title="Grey" value={this.state.value} onChange={this.onChange} />
-            <Color.ColorButton color="#555555" icon="font" title="Dark Grey" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="black" icon="font" title="Block" {...sharedProps} />
+            <Color.ColorButton color="#cccccc" icon="font" title="Grey" {...sharedProps} />
+            <Color.ColorButton color="#555555" icon="font" title="Dark Grey" {...sharedProps} />
           </div>
           <div className="menu">
-            <Color.ColorButton color="#FD4242" icon="font" title="Red" value={this.state.value} onChange={this.onChange} />
-            <Color.ColorButton color="#FEDA32" icon="font" title="Yellow" value={this.state.value} onChange={this.onChange} />
-            <Color.ColorButton color="#25CCED" icon="font" title="Blue" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="#FD4242" icon="font" title="Red" {...sharedProps} />
+            <Color.ColorButton color="#FEDA32" icon="font" title="Yellow" {...sharedProps} />
+            <Color.ColorButton color="#25CCED" icon="font" title="Blue" {...sharedProps} />
           </div>
           <div className="menu">
-            <Color.ColorButton color="#25CCED" icon="mars" title="Male" value={this.state.value} onChange={this.onChange} />
-            <Color.ColorButton color="#FD426E" icon="venus" title="Female" value={this.state.value} onChange={this.onChange} />
-            <Color.ColorButton color="#B3B3B3" icon="neuter" title="Neuter" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="#25CCED" icon="mars" title="Male" {...sharedProps} />
+            <Color.ColorButton color="#FD426E" icon="venus" title="Female" {...sharedProps} />
+            <Color.ColorButton color="#B3B3B3" icon="neuter" title="Neuter" {...sharedProps} />
           </div>
           <div className="menu">
-            <Color.ColorButton color="#00E6C2" icon="arrows-h" title="Dative" value={this.state.value} onChange={this.onChange} />
-            <Color.ColorButton color="#baa2ee" icon="times" title="Accusative" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="#00E6C2" icon="arrows-h" title="Dative" {...sharedProps} />
+            <Color.ColorButton color="#baa2ee" icon="times" title="Accusative" {...sharedProps} />
           </div>
         </div>
-        <Void.VoidButton type="horizontal-rule" icon="minus" title="Horizontal Rule" value={this.state.value} onChange={this.onChange} />
+        <Void.VoidButton type="horizontal-rule" icon="minus" title="Horizontal Rule" {...sharedProps} />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
       </div>
