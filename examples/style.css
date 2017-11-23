@@ -215,9 +215,9 @@ input:focus {
   position: relative;
 }
 
-.toolbar-menu .color-menu,
-.toolbar-menu .character-menu,
-.toolbar-menu .rule-menu {
+.toolbar-menu .menu_color,
+.toolbar-menu .menu_character,
+.toolbar-menu .menu_rule {
   position: absolute;
   background: #fff;
   border: 1px solid #000;
@@ -225,25 +225,30 @@ input:focus {
   z-index: 100;
 }
 
-.toolbar-menu .color-menu {
-  left: 280px;
+.toolbar-menu .menu_color {
+  left: 330px;
 }
 
-.toolbar-menu .character-menu {
-  left: 320px;
+.toolbar-menu .menu_character {
+  left: 365px;
 }
 
-.toolbar-menu .rule-menu {
-  left: 360px;
+.toolbar-menu .menu_rule {
+  left: 400px;
 }
 
-.toolbar-menu .character-menu button {
+.toolbar-menu .menu_rule button {
+  height: 25px;
+  display: block;
+}
+
+.toolbar-menu .menu_character button {
   width: 15px;
 }
 
-.toolbar-menu .color-menu .menu,
-.toolbar-menu .character-menu .menu,
-.toolbar-menu .rule-menu .menu {
+.toolbar-menu .menu_color .menu,
+.toolbar-menu .menu_character .menu,
+.toolbar-menu .menu_rule .menu {
   padding: 5px;
 }
 

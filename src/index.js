@@ -2,6 +2,7 @@ import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import React from 'react'
 import ToolbarButton from './components/ToolbarButton'
+import ToolbarMenu from './components/ToolbarMenu'
 
 import Mark from './plugins/Mark'
 import Block from './plugins/Block'
@@ -53,9 +54,7 @@ class TopicEditor extends React.Component {
 
   state = {
     value: Value.fromJSON(initialValue),
-    displayColorMenu: 'none',
-    displayCharacterMenu: 'none',
-    displayRuleMenu: 'none',
+    menus: {},
     debug: false,
   };
 
@@ -71,9 +70,7 @@ class TopicEditor extends React.Component {
     }
     this.setState({
       value,
-      displayColorMenu: 'none',
-      displayCharacterMenu: 'none',
-      displayRuleMenu: 'none',
+      menus: {}
     })
   };
 
@@ -102,41 +99,6 @@ class TopicEditor extends React.Component {
   }
 
   /**
-   * On opening the color menu
-   *
-   */
-
-  onClickColorMenu = event => {
-    event.preventDefault()
-    const { displayColorMenu } = this.state
-    if (displayColorMenu === 'none') {
-      this.setState({ displayColorMenu: 'block' })
-    } else {
-      this.setState({ displayColorMenu: 'none' })
-    }
-  }
-
-  onClickCharacterMenu = event => {
-    event.preventDefault()
-    const { displayCharacterMenu } = this.state
-    if (displayCharacterMenu === 'none') {
-      this.setState({ displayCharacterMenu: 'block' })
-    } else {
-      this.setState({ displayCharacterMenu: 'none' })
-    }
-  }
-
-  onClickRuleMenu = event => {
-    event.preventDefault()
-    const { displayRuleMenu } = this.state
-    if (displayRuleMenu === 'none') {
-      this.setState({ displayRuleMenu: 'block' })
-    } else {
-      this.setState({ displayRuleMenu: 'none' })
-    }
-  }
-
-  /**
    * Render.
    *
    * @return {Element}
@@ -149,6 +111,20 @@ class TopicEditor extends React.Component {
         {this.renderEditor()}
       </div>
     )
+  }
+
+  /**
+   * Keeping menu state top-level
+   *
+   */
+
+  onMenuToggle = (event, type) => {
+    event.preventDefault()
+    let menus = {}
+    if (!this.state.menus[type]) {
+      menus[type] = true
+    }
+    this.setState({ menus })
   }
 
   /**
@@ -172,8 +148,7 @@ class TopicEditor extends React.Component {
         <Block.BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
         <Block.BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />
         <Block.BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" {...sharedProps} />
-        <ToolbarButton icon="eyedropper" title="Font Color" onMouseDown={this.onClickColorMenu} />
-        <div className="color-menu" style={{ display: this.state.displayColorMenu }}>
+        <ToolbarMenu type="color" icon="eyedropper" title="Font Color" menus={this.state.menus} onMenuToggle={this.onMenuToggle}>
           <div className="menu">
             <Color.ColorButton color="black" icon="font" title="Block" {...sharedProps} />
             <Color.ColorButton color="grey" icon="font" title="Grey" {...sharedProps} />
@@ -193,9 +168,8 @@ class TopicEditor extends React.Component {
             <Color.ColorButton color="dative" icon="arrows-h" title="Dative" {...sharedProps} />
             <Color.ColorButton color="accusative" icon="times" title="Accusative" {...sharedProps} />
           </div>
-        </div>
-        <ToolbarButton icon="keyboard-o" title="Character Map" onMouseDown={this.onClickCharacterMenu} />
-        <div className="character-menu" style={{ display: this.state.displayCharacterMenu }}>
+        </ToolbarMenu>
+        <ToolbarMenu type="character" icon="keyboard-o" title="Character Map" menus={this.state.menus} onMenuToggle={this.onMenuToggle}>
           <div className="menu">
             <Plain.PlainButton text="←" title="Left Arrow" {...sharedProps} />
             <Plain.PlainButton text="→" title="Right Arrow" {...sharedProps} />
@@ -210,15 +184,13 @@ class TopicEditor extends React.Component {
             <Plain.PlainButton text="„" title="Double Angle Left Quote" {...sharedProps} />
             <Plain.PlainButton text="”" title="Double Angle Right Quote" {...sharedProps} />
           </div>
-        </div>
-        <ToolbarButton icon="reorder" title="rules" onMouseDown={this.onClickRuleMenu} />
-        <div className="rule-menu menu" style={{ display: this.state.displayRuleMenu }}>
-          <Void.VoidButton type="underbar" text="____" title="Small Space" {...sharedProps} />
-          <Void.VoidButton type="underbar_l" text="______" title="Medium Space" {...sharedProps} />
-          <Void.VoidButton type="underbar_xl" text="________" title="Large Space" {...sharedProps} />
-          <Void.VoidButton type="horizontal-rule" text="———" title="Horizontal Rule" {...sharedProps} />
-        </div>
-
+        </ToolbarMenu>
+        <ToolbarMenu type="rule" icon="reorder" title="Rules" menus={this.state.menus} onMenuToggle={this.onMenuToggle}>
+          <Void.VoidButton type="underbar" text="4: ____" title="Small Space" {...sharedProps} />
+          <Void.VoidButton type="underbar_l" text="6: ______" title="Medium Space" {...sharedProps} />
+          <Void.VoidButton type="underbar_xl" text="8: ________" title="Large Space" {...sharedProps} />
+          <Void.VoidButton type="horizontal-rule" text="HR: ———" title="Horizontal Rule" {...sharedProps} />
+        </ToolbarMenu>
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
       </div>
