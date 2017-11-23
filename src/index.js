@@ -26,9 +26,11 @@ const initialValue = {
   },
 }
 
-import Bold from './plugins/Bold'
+import Mark from './plugins/Mark'
 const plugins = [
-  Bold.BoldPlugin()
+  Mark.MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
+  Mark.MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
+  Mark.MarkPlugin({ mark: 'underline', tag: 'u', hotkey: 'mod+u' })
 ]
 
 /**
@@ -312,7 +314,6 @@ class TopicEditor extends React.Component {
   /**
    * Render the toolbar.
    *
-        {this.renderMarkButton('underlined', 'underline', 'Underline')}
         {this.renderBlockButton('block-quote', 'quote-right', 'Block Quote')}
         {this.renderBlockButton('numbered-list', 'list-ol', 'Numbered List')}
         {this.renderBlockButton('bulleted-list', 'list-ul', 'Bulleted List')}
@@ -349,30 +350,11 @@ class TopicEditor extends React.Component {
   renderToolbar = () => {
     return (
       <div className="menu toolbar-menu">
-        <Bold.BoldButton value={this.state.value} onChange={this.onChange} />
-        {this.renderMarkButton('italic', 'italic', 'Italic')}
+        <Mark.MarkButton mark="bold" icon="bold" title="Bold" value={this.state.value} onChange={this.onChange} />
+        <Mark.MarkButton mark="italic" icon="italic" title="Italic" value={this.state.value} onChange={this.onChange} />
+        <Mark.MarkButton mark="underline" icon="underline" title="Underline" value={this.state.value} onChange={this.onChange} />
       </div>
     )
-  };
-
-  /**
-   * Render a mark-toggling toolbar button.
-   *
-   * @param {String} type
-   * @param {String} icon
-   * @return {Element}
-   */
-
-  renderMarkButton = (type, icon, title) => {
-    const isActive = this.hasMark(type)
-    const onMouseDown = event => this.onClickMark(event, type)
-
-    return (<ToolbarButton
-      icon={icon}
-      title={title}
-      onMouseDown={onMouseDown}
-      data-active={isActive}
-    />)
   };
 
   /**
@@ -471,27 +453,6 @@ class TopicEditor extends React.Component {
       //  const color = data.get('color')
       //  return <span {...attributes} style={{color}}>{children}</span>
       // }
-      default:
-        return null
-    }
-  };
-
-  /**
-   * Render a Slate mark.
-   *
-   * @param {Object} markProps
-   * @return {Element}
-   */
-
-  renderMark = markProps => {
-    const { children, mark } = markProps
-    switch (mark.type) {
-      case 'italic':
-        return <em>{children}</em>
-      case 'underlined':
-        return <u>{children}</u>
-      case 'color':
-        return <span style={{ color: mark.data.get('color') }}>{children}</span>
       default:
         return null
     }
