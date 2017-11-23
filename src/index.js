@@ -1,6 +1,5 @@
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
-import { isKeyHotkey } from 'is-hotkey'
 import React from 'react'
 
 import ToolbarButton from './components/ToolbarButton'
@@ -32,16 +31,6 @@ const plugins = [
 
 const DEFAULT_NODE = 'paragraph'
 const DEFAULT_COLOR = 'black'
-
-/**
- * Define hotkey matchers.
- *
- * @type {Function}
- */
-
-//const isBoldHotkey = isKeyHotkey('mod+b')
-const isItalicHotkey = isKeyHotkey('mod+i')
-const isUnderlinedHotkey = isKeyHotkey('mod+u')
 
 /**
  * The rich text example.
@@ -92,48 +81,6 @@ class TopicEditor extends React.Component {
 
   onChange = ({ value }) => {
     this.setState({ value })
-  };
-
-  /**
-   * On key down, if it's a formatting command toggle a mark.
-   *
-   * @param {Event} event
-   * @param {Change} change
-   * @return {Change}
-   */
-
-   /*
-  onKeyDown = (event, change) => {
-    let mark
-
-    //if (isBoldHotkey(event)) {
-      //mark = 'bold'
-    //} else if (isItalicHotkey(event)) {
-    if (isItalicHotkey(event)) {
-      mark = 'italic'
-    } else if (isUnderlinedHotkey(event)) {
-      mark = 'underlined'
-    } else {
-      return
-    }
-
-    event.preventDefault()
-    change.toggleMark(mark)
-  };
-  */
-
-  /**
-   * When a mark button is clicked, toggle the current mark.
-   *
-   * @param {Event} event
-   * @param {String} type
-   */
-
-  onClickMark = (event, type) => {
-    event.preventDefault()
-    const { value } = this.state
-    const change = value.change().toggleMark(type)
-    this.onChange(change)
   };
 
   /**
