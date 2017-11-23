@@ -16,7 +16,7 @@ const ToolbarButton = props => (
 ToolbarButton.propTypes = {
   icon: PropTypes.string.isRequired,
   onMouseDown: PropTypes.func.isRequired,
-  dataActive: PropTypes.bool,
+  'data-active': PropTypes.bool,
   title: PropTypes.string,
 }
 

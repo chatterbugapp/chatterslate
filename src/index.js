@@ -26,6 +26,11 @@ const initialValue = {
   },
 }
 
+import Bold from './plugins/Bold'
+const plugins = [
+  Bold.BoldPlugin()
+]
+
 /**
  * Define the default node type.
  *
@@ -41,7 +46,7 @@ const DEFAULT_COLOR = 'black'
  * @type {Function}
  */
 
-const isBoldHotkey = isKeyHotkey('mod+b')
+//const isBoldHotkey = isKeyHotkey('mod+b')
 const isItalicHotkey = isKeyHotkey('mod+i')
 const isUnderlinedHotkey = isKeyHotkey('mod+u')
 
@@ -104,12 +109,14 @@ class TopicEditor extends React.Component {
    * @return {Change}
    */
 
+   /*
   onKeyDown = (event, change) => {
     let mark
 
-    if (isBoldHotkey(event)) {
-      mark = 'bold'
-    } else if (isItalicHotkey(event)) {
+    //if (isBoldHotkey(event)) {
+      //mark = 'bold'
+    //} else if (isItalicHotkey(event)) {
+    if (isItalicHotkey(event)) {
       mark = 'italic'
     } else if (isUnderlinedHotkey(event)) {
       mark = 'underlined'
@@ -120,6 +127,7 @@ class TopicEditor extends React.Component {
     event.preventDefault()
     change.toggleMark(mark)
   };
+  */
 
   /**
    * When a mark button is clicked, toggle the current mark.
@@ -304,14 +312,6 @@ class TopicEditor extends React.Component {
   /**
    * Render the toolbar.
    *
-   * @return {Element}
-   */
-
-  renderToolbar = () => {
-    return (
-      <div className="menu toolbar-menu">
-        {this.renderMarkButton('bold', 'bold', 'Bold')}
-        {this.renderMarkButton('italic', 'italic', 'Italic')}
         {this.renderMarkButton('underlined', 'underline', 'Underline')}
         {this.renderBlockButton('block-quote', 'quote-right', 'Block Quote')}
         {this.renderBlockButton('numbered-list', 'list-ol', 'Numbered List')}
@@ -343,6 +343,14 @@ class TopicEditor extends React.Component {
         {this.renderVoidButton('horizontal-rule', 'minus', 'Horizontal Rule')}
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
+   * @return {Element}
+   */
+
+  renderToolbar = () => {
+    return (
+      <div className="menu toolbar-menu">
+        <Bold.BoldButton value={this.state.value} onChange={this.onChange} />
+        {this.renderMarkButton('italic', 'italic', 'Italic')}
       </div>
     )
   };
@@ -427,14 +435,13 @@ class TopicEditor extends React.Component {
           placeholder="Teach a topic..."
           value={this.state.value}
           onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          renderNode={this.renderNode}
-          renderMark={this.renderMark}
+          plugins={plugins}
           spellCheck
         />
       </div>
     )
   };
+          //renderMark={this.renderMark}
 
   /**
    * Render a Slate node.
@@ -480,8 +487,6 @@ class TopicEditor extends React.Component {
   renderMark = markProps => {
     const { children, mark } = markProps
     switch (mark.type) {
-      case 'bold':
-        return <strong>{children}</strong>
       case 'italic':
         return <em>{children}</em>
       case 'underlined':
