@@ -441,7 +441,6 @@ class TopicEditor extends React.Component {
       </div>
     )
   };
-          //renderMark={this.renderMark}
 
   /**
    * Render a Slate node.
