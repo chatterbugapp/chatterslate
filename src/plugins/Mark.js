@@ -8,7 +8,7 @@ const markStrategy = (change, mark) => change
   .toggleMark(mark)
   .focus()
 
-const MarkPlugin = ({ mark, tag, hotkey }) => ({
+export const MarkPlugin = ({ mark, tag, hotkey }) => ({
   renderMark (props) {
     return (props.mark.type === mark) ? React.createElement(tag, props) : null
   },
@@ -19,7 +19,7 @@ const MarkPlugin = ({ mark, tag, hotkey }) => ({
   },
 })
 
-const MarkButton = ({
+export const MarkButton = ({
   mark, icon, title, value, onChange,
 }) => (
   <ToolbarButton
@@ -39,9 +39,4 @@ MarkButton.propTypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-}
-
-export default {
-  MarkPlugin,
-  MarkButton,
 }

@@ -8,7 +8,9 @@ import ToolbarButton from './ToolbarButton'
  * @type {Function}
  */
 
-const ToolbarMenu = ({type, icon, title, menus, onMenuToggle, children}) => (
+const ToolbarMenu = ({
+  type, icon, title, menus, onMenuToggle, children,
+}) => (
   <div>
     <ToolbarButton icon={icon} title={title} onMouseDown={e => onMenuToggle(e, type)} />
     <div className={`menu_${type}`} style={{ display: menus[type] ? 'block' : 'none' }}>
@@ -23,6 +25,7 @@ ToolbarMenu.propTypes = {
   title: PropTypes.string.isRequired,
   menus: PropTypes.object.isRequired,
   onMenuToggle: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export default ToolbarMenu

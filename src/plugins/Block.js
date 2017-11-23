@@ -47,14 +47,14 @@ const blockStrategy = (value, foundBlock) => {
   return change
 }
 
-const BlockPlugin = ({ block, tag }) => ({
+export const BlockPlugin = ({ block, tag }) => ({
   renderNode (props) {
     const { attributes, node, children } = props
     return (node.type === block) ? React.createElement(tag, attributes, children) : null
   },
 })
 
-const BlockButton = ({
+export const BlockButton = ({
   block, icon, title, value, onChange,
 }) => (
   <ToolbarButton
@@ -74,9 +74,4 @@ BlockButton.propTypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-}
-
-export default {
-  BlockPlugin,
-  BlockButton,
 }

@@ -4,7 +4,7 @@ import ToolbarButton from '../components/ToolbarButton'
 
 const plainStrategy = (change, text) => change.insertText(text)
 
-const PlainButton = ({
+export const PlainButton = ({
   text, title, value, onChange,
 }) => (
   <ToolbarButton
@@ -22,8 +22,4 @@ PlainButton.propTypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-}
-
-export default {
-  PlainButton,
 }

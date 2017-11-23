@@ -4,14 +4,14 @@ import ToolbarButton from '../components/ToolbarButton'
 
 const voidStrategy = (change, type) => change.insertInline({ type, isVoid: true })
 
-const VoidPlugin = ({ type, tag, attributes }) => ({
+export const VoidPlugin = ({ type, tag, attributes }) => ({
   renderNode (props) {
     const { node } = props
     return (node.type === type) ? React.createElement(tag, attributes) : null
   },
 })
 
-const VoidButton = ({
+export const VoidButton = ({
   type, text, icon, title, value, onChange,
 }) => (
   <ToolbarButton
@@ -32,9 +32,4 @@ VoidButton.propTypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-}
-
-export default {
-  VoidPlugin,
-  VoidButton,
 }

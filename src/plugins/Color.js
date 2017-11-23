@@ -33,7 +33,7 @@ const colorStrategy = (value, color) => {
   return change
 }
 
-const ColorPlugin = ({ type }) => ({
+export const ColorPlugin = ({ type }) => ({
   renderMark (colorProps) {
     const { attributes, children, mark } = colorProps
     return (mark.type === type)
@@ -41,7 +41,7 @@ const ColorPlugin = ({ type }) => ({
   },
 })
 
-const ColorButton = ({
+export const ColorButton = ({
   color, icon, title, value, onChange,
 }) => (
   <ToolbarButton
@@ -62,9 +62,4 @@ ColorButton.propTypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-}
-
-export default {
-  ColorPlugin,
-  ColorButton,
 }
