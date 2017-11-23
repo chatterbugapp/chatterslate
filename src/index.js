@@ -6,6 +6,7 @@ import ToolbarButton from './components/ToolbarButton'
 import Mark from './plugins/Mark'
 import Block from './plugins/Block'
 import Void from './plugins/Void'
+import Color from './plugins/Color'
 const plugins = [
   Mark.MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
   Mark.MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
@@ -17,9 +18,9 @@ const plugins = [
   Block.BlockPlugin({ block: 'heading-one', tag: 'h1' }),
   Block.BlockPlugin({ block: 'heading-two', tag: 'h2' }),
   Void.VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
+  Color.ColorPlugin({ type: 'color' }),
 ]
 
-const DEFAULT_COLOR = 'black'
 const initialValue = {
   document: {
     nodes: [
@@ -31,7 +32,6 @@ const initialValue = {
     ],
   },
 }
-
 
 /**
  * Our editor!
@@ -51,13 +51,14 @@ class TopicEditor extends React.Component {
   };
 
   /**
-   * On change, save the new `value`.
+   * On change, save the new `value`, and hide the color menu
    *
    * @param {Change} change
    */
 
   onChange = ({ value }) => {
-    this.setState({ value })
+    console.log(JSON.stringify(value.toJSON()))
+    this.setState({ value, displayColorMenu: 'none' })
   };
 
   /**
@@ -85,20 +86,9 @@ class TopicEditor extends React.Component {
   }
 
   /**
-   * Check whether the current selection has a color in it.
+   * On opening the color menu
    *
-   * @return {Boolean} hasColor
    */
-
-  hasAnyColor = () => {
-    const { value } = this.state
-    return value.marks.some(mark => mark.type === 'color')
-  }
-
-  hasColor = color => {
-    const { value } = this.state
-    return value.marks.some(mark => mark.type === 'color' && mark.data.get('color') === color)
-  }
 
   onClickColorMenu = event => {
     event.preventDefault()
@@ -108,37 +98,6 @@ class TopicEditor extends React.Component {
     } else {
       this.setState({ displayColorMenu: 'none' })
     }
-  }
-
-  /**
-   * When clicking a color block, if the selection has a color in it, remove it.
-   * Otherwise, add a new color!
-   * @param {Event} event
-   */
-  onClickColor = (event, color) => {
-    event.preventDefault()
-    const { value } = this.state
-    const hasAnyColor = this.hasAnyColor()
-    const change = value.change()
-
-    // Adapted from https://github.com/nossas/slate-editor/blob/master/lib/plugins/slate-color-plugin/ColorUtils.js
-    if (hasAnyColor) {
-      if (value.isExpanded) {
-        value.marks.filter(mark => mark.type === 'color').forEach(mark => {
-          change.removeMark(mark)
-        })
-
-        if (color !== DEFAULT_COLOR) {
-          change.addMark({ type: 'color', data: { color } }).focus()
-        }
-      }
-    } else if (value.isExpanded && color !== DEFAULT_COLOR) {
-      change.addMark({ type: 'color', data: { color } }).focus()
-    }
-
-    // hide menu
-    this.setState({ displayColorMenu: 'none' })
-    this.onChange(change)
   }
 
   /**
@@ -159,30 +118,7 @@ class TopicEditor extends React.Component {
   /**
    * Render the toolbar.
    *
-        <ToolbarButton icon="eyedropper" title="Font Color" onMouseDown={this.onClickColorMenu} />
-        <div className="color-menu" style={{ display: this.state.displayColorMenu }}>
-          <div className="menu">
-            {this.renderColorButton(DEFAULT_COLOR, 'font', 'Black')}
-            {this.renderColorButton('#cccccc', 'font', 'Grey')}
-            {this.renderColorButton('#555555', 'font', 'Dark Grey')}
-          </div>
-          <div className="menu">
-            {this.renderColorButton('#FD4242', 'font', 'Red')}
-            {this.renderColorButton('#FEDA32', 'font', 'Yellow')}
-            {this.renderColorButton('#25CCED', 'font', 'Blue')}
-          </div>
-          <div className="menu">
-            {this.renderColorButton('#25CCED', 'mars', 'Male')}
-            {this.renderColorButton('#FD426E', 'venus', 'Female')}
-            {this.renderColorButton('#B3B3B3', 'neuter', 'Neuter')}
-          </div>
-          <div className="menu">
-            {this.renderColorButton('#00E6C2', 'arrows-h', 'Dative')}
-            {this.renderColorButton('#baa2ee', 'times', 'Accusative')}
-          </div>
-        </div>
-        <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
-        <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
+
    * @return {Element}
    */
 
@@ -197,22 +133,33 @@ class TopicEditor extends React.Component {
         <Block.BlockButton block="heading-two" icon="angle-up" title="Heading Two" value={this.state.value} onChange={this.onChange} />
         <Block.BlockButton block="numbered-list" icon="list-ol" title="Numbered List" value={this.state.value} onChange={this.onChange} />
         <Block.BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" value={this.state.value} onChange={this.onChange} />
+        <ToolbarButton icon="eyedropper" title="Font Color" onMouseDown={this.onClickColorMenu} />
+        <div className="color-menu" style={{ display: this.state.displayColorMenu }}>
+          <div className="menu">
+            <Color.ColorButton color="black" icon="font" title="Block" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="#cccccc" icon="font" title="Grey" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="#555555" icon="font" title="Dark Grey" value={this.state.value} onChange={this.onChange} />
+          </div>
+          <div className="menu">
+            <Color.ColorButton color="#FD4242" icon="font" title="Red" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="#FEDA32" icon="font" title="Yellow" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="#25CCED" icon="font" title="Blue" value={this.state.value} onChange={this.onChange} />
+          </div>
+          <div className="menu">
+            <Color.ColorButton color="#25CCED" icon="mars" title="Male" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="#FD426E" icon="venus" title="Female" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="#B3B3B3" icon="neuter" title="Neuter" value={this.state.value} onChange={this.onChange} />
+          </div>
+          <div className="menu">
+            <Color.ColorButton color="#00E6C2" icon="arrows-h" title="Dative" value={this.state.value} onChange={this.onChange} />
+            <Color.ColorButton color="#baa2ee" icon="times" title="Accusative" value={this.state.value} onChange={this.onChange} />
+          </div>
+        </div>
         <Void.VoidButton type="horizontal-rule" icon="minus" title="Horizontal Rule" value={this.state.value} onChange={this.onChange} />
+        <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
+        <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
       </div>
     )
-  };
-
-  renderColorButton = (color, icon, title) => {
-    const isActive = this.hasColor(color)
-    const onMouseDown = event => this.onClickColor(event, color)
-
-    return (<ToolbarButton
-      icon={icon}
-      title={title}
-      onMouseDown={onMouseDown}
-      style={{ color }}
-      data-active={isActive}
-    />)
   };
 
   /**
@@ -229,6 +176,7 @@ class TopicEditor extends React.Component {
           value={this.state.value}
           onChange={this.onChange}
           plugins={plugins}
+          autoFocus
           spellCheck
         />
       </div>

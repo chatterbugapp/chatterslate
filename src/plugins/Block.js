@@ -48,9 +48,9 @@ const blockStrategy = (value, foundBlock) => {
 
 const BlockPlugin = ({block, tag}) => ({
   renderNode(props) {
-    const { attributes, node } = props
+    const { attributes, node, children } = props
     if (node.type === block) {
-      return React.createElement(tag, attributes)
+      return React.createElement(tag, attributes, children)
     }
   }
 })
