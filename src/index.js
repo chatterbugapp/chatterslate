@@ -1,9 +1,23 @@
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import React from 'react'
-
 import ToolbarButton from './components/ToolbarButton'
 
+import Mark from './plugins/Mark'
+import Block from './plugins/Block'
+const plugins = [
+  Mark.MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
+  Mark.MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
+  Mark.MarkPlugin({ mark: 'underline', tag: 'u', hotkey: 'mod+u' }),
+  Block.BlockPlugin({ block: 'block-quote', tag: 'blockquote' }),
+  Block.BlockPlugin({ block: 'numbered-list', tag: 'ol' }),
+  Block.BlockPlugin({ block: 'bulleted-list', tag: 'ul' }),
+  Block.BlockPlugin({ block: 'list-item', tag: 'li' }),
+  Block.BlockPlugin({ block: 'heading-one', tag: 'h1' }),
+  Block.BlockPlugin({ block: 'heading-two', tag: 'h2' }),
+]
+
+const DEFAULT_COLOR = 'black'
 const initialValue = {
   document: {
     nodes: [
@@ -16,24 +30,9 @@ const initialValue = {
   },
 }
 
-import Mark from './plugins/Mark'
-const plugins = [
-  Mark.MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
-  Mark.MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
-  Mark.MarkPlugin({ mark: 'underline', tag: 'u', hotkey: 'mod+u' })
-]
 
 /**
- * Define the default node type.
- *
- * @type {String}
- */
-
-const DEFAULT_NODE = 'paragraph'
-const DEFAULT_COLOR = 'black'
-
-/**
- * The rich text example.
+ * Our editor!
  *
  * @type {Component}
  */
@@ -50,30 +49,6 @@ class TopicEditor extends React.Component {
   };
 
   /**
-   * Check if the current selection has a mark with `type` in it.
-   *
-   * @param {String} type
-   * @return {Boolean}
-   */
-
-  hasMark = type => {
-    const { value } = this.state
-    return value.activeMarks.some(mark => mark.type === type)
-  };
-
-  /**
-   * Check if the any of the currently selected blocks are of `type`.
-   *
-   * @param {String} type
-   * @return {Boolean}
-   */
-
-  hasBlock = type => {
-    const { value } = this.state
-    return value.blocks.some(node => node.type === type)
-  };
-
-  /**
    * On change, save the new `value`.
    *
    * @param {Change} change
@@ -81,56 +56,6 @@ class TopicEditor extends React.Component {
 
   onChange = ({ value }) => {
     this.setState({ value })
-  };
-
-  /**
-   * When a block button is clicked, toggle the block type.
-   *
-   * @param {Event} event
-   * @param {String} type
-   */
-
-  onClickBlock = (event, type) => {
-    event.preventDefault()
-    const { value } = this.state
-    const change = value.change()
-    const { document } = value
-
-    // Handle everything but list buttons.
-    if (type !== 'bulleted-list' && type !== 'numbered-list') {
-      const isActive = this.hasBlock(type)
-      const isList = this.hasBlock('list-item')
-
-      if (isList) {
-        change
-          .setBlock(isActive ? DEFAULT_NODE : type)
-          .unwrapBlock('bulleted-list')
-          .unwrapBlock('numbered-list')
-      } else {
-        change.setBlock(isActive ? DEFAULT_NODE : type)
-      }
-    } else {
-      // Handle the extra wrapping required for list buttons.
-      const isList = this.hasBlock('list-item')
-      const isType = value.blocks.some(block => {
-        return !!document.getClosest(block.key, parent => parent.type === type)
-      })
-
-      if (isList && isType) {
-        change
-          .setBlock(DEFAULT_NODE)
-          .unwrapBlock('bulleted-list')
-          .unwrapBlock('numbered-list')
-      } else if (isList) {
-        change
-          .unwrapBlock(type === 'bulleted-list' ? 'numbered-list' : 'bulleted-list')
-          .wrapBlock(type)
-      } else {
-        change.setBlock('list-item').wrapBlock(type)
-      }
-    }
-
-    this.onChange(change)
   };
 
   /**
@@ -252,11 +177,6 @@ class TopicEditor extends React.Component {
   /**
    * Render the toolbar.
    *
-        {this.renderBlockButton('block-quote', 'quote-right', 'Block Quote')}
-        {this.renderBlockButton('numbered-list', 'list-ol', 'Numbered List')}
-        {this.renderBlockButton('bulleted-list', 'list-ul', 'Bulleted List')}
-        {this.renderBlockButton('heading-one', 'angle-double-up', 'Heading One')}
-        {this.renderBlockButton('heading-two', 'angle-up', 'Heading Two')}
         <ToolbarButton icon="eyedropper" title="Font Color" onMouseDown={this.onClickColorMenu} />
         <div className="color-menu" style={{ display: this.state.displayColorMenu }}>
           <div className="menu">
@@ -291,28 +211,13 @@ class TopicEditor extends React.Component {
         <Mark.MarkButton mark="bold" icon="bold" title="Bold" value={this.state.value} onChange={this.onChange} />
         <Mark.MarkButton mark="italic" icon="italic" title="Italic" value={this.state.value} onChange={this.onChange} />
         <Mark.MarkButton mark="underline" icon="underline" title="Underline" value={this.state.value} onChange={this.onChange} />
+        <Block.BlockButton block="block-quote" icon="quote-right" title="Block Quote" value={this.state.value} onChange={this.onChange} />
+        <Block.BlockButton block="heading-one" icon="angle-double-up" title="Heading One" value={this.state.value} onChange={this.onChange} />
+        <Block.BlockButton block="heading-two" icon="angle-up" title="Heading Two" value={this.state.value} onChange={this.onChange} />
+        <Block.BlockButton block="numbered-list" icon="list-ol" title="Numbered List" value={this.state.value} onChange={this.onChange} />
+        <Block.BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" value={this.state.value} onChange={this.onChange} />
       </div>
     )
-  };
-
-  /**
-   * Render a block-toggling toolbar button.
-   *
-   * @param {String} type
-   * @param {String} icon
-   * @return {Element}
-   */
-
-  renderBlockButton = (type, icon, title) => {
-    const isActive = this.hasBlock(type)
-    const onMouseDown = event => this.onClickBlock(event, type)
-
-    return (<ToolbarButton
-      icon={icon}
-      title={title}
-      onMouseDown={onMouseDown}
-      data-active={isActive}
-    />)
   };
 
   renderColorButton = (color, icon, title) => {
@@ -360,40 +265,6 @@ class TopicEditor extends React.Component {
         />
       </div>
     )
-  };
-
-  /**
-   * Render a Slate node.
-   *
-   * @param {Object} nodeProps
-   * @return {Element}
-   */
-
-  renderNode = nodeProps => {
-    const { attributes, children, node } = nodeProps
-    switch (node.type) {
-      case 'block-quote':
-        return <blockquote {...attributes}>{children}</blockquote>
-      case 'bulleted-list':
-        return <ul {...attributes}>{children}</ul>
-      case 'heading-one':
-        return <h1 {...attributes}>{children}</h1>
-      case 'heading-two':
-        return <h2 {...attributes}>{children}</h2>
-      case 'list-item':
-        return <li {...attributes}>{children}</li>
-      case 'numbered-list':
-        return <ol {...attributes}>{children}</ol>
-      case 'horizontal-rule':
-        return <hr />
-      // case 'color': {
-      //  const { data } = node
-      //  const color = data.get('color')
-      //  return <span {...attributes} style={{color}}>{children}</span>
-      // }
-      default:
-        return null
-    }
   };
 }
 
