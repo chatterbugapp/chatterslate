@@ -7,6 +7,7 @@ import Mark from './plugins/Mark'
 import Block from './plugins/Block'
 import Void from './plugins/Void'
 import Color from './plugins/Color'
+
 const plugins = [
   Mark.MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
   Mark.MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
@@ -27,7 +28,7 @@ const initialValue = {
       {
         kind: 'block',
         type: 'paragraph',
-        nodes: []
+        nodes: [],
       },
     ],
   },
@@ -48,7 +49,7 @@ class TopicEditor extends React.Component {
   state = {
     value: Value.fromJSON(initialValue),
     displayColorMenu: 'none',
-    debug: false
+    debug: false,
   };
 
   /**

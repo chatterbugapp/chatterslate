@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ToolbarButton from '../components/ToolbarButton'
 
 const DEFAULT_COLOR = 'black'
-const hasAnyColor = (value) => (value.marks.some(mark => mark.type === 'color'))
+const hasAnyColor = value => (value.marks.some(mark => mark.type === 'color'))
 const hasColor = (value, color) => (
   value.marks.some(mark => mark.type === 'color' && mark.data.get('color') === color)
 )
@@ -32,16 +33,17 @@ const colorStrategy = (value, color) => {
   return change
 }
 
-const ColorPlugin = ({type}) => ({
-  renderMark(props) {
-    const { attributes, children, mark } = props
-    if (mark.type === type) {
-      return <span style={{ color: mark.data.get('color') }} {...attributes}>{children}</span>
-    }
+const ColorPlugin = ({ type }) => ({
+  renderMark (colorProps) {
+    const { attributes, children, mark } = colorProps
+    return (mark.type === type)
+      ? <span style={{ color: mark.data.get('color') }} {...attributes}>{children}</span> : null
   },
 })
 
-const ColorButton = ({ color, icon, title, value, onChange }) => (
+const ColorButton = ({
+  color, icon, title, value, onChange,
+}) => (
   <ToolbarButton
     icon={icon}
     title={title}
@@ -49,13 +51,20 @@ const ColorButton = ({ color, icon, title, value, onChange }) => (
       e.preventDefault()
       return onChange(colorStrategy(value, color))
     }}
-    style={{color}}
+    style={{ color }}
     data-active={hasColor(value, color)}
-  >
-  </ToolbarButton>
+  />
 )
+
+ColorButton.propTypes = {
+  color: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  value: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+}
 
 export default {
   ColorPlugin,
-  ColorButton
+  ColorButton,
 }

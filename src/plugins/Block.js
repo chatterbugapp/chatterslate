@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ToolbarButton from '../components/ToolbarButton'
 
 const DEFAULT_NODE = 'paragraph'
@@ -46,16 +47,16 @@ const blockStrategy = (value, foundBlock) => {
   return change
 }
 
-const BlockPlugin = ({block, tag}) => ({
-  renderNode(props) {
+const BlockPlugin = ({ block, tag }) => ({
+  renderNode (props) {
     const { attributes, node, children } = props
-    if (node.type === block) {
-      return React.createElement(tag, attributes, children)
-    }
-  }
+    return (node.type === block) ? React.createElement(tag, attributes, children) : null
+  },
 })
 
-const BlockButton = ({ block, icon, title, value, onChange }) => (
+const BlockButton = ({
+  block, icon, title, value, onChange,
+}) => (
   <ToolbarButton
     icon={icon}
     title={title}
@@ -64,11 +65,18 @@ const BlockButton = ({ block, icon, title, value, onChange }) => (
       return onChange(blockStrategy(value, block))
     }}
     data-active={hasBlock(value, block)}
-  >
-  </ToolbarButton>
+  />
 )
+
+BlockButton.propTypes = {
+  block: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  value: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+}
 
 export default {
   BlockPlugin,
-  BlockButton
+  BlockButton,
 }
