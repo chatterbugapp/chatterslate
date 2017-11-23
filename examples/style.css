@@ -346,3 +346,40 @@ input:focus {
   line-height: 14px;
   height: 14px;
 }
+
+.color_black {
+  color: #000;
+}
+.color_grey {
+  color: #ccc;
+}
+.color_darkgrey {
+  color: #555;
+}
+
+.color_red {
+  color: #FD4242;
+}
+.color_yellow {
+  color: #FEDA32;
+}
+.color_blue {
+  color: #25CCED;
+}
+
+.color_male {
+  color: #25CCED;
+}
+.color_female {
+  color: #FD426E;
+}
+.color_neuter {
+  color: #B3B3B3;
+}
+
+.color_dative {
+  color: #00E6C2;
+}
+.color_accusative {
+  color: #baa2ee;
+}

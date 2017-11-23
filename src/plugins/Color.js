@@ -37,7 +37,7 @@ const ColorPlugin = ({ type }) => ({
   renderMark (colorProps) {
     const { attributes, children, mark } = colorProps
     return (mark.type === type)
-      ? <span style={{ color: mark.data.get('color') }} {...attributes}>{children}</span> : null
+      ? <span className={`color_${mark.data.get('color')}`} {...attributes}>{children}</span> : null
   },
 })
 
@@ -51,7 +51,7 @@ const ColorButton = ({
       e.preventDefault()
       return onChange(colorStrategy(value, color))
     }}
-    style={{ color }}
+    className={`button color_${color}`}
     data-active={hasColor(value, color)}
   />
 )

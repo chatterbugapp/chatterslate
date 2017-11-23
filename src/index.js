@@ -72,7 +72,7 @@ class TopicEditor extends React.Component {
       value,
       displayColorMenu: 'none',
       displayCharacterMenu: 'none',
-      displayRuleMenu: 'none'
+      displayRuleMenu: 'none',
     })
   };
 
@@ -174,22 +174,22 @@ class TopicEditor extends React.Component {
         <div className="color-menu" style={{ display: this.state.displayColorMenu }}>
           <div className="menu">
             <Color.ColorButton color="black" icon="font" title="Block" {...sharedProps} />
-            <Color.ColorButton color="#cccccc" icon="font" title="Grey" {...sharedProps} />
-            <Color.ColorButton color="#555555" icon="font" title="Dark Grey" {...sharedProps} />
+            <Color.ColorButton color="grey" icon="font" title="Grey" {...sharedProps} />
+            <Color.ColorButton color="darkgrey" icon="font" title="Dark Grey" {...sharedProps} />
           </div>
           <div className="menu">
-            <Color.ColorButton color="#FD4242" icon="font" title="Red" {...sharedProps} />
-            <Color.ColorButton color="#FEDA32" icon="font" title="Yellow" {...sharedProps} />
-            <Color.ColorButton color="#25CCED" icon="font" title="Blue" {...sharedProps} />
+            <Color.ColorButton color="red" icon="font" title="Red" {...sharedProps} />
+            <Color.ColorButton color="yellow" icon="font" title="Yellow" {...sharedProps} />
+            <Color.ColorButton color="blue" icon="font" title="Blue" {...sharedProps} />
           </div>
           <div className="menu">
-            <Color.ColorButton color="#25CCED" icon="mars" title="Male" {...sharedProps} />
-            <Color.ColorButton color="#FD426E" icon="venus" title="Female" {...sharedProps} />
-            <Color.ColorButton color="#B3B3B3" icon="neuter" title="Neuter" {...sharedProps} />
+            <Color.ColorButton color="male" icon="mars" title="Male" {...sharedProps} />
+            <Color.ColorButton color="female" icon="venus" title="Female" {...sharedProps} />
+            <Color.ColorButton color="neuter" icon="neuter" title="Neuter" {...sharedProps} />
           </div>
           <div className="menu">
-            <Color.ColorButton color="#00E6C2" icon="arrows-h" title="Dative" {...sharedProps} />
-            <Color.ColorButton color="#baa2ee" icon="times" title="Accusative" {...sharedProps} />
+            <Color.ColorButton color="dative" icon="arrows-h" title="Dative" {...sharedProps} />
+            <Color.ColorButton color="accusative" icon="times" title="Accusative" {...sharedProps} />
           </div>
         </div>
         <ToolbarButton icon="keyboard-o" title="Character Map" onMouseDown={this.onClickCharacterMenu} />
