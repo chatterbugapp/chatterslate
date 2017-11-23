@@ -25,5 +25,5 @@ PlainButton.propTypes = {
 }
 
 export default {
-  PlainButton
+  PlainButton,
 }
