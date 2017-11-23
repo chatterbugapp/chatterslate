@@ -2,27 +2,12 @@ import React from 'react'
 import ToolbarButton from '../components/ToolbarButton'
 import { isKeyHotkey } from 'is-hotkey'
 
-const BoldNode = ({ children }) => (
-  <strong>{children}</strong>
-)
+const BoldMark = 'bold'
+const BoldNode = ({ children }) => (<strong>{children}</strong>)
 
-const BoldPlugin = options => ({
-  renderMark(props) {
-    const { children, mark } = props
-    switch (mark.type) {
-      case 'bold': return BoldNode(props)
-      default: return null
-    }
-  },
-
-  onKeyDown(...args) {
-    return BoldKeyboardShortcut(...args)
-  },
-})
-
-const hasMark = value => value.activeMarks.some(mark => mark.type === 'bold')
+const hasMark = value => value.activeMarks.some(mark => mark.type === BoldMark)
 const boldMarkStrategy = change => change
-  .toggleMark('bold')
+  .toggleMark(BoldMark)
   .focus()
 
 const isBoldHotkey = isKeyHotkey('mod+b')
@@ -31,6 +16,20 @@ const BoldKeyboardShortcut = (event, data, editor) => {
     return editor.onChange(boldMarkStrategy(editor.state.value.change()))
   }
 }
+
+const BoldPlugin = options => ({
+  renderMark(props) {
+    const { children, mark } = props
+    if (mark.type === BoldMark) {
+      return BoldNode(props)
+    }
+  },
+
+  onKeyDown(...args) {
+    return BoldKeyboardShortcut(...args)
+  },
+})
+
 
 const BoldButton = ({ value, onChange }) => (
   <ToolbarButton
