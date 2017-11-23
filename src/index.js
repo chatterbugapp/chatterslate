@@ -5,6 +5,7 @@ import ToolbarButton from './components/ToolbarButton'
 
 import Mark from './plugins/Mark'
 import Block from './plugins/Block'
+import Void from './plugins/Void'
 const plugins = [
   Mark.MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
   Mark.MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
@@ -15,6 +16,7 @@ const plugins = [
   Block.BlockPlugin({ block: 'list-item', tag: 'li' }),
   Block.BlockPlugin({ block: 'heading-one', tag: 'h1' }),
   Block.BlockPlugin({ block: 'heading-two', tag: 'h2' }),
+  Void.VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
 ]
 
 const DEFAULT_COLOR = 'black'
@@ -56,26 +58,6 @@ class TopicEditor extends React.Component {
 
   onChange = ({ value }) => {
     this.setState({ value })
-  };
-
-  /**
-   * When a void button is clicked, insert an element.
-   *
-   * @param {Event} event
-   * @param {String} type
-   */
-
-  onClickVoid = (event, type) => {
-    event.preventDefault()
-    const { value } = this.state
-    const change = value.change()
-
-    change.insertInline({
-      type,
-      isVoid: true,
-    })
-
-    this.onChange(change)
   };
 
   /**
@@ -199,7 +181,6 @@ class TopicEditor extends React.Component {
             {this.renderColorButton('#baa2ee', 'times', 'Accusative')}
           </div>
         </div>
-        {this.renderVoidButton('horizontal-rule', 'minus', 'Horizontal Rule')}
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
    * @return {Element}
@@ -216,6 +197,7 @@ class TopicEditor extends React.Component {
         <Block.BlockButton block="heading-two" icon="angle-up" title="Heading Two" value={this.state.value} onChange={this.onChange} />
         <Block.BlockButton block="numbered-list" icon="list-ol" title="Numbered List" value={this.state.value} onChange={this.onChange} />
         <Block.BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" value={this.state.value} onChange={this.onChange} />
+        <Void.VoidButton type="horizontal-rule" icon="minus" title="Horizontal Rule" value={this.state.value} onChange={this.onChange} />
       </div>
     )
   };
@@ -231,20 +213,6 @@ class TopicEditor extends React.Component {
       style={{ color }}
       data-active={isActive}
     />)
-  };
-
-  /**
-   * Render a void element toolbar button.
-   *
-   * @param {String} type
-   * @param {String} icon
-   * @return {Element}
-   */
-
-  renderVoidButton = (type, icon, title) => {
-    const onMouseDown = event => this.onClickVoid(event, type)
-
-    return <ToolbarButton icon={icon} title={title} onMouseDown={onMouseDown} />
   };
 
   /**
