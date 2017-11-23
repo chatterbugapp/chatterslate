@@ -7,6 +7,7 @@ import Mark from './plugins/Mark'
 import Block from './plugins/Block'
 import Void from './plugins/Void'
 import Color from './plugins/Color'
+import Plain from './plugins/Plain'
 
 const plugins = [
   Mark.MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
@@ -49,6 +50,7 @@ class TopicEditor extends React.Component {
   state = {
     value: Value.fromJSON(initialValue),
     displayColorMenu: 'none',
+    displayCharacterMenu: 'none',
     debug: false,
   };
 
@@ -62,7 +64,7 @@ class TopicEditor extends React.Component {
     if (this.state.debug) {
       console.log(JSON.stringify(value.toJSON()))
     }
-    this.setState({ value, displayColorMenu: 'none' })
+    this.setState({ value, displayColorMenu: 'none', displayCharacterMenu: 'none' })
   };
 
   /**
@@ -104,6 +106,16 @@ class TopicEditor extends React.Component {
     }
   }
 
+  onClickCharacterMenu = event => {
+    event.preventDefault()
+    const { displayCharacterMenu } = this.state
+    if (displayCharacterMenu === 'none') {
+      this.setState({ displayCharacterMenu: 'block' })
+    } else {
+      this.setState({ displayCharacterMenu: 'none' })
+    }
+  }
+
   /**
    * Render.
    *
@@ -134,7 +146,7 @@ class TopicEditor extends React.Component {
         <Mark.MarkButton mark="bold" icon="bold" title="Bold" {...sharedProps} />
         <Mark.MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
         <Mark.MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
-        <Block.BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
+        <Block.BlockButton block="block-quote" icon="terminal" title="Block Quote" {...sharedProps} />
         <Block.BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <Block.BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <Block.BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />
@@ -161,6 +173,24 @@ class TopicEditor extends React.Component {
             <Color.ColorButton color="#baa2ee" icon="times" title="Accusative" {...sharedProps} />
           </div>
         </div>
+        <ToolbarButton icon="keyboard-o" title="Character Map" onMouseDown={this.onClickCharacterMenu} />
+        <div className="character-menu" style={{ display: this.state.displayCharacterMenu }}>
+          <div className="menu">
+            <Plain.PlainButton text="←" title="Left Arrow" {...sharedProps} />
+            <Plain.PlainButton text="→" title="Right Arrow" {...sharedProps} />
+            <Plain.PlainButton text="↔" title="Left Right Arrow" {...sharedProps} />
+            <Plain.PlainButton text="⇐" title="Leftwards Double Arrow" {...sharedProps} />
+            <Plain.PlainButton text="⇒" title="Rightwards Double Arrow" {...sharedProps} />
+          </div>
+          <div className="menu">
+            <Plain.PlainButton text="…" title="Ellipsis" {...sharedProps} />
+            <Plain.PlainButton text="«" title="Double Low Quote" {...sharedProps} />
+            <Plain.PlainButton text="»" title="Double High Quote" {...sharedProps} />
+            <Plain.PlainButton text="„" title="Double Angle Left Quote" {...sharedProps} />
+            <Plain.PlainButton text="”" title="Double Angle Right Quote" {...sharedProps} />
+          </div>
+        </div>
+
         <Void.VoidButton type="horizontal-rule" icon="minus" title="Horizontal Rule" {...sharedProps} />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
