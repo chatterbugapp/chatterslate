@@ -14,7 +14,7 @@ const MarkPlugin = ({ mark, tag, hotkey }) => ({
   },
 
   onKeyDown (event, data, editor) {
-    return (isKeyHotkey(hotkey)(event))
+    return (hotkey && isKeyHotkey(hotkey)(event))
       ? editor.onChange(markStrategy(editor.state.value.change(), mark)) : null
   },
 })
