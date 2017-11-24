@@ -227,19 +227,19 @@ input:focus {
 }
 
 .toolbar-menu .menu_color {
-  left: 330px;
+  left: 350px;
 }
 
 .toolbar-menu .menu_character {
-  left: 365px;
+  left: 385px;
 }
 
 .toolbar-menu .menu_rule {
-  left: 400px;
+  left: 420px;
 }
 
 .toolbar-menu .menu_patterns {
-  left: 435px;
+  left: 455px;
 }
 
 .toolbar-menu .menu_rule button {
@@ -397,4 +397,12 @@ input:focus {
 
 .table_arrow {
   background: #eee;
+}
+
+.separator {
+  width: 3px;
+  color: #eee;
+}
+.separator:after {
+  content: "•"
 }

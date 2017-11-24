@@ -11,6 +11,7 @@ import { ColorPlugin, ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
 import { TablePlugin, TableButton } from './plugins/Table'
 import EditTable from 'slate-edit-table'
+const EditTablePlugin = EditTable()
 
 const plugins = [
   MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
@@ -29,7 +30,7 @@ const plugins = [
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
   ColorPlugin({ type: 'color' }),
   TablePlugin({ type: 'arrow' }),
-  EditTable()
+  EditTablePlugin
 ]
 
 const initialValue = {
@@ -103,6 +104,17 @@ class TopicEditor extends React.Component {
   }
 
   /**
+   * On remove pattern
+   *
+   */
+
+  onClickRemovePattern = event => {
+    event.preventDefault()
+    const { value } = this.state
+    this.onChange(EditTablePlugin.changes.removeTable(value.change()))
+  }
+
+  /**
    * Render.
    *
    * @return {Element}
@@ -141,6 +153,7 @@ class TopicEditor extends React.Component {
   renderToolbar = () => {
     const sharedProps = { value: this.state.value, onChange: this.onChange }
     const menuProps = { menus: this.state.menus, onMenuToggle: this.onMenuToggle }
+    const insideTable = EditTablePlugin.utils.isSelectionInTable(this.state.value)
 
     return (
       <div className="menu toolbar-menu">
@@ -153,6 +166,7 @@ class TopicEditor extends React.Component {
         <BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
         <BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />
         <BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" {...sharedProps} />
+        <div className="separator" />
         <ToolbarMenu type="color" icon="eyedropper" title="Font Color" {...menuProps}>
           <div className="menu">
             <ColorButton color="black" icon="font" title="Block" {...sharedProps} />
@@ -199,8 +213,11 @@ class TopicEditor extends React.Component {
         <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
           <TableButton type="table" icon="arrow-right" title="Arrow Table" {...sharedProps} />
         </ToolbarMenu>
+        <div className="separator" />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
+        <div className="separator" />
+        <ToolbarButton icon="trash" title="Remove Pattern" style={{display: insideTable ? 'inline-block' : 'none'}} onMouseDown={this.onClickRemovePattern} />
       </div>
     )
   };
