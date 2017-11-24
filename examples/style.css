@@ -217,7 +217,8 @@ input:focus {
 
 .toolbar-menu .menu_color,
 .toolbar-menu .menu_character,
-.toolbar-menu .menu_rule {
+.toolbar-menu .menu_rule,
+.toolbar-menu .menu_patterns {
   position: absolute;
   background: #fff;
   border: 1px solid #000;
@@ -237,6 +238,10 @@ input:focus {
   left: 400px;
 }
 
+.toolbar-menu .menu_patterns {
+  left: 435px;
+}
+
 .toolbar-menu .menu_rule button {
   height: 25px;
   display: block;
@@ -248,7 +253,8 @@ input:focus {
 
 .toolbar-menu .menu_color .menu,
 .toolbar-menu .menu_character .menu,
-.toolbar-menu .menu_rule .menu {
+.toolbar-menu .menu_rule .menu,
+.toolbar-menu .menu_patterns .menu {
   padding: 5px;
 }
 
@@ -387,4 +393,8 @@ input:focus {
 }
 .color_accusative {
   color: #baa2ee;
+}
+
+.table_arrow {
+  background: #eee;
 }

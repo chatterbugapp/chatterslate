@@ -9,6 +9,8 @@ import { BlockPlugin, BlockButton } from './plugins/Block'
 import { VoidPlugin, VoidButton } from './plugins/Void'
 import { ColorPlugin, ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
+import { TablePlugin, TableButton } from './plugins/Table'
+import EditTable from 'slate-edit-table'
 
 const plugins = [
   MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
@@ -26,6 +28,8 @@ const plugins = [
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
   ColorPlugin({ type: 'color' }),
+  TablePlugin({ type: 'arrow' }),
+  EditTable()
 ]
 
 const initialValue = {
@@ -190,7 +194,10 @@ class TopicEditor extends React.Component {
           <VoidButton type="underbar" text="4: ____" title="Small Space" {...sharedProps} />
           <VoidButton type="underbar_l" text="6: ______" title="Medium Space" {...sharedProps} />
           <VoidButton type="underbar_xl" text="8: ________" title="Large Space" {...sharedProps} />
-          <VoidButton type="horizontal-rule" text="HR: ———" title="Horizontal Rule" {...sharedProps} />
+          <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
+        </ToolbarMenu>
+        <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
+          <TableButton type="table" icon="arrow-right" title="Arrow Table" {...sharedProps} />
         </ToolbarMenu>
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
