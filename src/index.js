@@ -211,7 +211,7 @@ class TopicEditor extends React.Component {
           <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
         </ToolbarMenu>
         <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
-          <TableButton type="table" icon="arrow-right" title="Arrow Table" {...sharedProps} />
+          <TableButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
         </ToolbarMenu>
         <div className="separator" />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
