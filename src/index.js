@@ -18,6 +18,9 @@ const plugins = [
   MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
   MarkPlugin({ mark: 'underline', tag: 'u', hotkey: 'mod+u' }),
   MarkPlugin({ mark: 'strikethrough', tag: 's' }),
+  BlockPlugin({ block: 'align-left', tag: 'div', attributes: { style: { textAlign: 'left' } } }),
+  BlockPlugin({ block: 'align-center', tag: 'div', attributes: { style: { textAlign: 'center' } } }),
+  BlockPlugin({ block: 'align-right', tag: 'div', attributes: { style: { textAlign: 'right' } } }),
   BlockPlugin({ block: 'block-quote', tag: 'blockquote' }),
   BlockPlugin({ block: 'numbered-list', tag: 'ol' }),
   BlockPlugin({ block: 'bulleted-list', tag: 'ul' }),
@@ -151,9 +154,9 @@ class TopicEditor extends React.Component {
    */
 
   renderToolbar = () => {
-    const sharedProps = { value: this.state.value, onChange: this.onChange }
-    const menuProps = { menus: this.state.menus, onMenuToggle: this.onMenuToggle }
     const insideTable = EditTablePlugin.utils.isSelectionInTable(this.state.value)
+    const sharedProps = { value: this.state.value, onChange: this.onChange, insideTable }
+    const menuProps = { menus: this.state.menus, onMenuToggle: this.onMenuToggle }
 
     return (
       <div className="menu toolbar-menu">
@@ -161,6 +164,10 @@ class TopicEditor extends React.Component {
         <MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
         <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
         <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
+        <div className="separator" />
+        <BlockButton block="align-left" icon="align-left" title="Left Align" {...sharedProps} />
+        <BlockButton block="align-center" icon="align-center" title="Center Align" {...sharedProps} />
+        <BlockButton block="align-right" icon="align-right" title="Right Align" {...sharedProps} />
         <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
@@ -213,7 +220,7 @@ class TopicEditor extends React.Component {
         <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
           <TableButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
           <TableButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
-          <TableButton type="center" icon="align-center" title="Center Table" {...sharedProps} />
+          <TableButton type="middle" icon="table" title="Middle Table" {...sharedProps} />
         </ToolbarMenu>
         <div className="separator" />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />

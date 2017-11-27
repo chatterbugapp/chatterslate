@@ -176,11 +176,11 @@ input:focus {
 }
 
 .menu > * + * {
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
 .button {
-  color: #ccc;
+  color: #666;
   cursor: pointer;
   border: none;
   background: none;
@@ -193,6 +193,10 @@ input:focus {
   -webkit-user-select: none; /* for button */
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+.button:disabled {
+  color: #ccc;
 }
 
 .button[data-active="true"] {
@@ -227,19 +231,19 @@ input:focus {
 }
 
 .toolbar-menu .menu_color {
-  left: 350px;
+  left: 415px;
 }
 
 .toolbar-menu .menu_character {
-  left: 385px;
+  left: 445px;
 }
 
 .toolbar-menu .menu_rule {
-  left: 420px;
+  left: 475px;
 }
 
 .toolbar-menu .menu_patterns {
-  left: 455px;
+  left: 505px;
 }
 
 .toolbar-menu .menu_rule button {
@@ -406,6 +410,7 @@ input:focus {
 .separator {
   width: 3px;
   color: #eee;
+  margin-right: 5px;
 }
 .separator:after {
   content: "•"

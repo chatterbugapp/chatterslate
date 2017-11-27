@@ -2,10 +2,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ToolbarButton from '../components/ToolbarButton'
+
 import ArrowTable from '../blocks/arrow'
+import ConversationTable from '../blocks/conversation'
+import MiddleTable from '../blocks/middle'
 
 const Tables = {
-  arrow: ArrowTable
+  arrow: ArrowTable,
+  conversation: ConversationTable,
+  middle: MiddleTable,
 }
 
 const tableStrategy = (change, type) =>
