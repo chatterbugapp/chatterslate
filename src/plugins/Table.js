@@ -17,12 +17,13 @@ const tableStrategy = (change, type) =>
   change.insertBlock(Tables[type])
 
 export const TablePlugin = ({ type }) => ({
-  renderNode (props) {
-    const { attributes, node, children } = props
+  renderNode (nodeProps) {
+    const { attributes, node, children } = nodeProps
     switch (node.type) {
       case 'table': return <table className={`table_${type}`} {...attributes}><tbody>{children}</tbody></table>
       case 'table_row': return <tr {...attributes}>{children}</tr>
       case 'table_cell': return <td {...attributes}>{children}</td>
+      default: return null
     }
   },
 })

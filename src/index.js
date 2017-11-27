@@ -1,6 +1,8 @@
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import React from 'react'
+import EditTable from 'slate-edit-table'
+
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
@@ -11,7 +13,7 @@ import { VoidPlugin, VoidButton } from './plugins/Void'
 import { ColorPlugin, ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
 import { TablePlugin, TableButton } from './plugins/Table'
-import EditTable from 'slate-edit-table'
+
 const EditTablePlugin = EditTable()
 
 const plugins = [

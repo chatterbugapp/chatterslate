@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 import ToolbarButton from './ToolbarButton'
 
 const onClickAddPatternRow = (event, plugin, value) => {
- event.preventDefault()
- return plugin.changes.insertRow(value.change())
+  event.preventDefault()
+  return plugin.changes.insertRow(value.change())
 }
 
 const onClickRemovePatternRow = (event, plugin, value) => {
- event.preventDefault()
- return plugin.changes.removeRow(value.change())
+  event.preventDefault()
+  return plugin.changes.removeRow(value.change())
 }
 
 const onClickRemovePattern = (event, plugin, value) => {
- event.preventDefault()
- return plugin.changes.removeTable(value.change())
+  event.preventDefault()
+  return plugin.changes.removeTable(value.change())
 }
 
 const TableToolbarMenu = ({ plugin, value, onChange }) => (
@@ -29,6 +29,6 @@ const TableToolbarMenu = ({ plugin, value, onChange }) => (
 TableToolbarMenu.propTypes = {
   plugin: PropTypes.object.isRequired,
   value: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 }
 export default TableToolbarMenu

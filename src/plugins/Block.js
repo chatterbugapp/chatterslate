@@ -50,14 +50,17 @@ const blockStrategy = (value, foundBlock) => {
 }
 
 export const BlockPlugin = ({ block, tag, attributes }) => ({
-  renderNode (props) {
-    const { node, children } = props
-    return (node.type === block) ? React.createElement(tag, Object.assign(props.attributes, attributes), children) : null
+  renderNode (nodeProps) {
+    const { node, children } = nodeProps
+    if (node.type === block) {
+      return React.createElement(tag, Object.assign(nodeProps.attributes, attributes), children)
+    }
+    return null
   },
 })
 
 export const BlockButton = ({
-  block, icon, title, value, onChange, insideTable
+  block, icon, title, value, onChange, insideTable,
 }) => (
   <ToolbarButton
     icon={icon}
@@ -77,4 +80,5 @@ BlockButton.propTypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
+  insideTable: PropTypes.bool.isRequired,
 }

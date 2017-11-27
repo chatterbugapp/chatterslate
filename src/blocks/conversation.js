@@ -1,74 +1,74 @@
 export default {
-  "kind": "block",
-  "type": "table",
-  "nodes": [
+  kind: 'block',
+  type: 'table',
+  nodes: [
     {
-      "kind": "block",
-      "type": "table_row",
-      "nodes": [
+      kind: 'block',
+      type: 'table_row',
+      nodes: [
         {
-          "kind": "block",
-          "type": "table_cell",
-          "nodes": [
+          kind: 'block',
+          type: 'table_cell',
+          nodes: [
             {
-              "kind": "text",
-              "leaves": [
+              kind: 'text',
+              leaves: [
                 {
-                  "text": "Teacher Icon"
-                }
-              ]
-            }
-          ]
+                  text: 'Teacher Icon',
+                },
+              ],
+            },
+          ],
         },
         {
-          "kind": "block",
-          "type": "table_cell",
-          "nodes": [
+          kind: 'block',
+          type: 'table_cell',
+          nodes: [
             {
-              "kind": "text",
-              "leaves": [
+              kind: 'text',
+              leaves: [
                 {
-                  "text": "Teacher Text",
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                  text: 'Teacher Text',
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
-      "kind": "block",
-      "type": "table_row",
-      "nodes": [
+      kind: 'block',
+      type: 'table_row',
+      nodes: [
         {
-          "kind": "block",
-          "type": "table_cell",
-          "nodes": [
+          kind: 'block',
+          type: 'table_cell',
+          nodes: [
             {
-              "kind": "text",
-              "leaves": [
+              kind: 'text',
+              leaves: [
                 {
-                  "text": "Student Icon",
-                }
-              ]
-            }
-          ]
+                  text: 'Student Icon',
+                },
+              ],
+            },
+          ],
         },
         {
-          "kind": "block",
-          "type": "table_cell",
-          "nodes": [
+          kind: 'block',
+          type: 'table_cell',
+          nodes: [
             {
-              "kind": "text",
-              "leaves": [
+              kind: 'text',
+              leaves: [
                 {
-                  "text": "Student Text"
-                }
-              ]
-            }
-          ]
+                  text: 'Student Text',
+                },
+              ],
+            },
+          ],
         },
-      ]
+      ],
     },
-  ]
+  ],
 }
