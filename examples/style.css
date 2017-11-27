@@ -176,7 +176,7 @@ input:focus {
 }
 
 .menu > * + * {
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 .button {
@@ -231,19 +231,19 @@ input:focus {
 }
 
 .toolbar-menu .menu_color {
-  left: 415px;
+  left: 385px;
 }
 
 .toolbar-menu .menu_character {
-  left: 445px;
+  left: 415px;
 }
 
 .toolbar-menu .menu_rule {
-  left: 475px;
+  left: 445px;
 }
 
 .toolbar-menu .menu_patterns {
-  left: 505px;
+  left: 475px;
 }
 
 .toolbar-menu .menu_rule button {

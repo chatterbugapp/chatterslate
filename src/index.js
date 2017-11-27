@@ -3,6 +3,7 @@ import { Value } from 'slate'
 import React from 'react'
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
+import TableToolbarMenu from './components/TableToolbarMenu'
 
 import { MarkPlugin, MarkButton } from './plugins/Mark'
 import { BlockPlugin, BlockButton } from './plugins/Block'
@@ -33,7 +34,7 @@ const plugins = [
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
   ColorPlugin({ type: 'color' }),
   TablePlugin({ type: 'arrow' }),
-  EditTablePlugin
+  EditTablePlugin,
 ]
 
 const initialValue = {
@@ -104,17 +105,6 @@ class TopicEditor extends React.Component {
     const { value } = this.state
     const change = value.change().redo()
     this.onChange(change)
-  }
-
-  /**
-   * On remove pattern
-   *
-   */
-
-  onClickRemovePattern = event => {
-    event.preventDefault()
-    const { value } = this.state
-    this.onChange(EditTablePlugin.changes.removeTable(value.change()))
   }
 
   /**
@@ -225,8 +215,7 @@ class TopicEditor extends React.Component {
         <div className="separator" />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
-        <div className="separator" />
-        <ToolbarButton icon="trash" title="Remove Pattern" style={{display: insideTable ? 'inline-block' : 'none'}} onMouseDown={this.onClickRemovePattern} />
+        {insideTable && <TableToolbarMenu plugin={EditTablePlugin} {...sharedProps} />}
       </div>
     )
   };
