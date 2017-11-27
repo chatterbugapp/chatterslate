@@ -251,6 +251,10 @@ input:focus {
   width: 15px;
 }
 
+.toolbar-menu .menu_patterns button {
+  width: 25px;
+}
+
 .toolbar-menu .menu_color .menu,
 .toolbar-menu .menu_character .menu,
 .toolbar-menu .menu_rule .menu,
