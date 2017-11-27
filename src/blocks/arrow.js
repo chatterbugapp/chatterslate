@@ -1,6 +1,9 @@
 export default {
   kind: 'block',
   type: 'table',
+  data: {
+    className: 'table_arrow',
+  },
   nodes: [
     {
       kind: 'block',
@@ -23,6 +26,9 @@ export default {
         {
           kind: 'block',
           type: 'table_cell',
+          data: {
+            contentEditable: false,
+          },
           nodes: [
             {
               kind: 'text',
@@ -71,6 +77,9 @@ export default {
         {
           kind: 'block',
           type: 'table_cell',
+          data: {
+            contentEditable: false,
+          },
           nodes: [
             {
               kind: 'text',

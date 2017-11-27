@@ -1,6 +1,9 @@
 export default {
   kind: 'block',
   type: 'table',
+  data: {
+    className: 'table_middle',
+  },
   nodes: [
     {
       kind: 'block',

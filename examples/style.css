@@ -404,7 +404,36 @@ input:focus {
 }
 
 .table_arrow {
-  background: #eee;
+  min-width: 300px;
+}
+
+.table_arrow tr td {
+  min-width: 100px;
+}
+
+.table_arrow tr td:first-child {
+  text-align: right;
+}
+
+.table_arrow tr td:nth-child(2) {
+  width: 16px;
+  min-width: 16px;
+}
+
+.table_conversation {
+  min-width: 300px;
+}
+
+.table_middle {
+  min-width: 300px;
+}
+
+.table_middle tr td {
+  min-width: 100px;
+}
+
+.table_middle tr td:first-child {
+  text-align: right;
 }
 
 .separator {

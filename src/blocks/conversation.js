@@ -1,6 +1,9 @@
 export default {
   kind: 'block',
   type: 'table',
+  data: {
+    className: 'table_conversation',
+  },
   nodes: [
     {
       kind: 'block',
