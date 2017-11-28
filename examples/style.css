@@ -176,11 +176,11 @@ input:focus {
 }
 
 .menu > * + * {
-  margin-left: 15px;
+  margin-left: 8px;
 }
 
 .button {
-  color: #ccc;
+  color: #666;
   cursor: pointer;
   border: none;
   background: none;
@@ -193,6 +193,10 @@ input:focus {
   -webkit-user-select: none; /* for button */
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+.button:disabled {
+  color: #ccc;
 }
 
 .button[data-active="true"] {
@@ -217,7 +221,8 @@ input:focus {
 
 .toolbar-menu .menu_color,
 .toolbar-menu .menu_character,
-.toolbar-menu .menu_rule {
+.toolbar-menu .menu_rule,
+.toolbar-menu .menu_patterns {
   position: absolute;
   background: #fff;
   border: 1px solid #000;
@@ -226,15 +231,19 @@ input:focus {
 }
 
 .toolbar-menu .menu_color {
-  left: 330px;
+  left: 385px;
 }
 
 .toolbar-menu .menu_character {
-  left: 365px;
+  left: 415px;
 }
 
 .toolbar-menu .menu_rule {
-  left: 400px;
+  left: 445px;
+}
+
+.toolbar-menu .menu_patterns {
+  left: 475px;
 }
 
 .toolbar-menu .menu_rule button {
@@ -246,9 +255,14 @@ input:focus {
   width: 15px;
 }
 
+.toolbar-menu .menu_patterns button {
+  width: 25px;
+}
+
 .toolbar-menu .menu_color .menu,
 .toolbar-menu .menu_character .menu,
-.toolbar-menu .menu_rule .menu {
+.toolbar-menu .menu_rule .menu,
+.toolbar-menu .menu_patterns .menu {
   padding: 5px;
 }
 
@@ -387,4 +401,67 @@ input:focus {
 }
 .color_accusative {
   color: #baa2ee;
+}
+
+.table_arrow {
+  min-width: 300px;
+}
+
+.table_arrow tr td {
+  min-width: 100px;
+}
+
+.table_arrow tr td:first-child {
+  text-align: right;
+}
+
+.table_arrow tr td:nth-child(2) {
+  width: 16px;
+  min-width: 16px;
+}
+
+.table_conversation {
+  min-width: 300px;
+}
+
+.table_conversation tr td {
+  border: none;
+}
+
+.table_conversation tr:nth-child(even) td:first-child > span {
+  background: cyan;
+}
+
+.table_conversation tr td:first-child {
+  width: 30px;
+}
+
+.table_conversation tr td:first-child > span {
+  display: block;
+  text-indent: -9999px;
+  background: grey;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+}
+
+.table_middle {
+  min-width: 300px;
+}
+
+.table_middle tr td {
+  min-width: 100px;
+}
+
+.table_middle tr td:first-child {
+  text-align: right;
+}
+
+.separator {
+  width: 3px;
+  color: #eee;
+  margin-right: 5px;
+}
+.separator:after {
+  content: "•"
 }

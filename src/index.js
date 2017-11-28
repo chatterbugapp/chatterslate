@@ -1,20 +1,29 @@
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import React from 'react'
+import EditTable from 'slate-edit-table'
+
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
+import TableToolbarMenu from './components/TableToolbarMenu'
 
 import { MarkPlugin, MarkButton } from './plugins/Mark'
 import { BlockPlugin, BlockButton } from './plugins/Block'
 import { VoidPlugin, VoidButton } from './plugins/Void'
 import { ColorPlugin, ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
+import { TablePlugin, TableButton } from './plugins/Table'
+
+const EditTablePlugin = EditTable()
 
 const plugins = [
   MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
   MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
   MarkPlugin({ mark: 'underline', tag: 'u', hotkey: 'mod+u' }),
   MarkPlugin({ mark: 'strikethrough', tag: 's' }),
+  BlockPlugin({ block: 'align-left', tag: 'div', attributes: { style: { textAlign: 'left' } } }),
+  BlockPlugin({ block: 'align-center', tag: 'div', attributes: { style: { textAlign: 'center' } } }),
+  BlockPlugin({ block: 'align-right', tag: 'div', attributes: { style: { textAlign: 'right' } } }),
   BlockPlugin({ block: 'block-quote', tag: 'blockquote' }),
   BlockPlugin({ block: 'numbered-list', tag: 'ol' }),
   BlockPlugin({ block: 'bulleted-list', tag: 'ul' }),
@@ -26,6 +35,8 @@ const plugins = [
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
   ColorPlugin({ type: 'color' }),
+  TablePlugin({ type: 'arrow' }),
+  EditTablePlugin,
 ]
 
 const initialValue = {
@@ -135,7 +146,8 @@ class TopicEditor extends React.Component {
    */
 
   renderToolbar = () => {
-    const sharedProps = { value: this.state.value, onChange: this.onChange }
+    const insideTable = EditTablePlugin.utils.isSelectionInTable(this.state.value)
+    const sharedProps = { value: this.state.value, onChange: this.onChange, insideTable }
     const menuProps = { menus: this.state.menus, onMenuToggle: this.onMenuToggle }
 
     return (
@@ -144,11 +156,16 @@ class TopicEditor extends React.Component {
         <MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
         <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
         <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
+        <div className="separator" />
+        <BlockButton block="align-left" icon="align-left" title="Left Align" {...sharedProps} />
+        <BlockButton block="align-center" icon="align-center" title="Center Align" {...sharedProps} />
+        <BlockButton block="align-right" icon="align-right" title="Right Align" {...sharedProps} />
         <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
         <BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />
         <BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" {...sharedProps} />
+        <div className="separator" />
         <ToolbarMenu type="color" icon="eyedropper" title="Font Color" {...menuProps}>
           <div className="menu">
             <ColorButton color="black" icon="font" title="Block" {...sharedProps} />
@@ -190,10 +207,17 @@ class TopicEditor extends React.Component {
           <VoidButton type="underbar" text="4: ____" title="Small Space" {...sharedProps} />
           <VoidButton type="underbar_l" text="6: ______" title="Medium Space" {...sharedProps} />
           <VoidButton type="underbar_xl" text="8: ________" title="Large Space" {...sharedProps} />
-          <VoidButton type="horizontal-rule" text="HR: ———" title="Horizontal Rule" {...sharedProps} />
+          <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
         </ToolbarMenu>
+        <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
+          <TableButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
+          <TableButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
+          <TableButton type="middle" icon="th-large" title="Middle Table" {...sharedProps} />
+        </ToolbarMenu>
+        <div className="separator" />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
         <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
+        {insideTable && <TableToolbarMenu plugin={EditTablePlugin} {...sharedProps} />}
       </div>
     )
   };
