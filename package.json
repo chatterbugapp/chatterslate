@@ -3,20 +3,24 @@
   "version": "0.0.0",
   "description": "SlateJS editor for Chatterbug",
   "main": "index.js",
+  "engines": {
+    "node": "9.2.0"
+  },
   "files": [
     "index.js",
     "dist"
   ],
   "scripts": {
     "start": "concurrently 'yarn run build:watch' 'watchify dist/index.js examples/index.js -o dist/bundle.js' 'yarn run livereload .' -c blue,magenta",
-    "build": "rm -rf dist && babel -d dist src",
+    "build": "rm -rf dist && yarn run babel -- -d dist src",
     "build:watch": "yarn run build -- --watch",
     "test": "echo 'Write some plz'",
     "lint": "eslint src || exit 0",
     "lint:fix": "eslint src --fix || exit 0",
     "prepublishOnly": "yarn run build",
     "ci": "yarn run lint && yarn run test",
-    "format": "yarn run prettier-eslint \"src/**/*.js\""
+    "format": "yarn run prettier-eslint \"src/**/*.js\"",
+    "heroku-postbuild": "yarn install --production=false && yarn run build && yarn run browserify -- dist/index.js examples/index.js -o dist/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -53,6 +57,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "immutable": "^3.8.2",
     "livereload": "^0.6.3",
+    "node-static": "^0.7.10",
     "prettier-eslint": "^8.2.2",
     "prettier-eslint-cli": "^4.4.0",
     "react-dom": "^16.1.1",
