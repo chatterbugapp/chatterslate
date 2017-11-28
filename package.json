@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "start": "concurrently 'yarn run build:watch' 'watchify dist/index.js examples/index.js -o dist/bundle.js' 'yarn run livereload .' -c blue,magenta",
-    "build": "rm -rf dist && babel -d dist src",
+    "build": "rm -rf dist && yarn run babel -- -d dist src",
     "build:watch": "yarn run build -- --watch",
     "test": "echo 'Write some plz'",
     "lint": "eslint src || exit 0",
