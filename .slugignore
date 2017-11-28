@@ -1,0 +1,2 @@
+# remove hidden files before deploying
+.*

@@ -16,7 +16,8 @@
     "lint:fix": "eslint src --fix || exit 0",
     "prepublishOnly": "yarn run build",
     "ci": "yarn run lint && yarn run test",
-    "format": "yarn run prettier-eslint \"src/**/*.js\""
+    "format": "yarn run prettier-eslint \"src/**/*.js\"",
+    "heroku-postbuild": "yarn run build"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "immutable": "^3.8.2",
     "livereload": "^0.6.3",
+    "node-static": "^0.7.10",
     "prettier-eslint": "^8.2.2",
     "prettier-eslint-cli": "^4.4.0",
     "react-dom": "^16.1.1",
