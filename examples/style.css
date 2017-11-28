@@ -473,3 +473,19 @@ input:focus {
 .tips {
   font-style: italic;
 }
+
+.mark_bold {
+  font-weight: bold;
+}
+
+.mark_italic {
+  font-style: italic;
+}
+
+.mark_underline {
+  text-decoration: underline;
+}
+
+.mark_strikethrough {
+  text-decoration: line-through;
+}

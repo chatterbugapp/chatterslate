@@ -8,14 +8,25 @@ const markStrategy = (change, mark) => change
   .toggleMark(mark)
   .focus()
 
-export const MarkPlugin = ({ mark, tag, hotkey }) => ({
-  renderMark (props) {
-    return (props.mark.type === mark) ? React.createElement(tag, props) : null
+export const MarkPlugin = ({ hotkeys }) => ({
+  renderMark (markProps) {
+    const { marks, attributes, children } = markProps
+    if (marks.size > 0 && typeof(children) === "string") {
+      const classNames = marks.map(mark => `mark_${mark.type}`).join(' ')
+      return <span className={classNames} {...attributes}>{children}</span>
+    } else {
+      return null
+    }
   },
 
   onKeyDown (event, data, editor) {
-    return (hotkey && isKeyHotkey(hotkey)(event))
-      ? editor.onChange(markStrategy(editor.state.value.change(), mark)) : null
+    for (let mark in hotkeys) {
+      if (isKeyHotkey(hotkeys[mark])(event)) {
+        return editor.onChange(markStrategy(editor.state.value.change(), mark))
+      }
+    }
+
+    return null
   },
 })
 
