@@ -20,7 +20,7 @@
     "prepublishOnly": "yarn run build",
     "ci": "yarn run lint && yarn run test",
     "format": "yarn run prettier-eslint \"src/**/*.js\"",
-    "heroku-postbuild": "yarn install --production=false && yarn run build"
+    "heroku-postbuild": "yarn install --production=false && yarn run build && yarn run browserify -- dist/index.js examples/index.js -o dist/bundle.js"
   },
   "repository": {
     "type": "git",
