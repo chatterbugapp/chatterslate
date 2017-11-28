@@ -11,21 +11,18 @@ const markStrategy = (change, mark) => change
 export const MarkPlugin = ({ hotkeys }) => ({
   renderMark (markProps) {
     const { marks, attributes, children } = markProps
-    if (marks.size > 0 && typeof(children) === "string") {
+    if (marks.size > 0 && typeof (children) === 'string') {
       const classNames = marks.map(mark => `mark_${mark.type}`).join(' ')
       return <span className={classNames} {...attributes}>{children}</span>
-    } else {
-      return null
     }
+    return null
   },
 
   onKeyDown (event, data, editor) {
-    for (let mark in hotkeys) {
-      if (isKeyHotkey(hotkeys[mark])(event)) {
-        return editor.onChange(markStrategy(editor.state.value.change(), mark))
-      }
+    const match = Object.entries(hotkeys).find(([mark, hotkey]) => isKeyHotkey(hotkey)(event))
+    if (match) {
+      return editor.onChange(markStrategy(editor.state.value.change(), match[0]))
     }
-
     return null
   },
 })
