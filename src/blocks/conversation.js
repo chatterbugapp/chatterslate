@@ -17,7 +17,7 @@ export default {
               kind: 'text',
               leaves: [
                 {
-                  text: 'Teacher Icon',
+                  text: 'Icon',
                 },
               ],
             },
@@ -51,7 +51,7 @@ export default {
               kind: 'text',
               leaves: [
                 {
-                  text: 'Student Icon',
+                  text: 'Icon',
                 },
               ],
             },

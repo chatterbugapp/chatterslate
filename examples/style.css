@@ -424,6 +424,27 @@ input:focus {
   min-width: 300px;
 }
 
+.table_conversation tr td {
+  border: none;
+}
+
+.table_conversation tr:nth-child(even) td:first-child > span {
+  background: cyan;
+}
+
+.table_conversation tr td:first-child {
+  width: 30px;
+}
+
+.table_conversation tr td:first-child > span {
+  display: block;
+  text-indent: -9999px;
+  background: grey;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+}
+
 .table_middle {
   min-width: 300px;
 }
