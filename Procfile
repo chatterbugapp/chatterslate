@@ -1,1 +1,1 @@
-web: yarn run static -p $PORT
+web: yarn run static -- --offline --port $PORT
