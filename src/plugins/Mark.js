@@ -8,11 +8,18 @@ const markStrategy = (change, mark) => change
   .toggleMark(mark)
   .focus()
 
+// Handling Color too...ugh
 export const MarkPlugin = ({ hotkeys }) => ({
   renderMark (markProps) {
     const { marks, attributes, children } = markProps
     if (marks.size > 0 && typeof (children) === 'string') {
-      const classNames = marks.map(mark => `mark_${mark.type}`).join(' ')
+      const classNames = marks.map(mark => {
+        if (mark.type === 'color') {
+          return `color_${mark.data.get('color')}`
+        }
+        return `mark_${mark.type}`
+      }).join(' ')
+
       return <span className={classNames} {...attributes}>{children}</span>
     }
     return null
