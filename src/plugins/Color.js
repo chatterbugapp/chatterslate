@@ -26,20 +26,12 @@ const colorStrategy = (value, color) => {
         change.addMark({ type: 'color', data: { color } }).focus()
       }
     }
-  } else if (value.isExpanded && color !== DEFAULT_COLOR) {
+  } else if (color !== DEFAULT_COLOR) {
     change.addMark({ type: 'color', data: { color } }).focus()
   }
 
   return change
 }
-
-export const ColorPlugin = ({ type }) => ({
-  renderMark (colorProps) {
-    const { attributes, children, mark } = colorProps
-    return (mark.type === type)
-      ? <span className={`color_${mark.data.get('color')}`} {...attributes}>{children}</span> : null
-  },
-})
 
 export const ColorButton = ({
   color, icon, title, value, onChange,

@@ -10,7 +10,7 @@ import TableToolbarMenu from './components/TableToolbarMenu'
 import { MarkPlugin, MarkButton } from './plugins/Mark'
 import { BlockPlugin, BlockButton } from './plugins/Block'
 import { VoidPlugin, VoidButton } from './plugins/Void'
-import { ColorPlugin, ColorButton } from './plugins/Color'
+import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
 import { TablePlugin, TableButton } from './plugins/Table'
 
@@ -31,7 +31,6 @@ const plugins = [
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
-  ColorPlugin({ type: 'color' }),
   TablePlugin({ type: 'arrow' }),
   EditTablePlugin,
 ]
@@ -175,13 +174,13 @@ class TopicEditor extends React.Component {
             <ColorButton color="blue" icon="font" title="Blue" {...sharedProps} />
           </div>
           <div className="menu">
-            <ColorButton color="male" icon="mars" title="Male" {...sharedProps} />
-            <ColorButton color="female" icon="venus" title="Female" {...sharedProps} />
-            <ColorButton color="neuter" icon="neuter" title="Neuter" {...sharedProps} />
+            <ColorButton color="male" icon="font" title="Male" {...sharedProps} />
+            <ColorButton color="female" icon="font" title="Female" {...sharedProps} />
+            <ColorButton color="neuter" icon="font" title="Neuter" {...sharedProps} />
           </div>
           <div className="menu">
-            <ColorButton color="dative" icon="arrows-h" title="Dative" {...sharedProps} />
-            <ColorButton color="accusative" icon="times" title="Accusative" {...sharedProps} />
+            <ColorButton color="dative" icon="font" title="Dative" {...sharedProps} />
+            <ColorButton color="accusative" icon="font" title="Accusative" {...sharedProps} />
           </div>
         </ToolbarMenu>
         <ToolbarMenu type="character" icon="keyboard-o" title="Character Map" {...menuProps}>
