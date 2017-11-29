@@ -17,10 +17,7 @@ import { TablePlugin, TableButton } from './plugins/Table'
 const EditTablePlugin = EditTable()
 
 const plugins = [
-  MarkPlugin({ mark: 'bold', tag: 'strong', hotkey: 'mod+b' }),
-  MarkPlugin({ mark: 'italic', tag: 'em', hotkey: 'mod+i' }),
-  MarkPlugin({ mark: 'underline', tag: 'u', hotkey: 'mod+u' }),
-  MarkPlugin({ mark: 'strikethrough', tag: 's' }),
+  MarkPlugin({ hotkeys: { bold: 'mod+b', italic: 'mod+i', underline: 'mod+u' } }),
   BlockPlugin({ block: 'align-left', tag: 'div', attributes: { style: { textAlign: 'left' } } }),
   BlockPlugin({ block: 'align-center', tag: 'div', attributes: { style: { textAlign: 'center' } } }),
   BlockPlugin({ block: 'align-right', tag: 'div', attributes: { style: { textAlign: 'right' } } }),
