@@ -1,5 +1,5 @@
 {
-  "name": "chatterslate",
+  "name": "@chatterbug/chatterslate",
   "version": "0.0.0",
   "description": "SlateJS editor for Chatterbug",
   "main": "index.js",
