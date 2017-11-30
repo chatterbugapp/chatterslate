@@ -69,7 +69,7 @@ export const BlockButton = ({
       e.preventDefault()
       return onChange(blockStrategy(value, block))
     }}
-    data-active={hasBlock(value, block)}
+    active={hasBlock(value, block)}
     disabled={insideTable}
   />
 )

@@ -44,7 +44,7 @@ export const ColorButton = ({
       return onChange(colorStrategy(value, color))
     }}
     className={`button color_${color}`}
-    data-active={hasColor(value, color)}
+    active={hasColor(value, color)}
   />
 )
 
