@@ -1,4 +1,4 @@
-import { Editor, findDOMNode } from 'slate-react'
+import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import React from 'react'
 import EditTable from 'slate-edit-table'
@@ -8,7 +8,7 @@ import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
 
 import { MarkPlugin, MarkButton } from './plugins/Mark'
-import { BlockPlugin, BlockButton, DefaultBlock } from './plugins/Block'
+import { BlockPlugin, BlockButton } from './plugins/Block'
 import { VoidPlugin, VoidButton } from './plugins/Void'
 import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
@@ -226,7 +226,7 @@ class TopicEditor extends React.Component {
 
   renderEditor = () => {
     return (
-      <div className="editor" ref={(editor) => { this.editor = editor }}>
+      <div className="editor" ref={editor => { this.editor = editor }}>
         <Editor
           placeholder="Teach a topic..."
           value={this.state.value}
