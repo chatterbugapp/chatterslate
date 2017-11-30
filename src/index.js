@@ -1,4 +1,4 @@
-import { Editor } from 'slate-react'
+import { Editor, findDOMNode } from 'slate-react'
 import { Value } from 'slate'
 import React from 'react'
 import EditTable from 'slate-edit-table'
@@ -8,7 +8,7 @@ import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
 
 import { MarkPlugin, MarkButton } from './plugins/Mark'
-import { BlockPlugin, BlockButton } from './plugins/Block'
+import { BlockPlugin, BlockButton, DefaultBlock } from './plugins/Block'
 import { VoidPlugin, VoidButton } from './plugins/Void'
 import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
@@ -226,7 +226,7 @@ class TopicEditor extends React.Component {
 
   renderEditor = () => {
     return (
-      <div className="editor">
+      <div className="editor" ref={(editor) => { this.editor = editor }}>
         <Editor
           placeholder="Teach a topic..."
           value={this.state.value}
@@ -237,6 +237,17 @@ class TopicEditor extends React.Component {
         />
       </div>
     )
+  };
+
+  // Public: Export JSON!
+  serializeJSON = () => {
+    return this.state.value.toJSON()
+  };
+
+  // Public: Export HTML from what the editor renders.
+  // Avoid using slate-html-serializer for now, but may need to soon.
+  serializeHTML = () => {
+    return this.editor.querySelector('[data-slate-editor]').innerHTML
   };
 }
 
