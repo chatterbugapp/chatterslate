@@ -193,10 +193,7 @@ input:focus {
   line-height: normal;
   overflow: visible;
   padding: 0;
-  -webkit-appearance: button; /* for input */
-  -webkit-user-select: none; /* for button */
-  -moz-user-select: none;
-  -ms-user-select: none;
+  text-align: center;
 }
 
 .button:disabled {
@@ -250,16 +247,16 @@ input:focus {
   left: 475px;
 }
 
-.toolbar-menu .menu_rule button {
+.toolbar-menu .menu_rule a {
   height: 25px;
   display: block;
 }
 
-.toolbar-menu .menu_character button {
+.toolbar-menu .menu_character a {
   width: 15px;
 }
 
-.toolbar-menu .menu_patterns button {
+.toolbar-menu .menu_patterns a {
   width: 25px;
 }
 
