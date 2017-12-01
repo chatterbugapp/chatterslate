@@ -1,7 +1,7 @@
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import React from 'react'
-import EditTable from 'slate-edit-table'
+import EditTable from '@chatterbug/slate-edit-table'
 
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
