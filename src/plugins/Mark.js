@@ -44,7 +44,7 @@ export const MarkButton = ({
       e.preventDefault()
       return onChange(markStrategy(value.change(), mark))
     }}
-    data-active={hasMark(value, mark)}
+    active={hasMark(value, mark)}
   />
 )
 

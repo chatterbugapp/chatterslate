@@ -226,7 +226,7 @@ class TopicEditor extends React.Component {
 
   renderEditor = () => {
     return (
-      <div className="editor">
+      <div className="editor" ref={editor => { this.editor = editor }}>
         <Editor
           placeholder="Teach a topic..."
           value={this.state.value}
@@ -237,6 +237,17 @@ class TopicEditor extends React.Component {
         />
       </div>
     )
+  };
+
+  // Public: Export JSON!
+  serializeJSON = () => {
+    return this.state.value.toJSON()
+  };
+
+  // Public: Export HTML from what the editor renders.
+  // Avoid using slate-html-serializer for now, but may need to soon.
+  serializeHTML = () => {
+    return this.editor.querySelector('[data-slate-editor]').innerHTML
   };
 }
 

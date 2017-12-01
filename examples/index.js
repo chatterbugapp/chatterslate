@@ -3,7 +3,14 @@ const React = require("react")
 const ReactDOM = require("react-dom")
 
 document.addEventListener('DOMContentLoaded', function (event) {
-  const props = {}
+  const props = { ref: (editor) => { global.editor = editor } }
   const element = document.getElementById("example")
-  ReactDOM.render(React.createElement(Chatterslate.TopicEditor, props), element)
+  const editor = React.createElement(Chatterslate.TopicEditor, props)
+  ReactDOM.render(editor, element)
+
+  const link = document.getElementById('serialize')
+  link.onclick = () => {
+    const raw = global.editor.serializeHTML()
+    console.log(raw)
+  }
 })
