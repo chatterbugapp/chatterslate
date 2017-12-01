@@ -38,7 +38,6 @@ export const TableButton = ({
     icon={icon}
     title={title}
     onMouseDown={e => {
-      e.preventDefault()
       return onChange(tableStrategy(value.change(), type))
     }}
   />

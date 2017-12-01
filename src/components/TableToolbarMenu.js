@@ -3,17 +3,14 @@ import PropTypes from 'prop-types'
 import ToolbarButton from './ToolbarButton'
 
 const onClickAddPatternRow = (event, plugin, value) => {
-  event.preventDefault()
   return plugin.changes.insertRow(value.change())
 }
 
 const onClickRemovePatternRow = (event, plugin, value) => {
-  event.preventDefault()
   return plugin.changes.removeRow(value.change())
 }
 
 const onClickRemovePattern = (event, plugin, value) => {
-  event.preventDefault()
   return plugin.changes.removeTable(value.change())
 }
 

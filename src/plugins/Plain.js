@@ -11,7 +11,6 @@ export const PlainButton = ({
     text={text}
     title={title}
     onMouseDown={e => {
-      e.preventDefault()
       return onChange(plainStrategy(value.change(), text))
     }}
   />

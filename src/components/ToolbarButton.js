@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+const wrapMouseDown = (event, mouseDown) => {
+  event.preventDefault()
+  event.stopPropagation()
+  mouseDown(event)
+}
+
 /**
  * Toolbar button component!
  *
@@ -12,7 +18,7 @@ const ToolbarButton = props => (
     className={props.className || 'button'}
     title={props.title}
     data-active={props.active}
-    onMouseDown={props.onMouseDown}
+    onMouseDown={event => wrapMouseDown(event, props.onMouseDown)}
   >
     {props.icon && <i className={`fa fa-${props.icon}`} aria-hidden="true" />}
     {props.text}

@@ -66,7 +66,6 @@ export const BlockButton = ({
     icon={icon}
     title={title}
     onMouseDown={e => {
-      e.preventDefault()
       return onChange(blockStrategy(value, block))
     }}
     active={hasBlock(value, block)}

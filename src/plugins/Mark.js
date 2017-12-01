@@ -41,7 +41,6 @@ export const MarkButton = ({
     icon={icon}
     title={title}
     onMouseDown={e => {
-      e.preventDefault()
       return onChange(markStrategy(value.change(), mark))
     }}
     active={hasMark(value, mark)}

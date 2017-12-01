@@ -40,7 +40,6 @@ export const ColorButton = ({
     icon={icon}
     title={title}
     onMouseDown={e => {
-      e.preventDefault()
       return onChange(colorStrategy(value, color))
     }}
     className={`button color_${color}`}

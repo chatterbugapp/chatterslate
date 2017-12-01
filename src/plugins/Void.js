@@ -19,7 +19,6 @@ export const VoidButton = ({
     icon={icon}
     title={title}
     onMouseDown={e => {
-      e.preventDefault()
       return onChange(voidStrategy(value.change(), type))
     }}
   />
