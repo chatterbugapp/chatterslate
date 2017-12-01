@@ -38,7 +38,7 @@
     "is-hotkey": "^0.1.1",
     "react": "^16.1.1",
     "slate": "^0.31.3",
-    "slate-edit-table": "^0.13.0",
+    "slate-edit-table": "git://github.com/chatterbugapp/slate-edit-table.git",
     "slate-react": "^0.10.17"
   },
   "devDependencies": {

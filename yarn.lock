@@ -3556,9 +3556,9 @@ slate-dev-logger@^0.1.36:
   version "0.1.36"
   resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.36.tgz#ecdb37dbf944dfc742bab23b6a20d5a0472db95e"
 
-slate-edit-table@^0.13.0:
+"slate-edit-table@git://github.com/chatterbugapp/slate-edit-table.git":
   version "0.13.0"
-  resolved "https://registry.yarnpkg.com/slate-edit-table/-/slate-edit-table-0.13.0.tgz#c462d818d38cbdf7a335f1cfd2f2f79e8edc5f7d"
+  resolved "git://github.com/chatterbugapp/slate-edit-table.git#accfcb24f3f7832fc4708a18edfe0d4847ee6f6b"
 
 slate-plain-serializer@^0.4.11:
   version "0.4.11"
