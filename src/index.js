@@ -1,6 +1,7 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
-import React from 'react'
 import EditTable from '@chatterbug/slate-edit-table'
 
 import ToolbarButton from './components/ToolbarButton'
@@ -35,7 +36,7 @@ const plugins = [
   EditTablePlugin,
 ]
 
-const initialValue = {
+const defaultValue = {
   document: {
     nodes: [
       {
@@ -53,17 +54,18 @@ const initialValue = {
  * @type {Component}
  */
 class TopicEditor extends React.Component {
-  /**
-   * Deserialize the initial editor value.
-   *
-   * @type {Object}
-   */
+  static propTypes = {
+    initialValue: PropTypes.object,
+  }
 
-  state = {
-    value: Value.fromJSON(initialValue),
-    menus: {},
-    debug: false,
-  };
+  constructor (props) {
+    super(props)
+    this.state = {
+      value: Value.fromJSON(props.initialValue || defaultValue),
+      menus: {},
+      debug: false,
+    }
+  }
 
   /**
    * On change, save the new `value`, and hide the color menu
