@@ -1,6 +1,6 @@
 {
   "name": "@chatterbug/chatterslate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "SlateJS editor for Chatterbug",
   "main": "index.js",
   "engines": {
@@ -17,6 +17,7 @@
     "test": "echo 'Write some plz'",
     "lint": "eslint src || exit 0",
     "lint:fix": "eslint src --fix || exit 0",
+    "release": "git commit -am \"Bump to $VERSION\"; git push origin master; git tag -a v$VERSION -m \"Bump to v$VERSION\"; git push origin v$VERSION; npm publish",
     "prepublishOnly": "yarn run build",
     "ci": "yarn run lint && yarn run test",
     "format": "yarn run prettier-eslint \"src/**/*.js\"",

@@ -25,7 +25,7 @@ or src/ directories!
 You'll need to be signed in via NPM first! Then, bump the version number in package.json. After that, just:
 
 ```
-npm publish
+VERSION=0.0.0 yarn release
 ```
 
-Please also make a git tag too: `git tag -a v0.0.0 -m "Releasing 0.0.0"` where `0.0.0` is your version number.
+...where `0.0.0` is your version number.
