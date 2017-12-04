@@ -89,6 +89,7 @@ class TopicEditor extends React.Component {
    */
 
   onClickUndo = event => {
+    event.preventDefault()
     const { value } = this.state
     const change = value.change().undo()
     this.onChange(change)
@@ -100,6 +101,7 @@ class TopicEditor extends React.Component {
    */
 
   onClickRedo = event => {
+    event.preventDefault()
     const { value } = this.state
     const change = value.change().redo()
     this.onChange(change)
@@ -126,6 +128,7 @@ class TopicEditor extends React.Component {
    */
 
   onMenuToggle = (event, type) => {
+    event.preventDefault()
     const menus = {}
     if (!this.state.menus[type]) {
       menus[type] = true
