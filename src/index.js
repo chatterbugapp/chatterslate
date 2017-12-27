@@ -22,7 +22,6 @@ const plugins = [
   BlockPlugin({ block: 'align-left', tag: 'div', attributes: { style: { textAlign: 'left' } } }),
   BlockPlugin({ block: 'align-center', tag: 'div', attributes: { style: { textAlign: 'center' } } }),
   BlockPlugin({ block: 'align-right', tag: 'div', attributes: { style: { textAlign: 'right' } } }),
-  BlockPlugin({ block: 'block-quote', tag: 'blockquote' }),
   BlockPlugin({ block: 'numbered-list', tag: 'ol' }),
   BlockPlugin({ block: 'bulleted-list', tag: 'ul' }),
   BlockPlugin({ block: 'list-item', tag: 'li' }),
@@ -160,7 +159,6 @@ class TopicEditor extends React.Component {
         <BlockButton block="align-right" icon="align-right" title="Right Align" {...sharedProps} />
         <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
-        <BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
         <BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />
         <BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" {...sharedProps} />
         <div className="separator" />
