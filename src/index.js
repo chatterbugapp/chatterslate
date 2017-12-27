@@ -15,6 +15,7 @@ import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
 import { TablePlugin, TableButton } from './plugins/Table'
 
+const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
 const EditTablePlugin = EditTable()
 
 const plugins = [
@@ -59,8 +60,10 @@ class TopicEditor extends React.Component {
 
   constructor (props) {
     super(props)
+
+    const existingValue = JSON.parse(localStorage.getItem(LocalStorageKey))
     this.state = {
-      value: Value.fromJSON(props.initialValue || defaultValue),
+      value: Value.fromJSON(existingValue || props.initialValue || defaultValue),
       menus: {},
       debug: false,
     }
@@ -73,9 +76,16 @@ class TopicEditor extends React.Component {
    */
 
   onChange = ({ value }) => {
+    const jsonContent = JSON.stringify(value.toJSON())
+
     if (this.state.debug) {
-      console.log(JSON.stringify(value.toJSON()))
+      console.log(jsonContent)
     }
+
+    if (value.document != this.state.value.document) {
+      localStorage.setItem(LocalStorageKey, jsonContent)
+    }
+
     this.setState({
       value,
       menus: {},
@@ -249,6 +259,11 @@ class TopicEditor extends React.Component {
   serializeHTML = () => {
     return this.editor.querySelector('[data-slate-editor]').innerHTML
   };
+
+  // Public: Reset local storage, usually after the editor has saved via the DB
+  clearStorage = () => {
+    localStorage.removeItem(LocalStorageKey)
+  }
 }
 
 /**
