@@ -16,7 +16,7 @@
     "build:watch": "yarn run build -- --watch",
     "build:browserify": "sleep 3 && yarn run watchify -- dist/index.js examples/index.js -o dist/bundle.js",
     "test": "echo 'Write some plz'",
-    "lint": "eslint src || exit 0",
+    "lint": "eslint src",
     "lint:fix": "eslint src --fix || exit 0",
     "release": "git commit -am \"Bump to $VERSION\"; git push origin master; git tag -a v$VERSION -m \"Bump to v$VERSION\"; git push origin v$VERSION; npm publish",
     "prepublishOnly": "yarn run build",
