@@ -1,3 +1,4 @@
+/* global localStorage */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
@@ -15,6 +16,7 @@ import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
 import { TablePlugin, TableButton } from './plugins/Table'
 
+const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
 const EditTablePlugin = EditTable()
 
 const plugins = [
@@ -22,7 +24,6 @@ const plugins = [
   BlockPlugin({ block: 'align-left', tag: 'div', attributes: { style: { textAlign: 'left' } } }),
   BlockPlugin({ block: 'align-center', tag: 'div', attributes: { style: { textAlign: 'center' } } }),
   BlockPlugin({ block: 'align-right', tag: 'div', attributes: { style: { textAlign: 'right' } } }),
-  BlockPlugin({ block: 'block-quote', tag: 'blockquote' }),
   BlockPlugin({ block: 'numbered-list', tag: 'ol' }),
   BlockPlugin({ block: 'bulleted-list', tag: 'ul' }),
   BlockPlugin({ block: 'list-item', tag: 'li' }),
@@ -60,8 +61,10 @@ class TopicEditor extends React.Component {
 
   constructor (props) {
     super(props)
+
+    const existingValue = JSON.parse(localStorage.getItem(LocalStorageKey))
     this.state = {
-      value: Value.fromJSON(props.initialValue || defaultValue),
+      value: Value.fromJSON(existingValue || props.initialValue || defaultValue),
       menus: {},
       debug: false,
     }
@@ -74,9 +77,16 @@ class TopicEditor extends React.Component {
    */
 
   onChange = ({ value }) => {
+    const jsonContent = JSON.stringify(value.toJSON())
+
     if (this.state.debug) {
-      console.log(JSON.stringify(value.toJSON()))
+      console.log(jsonContent)
     }
+
+    if (value.document !== this.state.value.document) {
+      localStorage.setItem(LocalStorageKey, jsonContent)
+    }
+
     this.setState({
       value,
       menus: {},
@@ -160,7 +170,6 @@ class TopicEditor extends React.Component {
         <BlockButton block="align-right" icon="align-right" title="Right Align" {...sharedProps} />
         <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
-        <BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
         <BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />
         <BlockButton block="bulleted-list" icon="list-ul" title="Bulleted List" {...sharedProps} />
         <div className="separator" />
@@ -251,6 +260,11 @@ class TopicEditor extends React.Component {
   serializeHTML = () => {
     return this.editor.querySelector('[data-slate-editor]').innerHTML
   };
+
+  // Public: Reset local storage, usually after the editor has saved via the DB
+  clearStorage = () => {
+    localStorage.removeItem(LocalStorageKey)
+  }
 }
 
 /**

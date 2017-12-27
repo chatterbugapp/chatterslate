@@ -8,15 +8,17 @@ import PropTypes from 'prop-types'
  */
 
 const ToolbarButton = props => (
-  <a
+  <span
     className={props.className || 'button'}
     title={props.title}
     data-active={props.active}
     onMouseDown={props.onMouseDown}
+    role="button"
+    tabIndex={0}
   >
     {props.icon && <i className={`fa fa-${props.icon}`} aria-hidden="true" />}
     {props.text}
-  </a>
+  </span>
 )
 
 ToolbarButton.propTypes = {
