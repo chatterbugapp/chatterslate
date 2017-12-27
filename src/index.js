@@ -1,3 +1,4 @@
+/* global localStorage */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
@@ -82,7 +83,7 @@ class TopicEditor extends React.Component {
       console.log(jsonContent)
     }
 
-    if (value.document != this.state.value.document) {
+    if (value.document !== this.state.value.document) {
       localStorage.setItem(LocalStorageKey, jsonContent)
     }
 
