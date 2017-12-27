@@ -1,6 +1,6 @@
 {
   "name": "@chatterbug/chatterslate",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "SlateJS editor for Chatterbug",
   "main": "index.js",
   "engines": {
@@ -22,6 +22,7 @@
     "prepublishOnly": "yarn run build",
     "ci": "yarn run lint && yarn run test",
     "format": "yarn run prettier-eslint \"src/**/*.js\"",
+    "heroku-prebuild": "yarn config set registry https://registry.npmjs.org",
     "heroku-postbuild": "yarn install --production=false && yarn run build && yarn run browserify -- dist/index.js examples/index.js -o dist/bundle.js"
   },
   "repository": {
