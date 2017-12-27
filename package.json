@@ -11,9 +11,10 @@
     "dist"
   ],
   "scripts": {
-    "start": "concurrently 'yarn run build:watch' 'watchify dist/index.js examples/index.js -o dist/bundle.js' 'yarn run livereload .' -c blue,magenta",
+    "start": "concurrently --names BABEL,BROWSERIFY,LIVERELOAD 'yarn build:watch' 'yarn build:browserify' 'yarn run livereload .' -c blue,magenta",
     "build": "rm -rf dist && yarn run babel -- -d dist src",
     "build:watch": "yarn run build -- --watch",
+    "build:browserify": "sleep 3 && yarn run watchify -- dist/index.js examples/index.js -o dist/bundle.js",
     "test": "echo 'Write some plz'",
     "lint": "eslint src || exit 0",
     "lint:fix": "eslint src --fix || exit 0",
