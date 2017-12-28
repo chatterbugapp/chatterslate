@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import EditTable from '@chatterbug/slate-edit-table'
+import SoftBreak from 'slate-soft-break'
 
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
@@ -33,6 +34,7 @@ const plugins = [
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
+  SoftBreak({ shift: true }),
   TablePlugin({ type: 'arrow' }),
   EditTablePlugin,
 ]
