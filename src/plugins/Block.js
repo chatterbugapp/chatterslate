@@ -10,23 +10,8 @@ const hasBlock = (value, foundBlock) => {
 
 const blockStrategy = (value, foundBlock) => {
   const change = value.change()
-  const { document } = value
-
-  // Handle everything but list buttons.
-  if (foundBlock !== 'ul_list' && foundBlock !== 'ol_list') {
-    const isActive = hasBlock(value, foundBlock)
-    const isList = hasBlock(value, 'list_item')
-
-    if (isList) {
-      change
-        .setBlock(isActive ? DEFAULT_NODE : foundBlock)
-        .unwrapBlock('ul_list')
-        .unwrapBlock('ol_list')
-    } else {
-      change.setBlock(isActive ? DEFAULT_NODE : foundBlock)
-    }
-  }
-
+  const isActive = hasBlock(value, foundBlock)
+  change.setBlock(isActive ? DEFAULT_NODE : foundBlock)
   return change
 }
 

@@ -5,7 +5,7 @@ import ToolbarButton from '../components/ToolbarButton'
 // plugin is an instance of EditListPlugin
 // via https://github.com/GitbookIO/slate-edit-list/blob/master/example/main.js
 export const ListBlockButton = ({
-  block, icon, title, value, onChange, insideTable, plugin
+  block, icon, title, value, onChange, insideTable, plugin,
 }) => {
   const inList = plugin.utils.isSelectionInList(value)
   const activeInListType = inList && value.blocks.some(lookBlock => {
@@ -18,9 +18,8 @@ export const ListBlockButton = ({
     onMouseDown={() => {
       if (inList) {
         return onChange(plugin.changes.unwrapList(value.change(), block))
-      } else {
-        return onChange(plugin.changes.wrapInList(value.change(), block))
       }
+      return onChange(plugin.changes.wrapInList(value.change(), block))
     }}
     active={activeInListType}
     disabled={insideTable}
@@ -34,5 +33,5 @@ ListBlockButton.propTypes = {
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   insideTable: PropTypes.bool.isRequired,
-  plugin: PropTypes.object.isRequired
+  plugin: PropTypes.object.isRequired,
 }

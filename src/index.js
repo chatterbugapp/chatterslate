@@ -40,7 +40,7 @@ const plugins = [
   EditListPlugin,
   EditTablePlugin,
   SoftBreak({ shift: true }),
-  TrailingBlock()
+  TrailingBlock(),
 ]
 
 const defaultValue = {
