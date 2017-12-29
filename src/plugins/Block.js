@@ -13,36 +13,17 @@ const blockStrategy = (value, foundBlock) => {
   const { document } = value
 
   // Handle everything but list buttons.
-  if (foundBlock !== 'bulleted-list' && foundBlock !== 'numbered-list') {
+  if (foundBlock !== 'ul_list' && foundBlock !== 'ol_list') {
     const isActive = hasBlock(value, foundBlock)
-    const isList = hasBlock(value, 'list-item')
+    const isList = hasBlock(value, 'list_item')
 
     if (isList) {
       change
         .setBlock(isActive ? DEFAULT_NODE : foundBlock)
-        .unwrapBlock('bulleted-list')
-        .unwrapBlock('numbered-list')
+        .unwrapBlock('ul_list')
+        .unwrapBlock('ol_list')
     } else {
       change.setBlock(isActive ? DEFAULT_NODE : foundBlock)
-    }
-  } else {
-    // Handle the extra wrapping required for list buttons.
-    const isList = hasBlock(value, 'list-item')
-    const isType = value.blocks.some(block => {
-      return !!document.getClosest(block.key, parent => parent.type === foundBlock)
-    })
-
-    if (isList && isType) {
-      change
-        .setBlock(DEFAULT_NODE)
-        .unwrapBlock('bulleted-list')
-        .unwrapBlock('numbered-list')
-    } else if (isList) {
-      change
-        .unwrapBlock(foundBlock === 'bulleted-list' ? 'numbered-list' : 'bulleted-list')
-        .wrapBlock(foundBlock)
-    } else {
-      change.setBlock('list-item').wrapBlock(foundBlock)
     }
   }
 
