@@ -3560,6 +3560,10 @@ slate-dev-logger@^0.1.36:
   version "0.1.36"
   resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.36.tgz#ecdb37dbf944dfc742bab23b6a20d5a0472db95e"
 
+slate-edit-list@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/slate-edit-list/-/slate-edit-list-0.10.1.tgz#9c6a142a314b0ff22a327f1b50c8f5c85468cb17"
+
 slate-plain-serializer@^0.4.11:
   version "0.4.11"
   resolved "https://registry.yarnpkg.com/slate-plain-serializer/-/slate-plain-serializer-0.4.11.tgz#824d1f55737d6a1f3772a909c9ca06b539acae11"
@@ -3590,6 +3594,14 @@ slate-react@^0.10.17:
     slate-dev-logger "^0.1.36"
     slate-plain-serializer "^0.4.11"
     slate-prop-types "^0.4.11"
+
+slate-soft-break@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.npmjs.org/slate-soft-break/-/slate-soft-break-0.6.0.tgz#1e44815b7ff4ddada055bba14cd0d2d4ef0fd463"
+
+slate-trailing-block@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/slate-trailing-block/-/slate-trailing-block-0.4.0.tgz#92573d7729e4c2a05c45521616ae2db28197476c"
 
 slate@^0.31.3:
   version "0.31.3"
