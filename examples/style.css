@@ -412,9 +412,11 @@ input:focus {
   min-width: 100px;
 }
 
+/*
 .table_arrow tr td:first-child {
   text-align: right;
 }
+*/
 
 .table_arrow tr td:nth-child(2) {
   width: 16px;
@@ -485,4 +487,21 @@ input:focus {
 
 .mark_strikethrough {
   text-decoration: line-through;
+}
+
+.mark_left {
+  text-align: left;
+}
+
+.mark_center {
+  text-align: center;
+}
+
+.mark_right {
+  text-align: right;
+}
+
+table span {
+  display: block;
+  width: 100%;
 }

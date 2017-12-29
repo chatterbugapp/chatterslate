@@ -22,9 +22,6 @@ const EditTablePlugin = EditTable()
 
 const plugins = [
   MarkPlugin({ hotkeys: { bold: 'mod+b', italic: 'mod+i', underline: 'mod+u' } }),
-  BlockPlugin({ block: 'align-left', tag: 'div', attributes: { style: { textAlign: 'left' } } }),
-  BlockPlugin({ block: 'align-center', tag: 'div', attributes: { style: { textAlign: 'center' } } }),
-  BlockPlugin({ block: 'align-right', tag: 'div', attributes: { style: { textAlign: 'right' } } }),
   BlockPlugin({ block: 'numbered-list', tag: 'ol' }),
   BlockPlugin({ block: 'bulleted-list', tag: 'ul' }),
   BlockPlugin({ block: 'list-item', tag: 'li' }),
@@ -167,9 +164,9 @@ class TopicEditor extends React.Component {
         <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
         <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
         <div className="separator" />
-        <BlockButton block="align-left" icon="align-left" title="Left Align" {...sharedProps} />
-        <BlockButton block="align-center" icon="align-center" title="Center Align" {...sharedProps} />
-        <BlockButton block="align-right" icon="align-right" title="Right Align" {...sharedProps} />
+        <MarkButton mark="left" icon="align-left" title="Left Align" {...sharedProps} />
+        <MarkButton mark="center" icon="align-center" title="Center Align" {...sharedProps} />
+        <MarkButton mark="right" icon="align-right" title="Right Align" {...sharedProps} />
         <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />

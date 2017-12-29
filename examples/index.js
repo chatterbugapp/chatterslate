@@ -19,5 +19,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
   const clearLink = document.getElementById('clear')
   clearLink.onclick = () => {
     global.editor.clearStorage()
+    window.location.reload()
   }
 })

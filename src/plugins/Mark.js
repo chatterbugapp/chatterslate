@@ -20,7 +20,7 @@ export const MarkPlugin = ({ hotkeys }) => ({
         return `mark_${mark.type}`
       }).join(' ')
 
-      return <span className={classNames} {...attributes}>{children}</span>
+      return <p className={classNames} {...attributes}>{children}</p>
     }
     return null
   },
