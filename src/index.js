@@ -16,6 +16,7 @@ import { VoidPlugin, VoidButton } from './plugins/Void'
 import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
 import { TablePlugin, TableButton } from './plugins/Table'
+import { AlignMarkButton } from './plugins/AlignMark'
 
 const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
 const EditTablePlugin = EditTable()
@@ -164,9 +165,9 @@ class TopicEditor extends React.Component {
         <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
         <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
         <div className="separator" />
-        <MarkButton mark="left" icon="align-left" title="Left Align" {...sharedProps} />
-        <MarkButton mark="center" icon="align-center" title="Center Align" {...sharedProps} />
-        <MarkButton mark="right" icon="align-right" title="Right Align" {...sharedProps} />
+        <AlignMarkButton mark="left" icon="align-left" title="Left Align" {...sharedProps} />
+        <AlignMarkButton mark="center" icon="align-center" title="Center Align" {...sharedProps} />
+        <AlignMarkButton mark="right" icon="align-right" title="Right Align" {...sharedProps} />
         <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <BlockButton block="numbered-list" icon="list-ol" title="Numbered List" {...sharedProps} />
