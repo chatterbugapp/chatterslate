@@ -247,17 +247,23 @@ input:focus {
   left: 445px;
 }
 
-.toolbar-menu .menu_rule a {
+.toolbar-menu .menu_rule span {
   height: 25px;
   display: block;
+  text-align: left;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
-.toolbar-menu .menu_character a {
+.toolbar-menu .menu_character span {
   width: 15px;
 }
 
-.toolbar-menu .menu_patterns a {
-  width: 25px;
+.toolbar-menu .menu_patterns span {
+  display: block;
+  text-align: left;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .toolbar-menu .menu_color .menu,

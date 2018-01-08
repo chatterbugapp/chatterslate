@@ -37,6 +37,7 @@ export const TableButton = ({
   <ToolbarButton
     icon={icon}
     title={title}
+    text={title}
     onMouseDown={e => {
       return onChange(tableStrategy(value.change(), type))
     }}
