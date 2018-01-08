@@ -11,6 +11,7 @@ import TrailingBlock from 'slate-trailing-block'
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
+import DefaultValue from './blocks/default'
 
 import { MarkPlugin, MarkButton } from './plugins/Mark'
 import { BlockPlugin, BlockButton } from './plugins/Block'
@@ -43,18 +44,6 @@ const plugins = [
   TrailingBlock(),
 ]
 
-const defaultValue = {
-  document: {
-    nodes: [
-      {
-        kind: 'block',
-        type: 'paragraph',
-        nodes: [],
-      },
-    ],
-  },
-}
-
 /**
  * Our editor!
  *
@@ -70,7 +59,7 @@ class TopicEditor extends React.Component {
 
     const existingValue = JSON.parse(localStorage.getItem(LocalStorageKey))
     this.state = {
-      value: Value.fromJSON(existingValue || props.initialValue || defaultValue),
+      value: Value.fromJSON(existingValue || props.initialValue || DefaultValue),
       menus: {},
       debug: false,
     }
