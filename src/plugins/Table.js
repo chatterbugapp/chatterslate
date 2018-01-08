@@ -4,13 +4,15 @@ import PropTypes from 'prop-types'
 import ToolbarButton from '../components/ToolbarButton'
 
 import ArrowTable from '../blocks/arrow'
-import ConversationTable from '../blocks/conversation'
 import MiddleTable from '../blocks/middle'
+import ThreeTable from '../blocks/three'
+import ConversationTable from '../blocks/conversation'
 
 const Tables = {
   arrow: ArrowTable,
   conversation: ConversationTable,
   middle: MiddleTable,
+  three: ThreeTable,
 }
 
 const tableStrategy = (change, type) =>

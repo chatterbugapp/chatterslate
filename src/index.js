@@ -224,8 +224,9 @@ class TopicEditor extends React.Component {
         </ToolbarMenu>
         <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
           <TableButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
+          <TableButton type="middle" icon="th-large" title="Middle-Align Table" {...sharedProps} />
+          <TableButton type="three" icon="table" title="Three Column Table" {...sharedProps} />
           <TableButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
-          <TableButton type="middle" icon="th-large" title="Middle Table" {...sharedProps} />
         </ToolbarMenu>
         <div className="separator" />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
