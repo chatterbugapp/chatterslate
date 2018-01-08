@@ -1,22 +1,5 @@
 // via https://github.com/ianstormtaylor/slate/blob/master/examples/tables/index.js
 import React from 'react'
-import PropTypes from 'prop-types'
-import ToolbarButton from '../components/ToolbarButton'
-
-import ArrowTable from '../blocks/arrow'
-import MiddleTable from '../blocks/middle'
-import ThreeTable from '../blocks/three'
-import ConversationTable from '../blocks/conversation'
-
-const Tables = {
-  arrow: ArrowTable,
-  conversation: ConversationTable,
-  middle: MiddleTable,
-  three: ThreeTable,
-}
-
-const tableStrategy = (change, type) =>
-  change.insertBlock(Tables[type])
 
 export const TablePlugin = () => ({
   renderNode (nodeProps) {
@@ -32,24 +15,3 @@ export const TablePlugin = () => ({
     }
   },
 })
-
-export const TableButton = ({
-  type, icon, title, value, onChange,
-}) => (
-  <ToolbarButton
-    icon={icon}
-    title={title}
-    text={title}
-    onMouseDown={e => {
-      return onChange(tableStrategy(value.change(), type))
-    }}
-  />
-)
-
-TableButton.propTypes = {
-  type: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  value: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
-}

@@ -11,14 +11,15 @@ import TrailingBlock from 'slate-trailing-block'
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
+import PatternButton from './components/PatternButton'
 import DefaultValue from './blocks/default'
 
 import { MarkPlugin, MarkButton } from './plugins/Mark'
 import { BlockPlugin, BlockButton } from './plugins/Block'
 import { VoidPlugin, VoidButton } from './plugins/Void'
+import { TablePlugin } from './plugins/Table'
 import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
-import { TablePlugin, TableButton } from './plugins/Table'
 import { AlignMarkButton } from './plugins/AlignMark'
 import { ListBlockButton } from './plugins/ListBlock'
 
@@ -212,10 +213,11 @@ class TopicEditor extends React.Component {
           <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
         </ToolbarMenu>
         <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
-          <TableButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
-          <TableButton type="middle" icon="th-large" title="Middle-Align Table" {...sharedProps} />
-          <TableButton type="three" icon="table" title="Three Column Table" {...sharedProps} />
-          <TableButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
+          <PatternButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
+          <PatternButton type="middle" icon="th-large" title="Middle-Align Table" {...sharedProps} />
+          <PatternButton type="three" icon="table" title="Three Column Table" {...sharedProps} />
+          <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
+          <PatternButton type="examples" icon="lightbulb-o" title="Examples" {...sharedProps} />
         </ToolbarMenu>
         <div className="separator" />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />

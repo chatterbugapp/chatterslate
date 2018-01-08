@@ -1,4 +1,9 @@
 export default {
+  kind: 'block',
+  type: 'paragraph',
+  data: {
+    className: 'pattern_examples',
+  },
   nodes: [
     {
       kind: 'block',
