@@ -20,7 +20,7 @@ import { VoidPlugin, VoidButton } from './plugins/Void'
 import { TablePlugin } from './plugins/Table'
 import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
-import { AlignMarkButton } from './plugins/AlignMark'
+import { AlignButton, AlignPlugin } from './plugins/Align'
 import { ListBlockButton } from './plugins/ListBlock'
 
 const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
@@ -38,6 +38,7 @@ const plugins = [
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
+  AlignPlugin(),
   TablePlugin({ type: 'arrow' }),
   EditListPlugin,
   EditTablePlugin,
@@ -161,9 +162,9 @@ class TopicEditor extends React.Component {
         <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
         <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
         <div className="separator" />
-        <AlignMarkButton mark="left" icon="align-left" title="Left Align" {...sharedProps} />
-        <AlignMarkButton mark="center" icon="align-center" title="Center Align" {...sharedProps} />
-        <AlignMarkButton mark="right" icon="align-right" title="Right Align" {...sharedProps} />
+        <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
+        <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />
+        <AlignButton align="right" icon="align-right" title="Right Align" {...sharedProps} />
         <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <ListBlockButton block="ol_list" icon="list-ol" title="Numbered List" plugin={EditListPlugin} {...sharedProps} />

@@ -495,19 +495,14 @@ input:focus {
   text-decoration: line-through;
 }
 
-.mark_left {
+.align_left {
   text-align: left;
 }
 
-.mark_center {
+.align_center {
   text-align: center;
 }
 
-.mark_right {
+.align_right {
   text-align: right;
-}
-
-table span {
-  display: block;
-  width: 100%;
 }
