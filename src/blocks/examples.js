@@ -16,15 +16,15 @@ export default {
               text: 'Examples:',
               marks: [
                 {
-                  kind: "mark",
-                  type: "bold"
+                  kind: 'mark',
+                  type: 'bold',
                 },
                 {
-                  kind: "mark",
-                  type: "color",
+                  kind: 'mark',
+                  type: 'color',
                   data: {
-                    color: "neuter"
-                  }
+                    color: 'neuter',
+                  },
                 },
               ],
             },

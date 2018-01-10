@@ -63,7 +63,7 @@ class TopicEditor extends React.Component {
     this.state = {
       value: Value.fromJSON(existingValue || props.initialValue || DefaultValue),
       menus: {},
-      debug: true,
+      debug: false,
     }
   }
 

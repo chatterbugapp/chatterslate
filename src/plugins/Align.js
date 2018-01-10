@@ -12,11 +12,10 @@ const alignStrategy = (change, align) => {
     return change.setBlock({
       data: { align: null },
     }).focus()
-  } else {
-    return change.setBlock({
-      data: { align },
-    }).focus()
   }
+  return change.setBlock({
+    data: { align },
+  }).focus()
 }
 
 export const AlignButton = ({

@@ -5,16 +5,15 @@ export const TablePlugin = () => ({
   renderNode (nodeProps) {
     const { attributes, node, children } = nodeProps
 
-    switch (node.type) {
-      case 'table':
-        return <table className={node.data.get('className')} {...attributes}><tbody>{children}</tbody></table>
-      case 'table_row':
-        return <tr {...attributes}>{children}</tr>
-      case 'table_cell':
-        const align = node.data.get('align')
-        const className = align ? `align_${align}` : null
-        return <td className={className} {...attributes}>{children}</td>
-      default: return null
+    if (node.type === 'table') {
+      return <table className={node.data.get('className')} {...attributes}><tbody>{children}</tbody></table>
+    } else if (node.type === 'table_row') {
+      return <tr {...attributes}>{children}</tr>
+    } else if (node.type === 'table_cell') {
+      const align = node.data.get('align')
+      const className = align ? `align_${align}` : null
+      return <td className={className} {...attributes}>{children}</td>
     }
+    return null
   },
 })
