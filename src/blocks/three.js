@@ -2,7 +2,7 @@ export default {
   kind: 'block',
   type: 'table',
   data: {
-    className: 'table_arrow',
+    className: 'table_three',
   },
   nodes: [
     {
@@ -31,7 +31,7 @@ export default {
               kind: 'text',
               leaves: [
                 {
-                  text: '→',
+                  text: 'Middle',
                 },
               ],
             },
@@ -79,7 +79,7 @@ export default {
               kind: 'text',
               leaves: [
                 {
-                  text: '→',
+                  text: 'Middle',
                 },
               ],
             },
@@ -127,7 +127,7 @@ export default {
               kind: 'text',
               leaves: [
                 {
-                  text: '→',
+                  text: 'Middle',
                 },
               ],
             },

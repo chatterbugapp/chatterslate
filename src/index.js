@@ -11,14 +11,16 @@ import TrailingBlock from 'slate-trailing-block'
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
+import PatternButton from './components/PatternButton'
+import DefaultValue from './blocks/default'
 
 import { MarkPlugin, MarkButton } from './plugins/Mark'
 import { BlockPlugin, BlockButton } from './plugins/Block'
 import { VoidPlugin, VoidButton } from './plugins/Void'
+import { TablePlugin } from './plugins/Table'
 import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
-import { TablePlugin, TableButton } from './plugins/Table'
-import { AlignMarkButton } from './plugins/AlignMark'
+import { AlignButton, AlignPlugin } from './plugins/Align'
 import { ListBlockButton } from './plugins/ListBlock'
 
 const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
@@ -27,6 +29,8 @@ const EditListPlugin = EditList()
 
 const plugins = [
   MarkPlugin({ hotkeys: { bold: 'mod+b', italic: 'mod+i', underline: 'mod+u' } }),
+  TablePlugin(),
+  AlignPlugin(),
   BlockPlugin({ block: 'ol_list', tag: 'ol' }),
   BlockPlugin({ block: 'ul_list', tag: 'ul' }),
   BlockPlugin({ block: 'list_item', tag: 'li' }),
@@ -36,24 +40,11 @@ const plugins = [
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
-  TablePlugin({ type: 'arrow' }),
   EditListPlugin,
   EditTablePlugin,
   SoftBreak({ shift: true }),
   TrailingBlock(),
 ]
-
-const defaultValue = {
-  document: {
-    nodes: [
-      {
-        kind: 'block',
-        type: 'paragraph',
-        nodes: [],
-      },
-    ],
-  },
-}
 
 /**
  * Our editor!
@@ -70,7 +61,7 @@ class TopicEditor extends React.Component {
 
     const existingValue = JSON.parse(localStorage.getItem(LocalStorageKey))
     this.state = {
-      value: Value.fromJSON(existingValue || props.initialValue || defaultValue),
+      value: Value.fromJSON(existingValue || props.initialValue || DefaultValue),
       menus: {},
       debug: false,
     }
@@ -171,9 +162,9 @@ class TopicEditor extends React.Component {
         <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
         <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
         <div className="separator" />
-        <AlignMarkButton mark="left" icon="align-left" title="Left Align" {...sharedProps} />
-        <AlignMarkButton mark="center" icon="align-center" title="Center Align" {...sharedProps} />
-        <AlignMarkButton mark="right" icon="align-right" title="Right Align" {...sharedProps} />
+        <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
+        <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />
+        <AlignButton align="right" icon="align-right" title="Right Align" {...sharedProps} />
         <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <ListBlockButton block="ol_list" icon="list-ol" title="Numbered List" plugin={EditListPlugin} {...sharedProps} />
@@ -223,9 +214,11 @@ class TopicEditor extends React.Component {
           <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
         </ToolbarMenu>
         <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
-          <TableButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
-          <TableButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
-          <TableButton type="middle" icon="th-large" title="Middle Table" {...sharedProps} />
+          <PatternButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
+          <PatternButton type="middle" icon="th-large" title="Middle-Align Table" {...sharedProps} />
+          <PatternButton type="three" icon="table" title="Three Column Table" {...sharedProps} />
+          <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
+          <PatternButton type="examples" icon="lightbulb-o" title="Examples" {...sharedProps} />
         </ToolbarMenu>
         <div className="separator" />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />

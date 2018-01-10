@@ -247,17 +247,23 @@ input:focus {
   left: 445px;
 }
 
-.toolbar-menu .menu_rule a {
+.toolbar-menu .menu_rule span {
   height: 25px;
   display: block;
+  text-align: left;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
-.toolbar-menu .menu_character a {
+.toolbar-menu .menu_character span {
   width: 15px;
 }
 
-.toolbar-menu .menu_patterns a {
-  width: 25px;
+.toolbar-menu .menu_patterns span {
+  display: block;
+  text-align: left;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .toolbar-menu .menu_color .menu,
@@ -456,10 +462,6 @@ input:focus {
   min-width: 100px;
 }
 
-.table_middle tr td:first-child {
-  text-align: right;
-}
-
 .separator {
   width: 3px;
   color: #eee;
@@ -489,19 +491,14 @@ input:focus {
   text-decoration: line-through;
 }
 
-.mark_left {
+.align_left {
   text-align: left;
 }
 
-.mark_center {
+.align_center {
   text-align: center;
 }
 
-.mark_right {
+.align_right {
   text-align: right;
-}
-
-table span {
-  display: block;
-  width: 100%;
 }
