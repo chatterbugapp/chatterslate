@@ -26,9 +26,6 @@ export default {
         {
           kind: 'block',
           type: 'table_cell',
-          data: {
-            contentEditable: false,
-          },
           nodes: [
             {
               kind: 'text',
@@ -77,9 +74,6 @@ export default {
         {
           kind: 'block',
           type: 'table_cell',
-          data: {
-            contentEditable: false,
-          },
           nodes: [
             {
               kind: 'text',

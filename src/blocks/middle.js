@@ -12,6 +12,9 @@ export default {
         {
           kind: 'block',
           type: 'table_cell',
+          data: {
+            align: 'right',
+          },
           nodes: [
             {
               kind: 'text',
@@ -46,6 +49,9 @@ export default {
         {
           kind: 'block',
           type: 'table_cell',
+          data: {
+            align: 'right',
+          },
           nodes: [
             {
               kind: 'text',
@@ -80,6 +86,9 @@ export default {
         {
           kind: 'block',
           type: 'table_cell',
+          data: {
+            align: 'right',
+          },
           nodes: [
             {
               kind: 'text',

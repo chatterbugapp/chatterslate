@@ -6,12 +6,18 @@ const hasAlign = (value, foundAlign) => {
   return value.blocks.some(node => node.data.get('align') === foundAlign)
 }
 
-// This is gross, but only 3 alignments.
-const alignStrategy = (change, align) => change
-  .setBlock({
-    data: { align: align },
-  })
-  .focus()
+// If we have an alignment, clear out the data attribute
+const alignStrategy = (change, align) => {
+  if (hasAlign(change.value, align)) {
+    return change.setBlock({
+      data: { align: null },
+    }).focus()
+  } else {
+    return change.setBlock({
+      data: { align },
+    }).focus()
+  }
+}
 
 export const AlignButton = ({
   align, icon, title, value, onChange,

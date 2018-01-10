@@ -462,10 +462,6 @@ input:focus {
   min-width: 100px;
 }
 
-.table_middle tr td:first-child {
-  text-align: right;
-}
-
 .separator {
   width: 3px;
   color: #eee;
