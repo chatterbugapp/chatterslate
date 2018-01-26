@@ -54,6 +54,12 @@ const plugins = [
 class TopicEditor extends React.Component {
   static propTypes = {
     initialValue: PropTypes.object,
+    placeholder: PropTypes.string,
+    className: PropTypes.string,
+  }
+
+  static defaultProps = {
+    placeholder: 'Teach a topic...',
   }
 
   constructor (props) {
@@ -235,10 +241,12 @@ class TopicEditor extends React.Component {
    */
 
   renderEditor = () => {
+    const { placeholder, className } = this.props
     return (
       <div className="editor" ref={editor => { this.editor = editor }}>
         <Editor
-          placeholder="Teach a topic..."
+          placeholder={placeholder}
+          className={className}
           value={this.state.value}
           onChange={this.onChange}
           plugins={plugins}
