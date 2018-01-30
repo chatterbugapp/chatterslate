@@ -454,6 +454,28 @@ input:focus {
   height: 30px;
 }
 
+.table_examples {
+  min-width: 300px;
+  background: #ddd;
+}
+
+.table_examples tr td {
+  border: none;
+}
+
+.table_examples tr:first-child td {
+  color: grey;
+  font-size: 120%;
+  padding-bottom: 5px;
+}
+
+.table_examples tr:nth-child(2) td {
+  font-size: 80%;
+  font-style: italic;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .table_middle {
   min-width: 300px;
 }

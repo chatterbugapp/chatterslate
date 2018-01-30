@@ -1,30 +1,23 @@
 export default {
   kind: 'block',
-  type: 'paragraph',
+  type: 'table',
   data: {
-    className: 'pattern_examples',
+    className: 'table_examples',
   },
   nodes: [
     {
       kind: 'block',
-      type: 'paragraph',
+      type: 'table_row',
       nodes: [
         {
-          kind: 'text',
-          leaves: [
+          kind: 'block',
+          type: 'table_cell',
+          nodes: [
             {
-              text: 'Examples:',
-              marks: [
+              kind: 'text',
+              leaves: [
                 {
-                  kind: 'mark',
-                  type: 'bold',
-                },
-                {
-                  kind: 'mark',
-                  type: 'color',
-                  data: {
-                    color: 'neuter',
-                  },
+                  text: 'Examples',
                 },
               ],
             },
@@ -34,13 +27,19 @@ export default {
     },
     {
       kind: 'block',
-      type: 'paragraph',
+      type: 'table_row',
       nodes: [
         {
-          kind: 'text',
-          leaves: [
+          kind: 'block',
+          type: 'table_cell',
+          nodes: [
             {
-              text: '',
+              kind: 'text',
+              leaves: [
+                {
+                  text: 'Title (what these examples are about)',
+                },
+              ],
             },
           ],
         },
@@ -48,13 +47,59 @@ export default {
     },
     {
       kind: 'block',
-      type: 'paragraph',
+      type: 'table_row',
       nodes: [
         {
-          kind: 'text',
-          leaves: [
+          kind: 'block',
+          type: 'table_cell',
+          nodes: [
             {
-              text: 'An example.',
+              kind: 'text',
+              leaves: [
+                {
+                  text: 'An example.',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'block',
+      type: 'table_row',
+      nodes: [
+        {
+          kind: 'block',
+          type: 'table_cell',
+          nodes: [
+            {
+              kind: 'text',
+              leaves: [
+                {
+                  text: 'A second example.',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'block',
+      type: 'table_row',
+      nodes: [
+        {
+          kind: 'block',
+          type: 'table_cell',
+          nodes: [
+            {
+              kind: 'text',
+              leaves: [
+                {
+                  text: 'A third example.',
+                },
+              ],
             },
           ],
         },
