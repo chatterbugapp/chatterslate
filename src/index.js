@@ -36,6 +36,8 @@ const plugins = [
   BlockPlugin({ block: 'list_item', tag: 'li' }),
   BlockPlugin({ block: 'heading-one', tag: 'h1' }),
   BlockPlugin({ block: 'heading-two', tag: 'h2' }),
+  BlockPlugin({ block: 'block-quote', tag: 'blockquote' }),
+  BlockPlugin({ block: 'block-code', tag: 'pre' }),
   VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
@@ -167,10 +169,13 @@ class TopicEditor extends React.Component {
         <MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
         <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
         <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
+        <MarkButton mark="monospace" icon="code" title="Monospace (Inline)" {...sharedProps} />
         <div className="separator" />
         <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
         <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />
         <AlignButton align="right" icon="align-right" title="Right Align" {...sharedProps} />
+        <BlockButton block="block-quote" icon="quote-right" title="Block Quote" {...sharedProps} />
+        <BlockButton block="block-code" icon="file-code-o" title="Monospace Block" {...sharedProps} />
         <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
         <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <ListBlockButton block="ol_list" icon="list-ol" title="Numbered List" plugin={EditListPlugin} {...sharedProps} />
