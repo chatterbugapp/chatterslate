@@ -40,9 +40,9 @@ const plugins = [
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
+  SoftBreak({ shift: true }),
   EditListPlugin,
   EditTablePlugin,
-  SoftBreak({ shift: true }),
   TrailingBlock(),
 ]
 
