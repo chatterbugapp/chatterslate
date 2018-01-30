@@ -22,10 +22,9 @@ or src/ directories!
 
 ## Publishing to NPM
 
-You'll need to be signed in via NPM first! Then, bump the version number in package.json. After that, just:
+You'll need to be signed in via NPM first!
 
+```sh
+npm version patch # or minor or major; commits new version number
+yarn release # pushes to github + npm publish
 ```
-VERSION=0.0.0 yarn release
-```
-
-...where `0.0.0` is your version number.
