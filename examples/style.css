@@ -147,7 +147,7 @@ input:focus {
  */
 
 .example, .error, .tips {
-  max-width: 42em;
+  max-width: 44em;
   margin: 0 auto 20px;
   padding: 20px;
 }
