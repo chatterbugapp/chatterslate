@@ -491,6 +491,17 @@ input:focus {
   text-decoration: line-through;
 }
 
+.mark_monospace {
+  font-family: monospace;
+  text-decoration: none !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  background: grey;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+}
+
 .align_left {
   text-align: left;
 }
