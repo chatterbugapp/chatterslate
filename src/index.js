@@ -36,14 +36,14 @@ const schema = {
       marks: [{}],
     },
     ol_list: {
-      nodes: [{ types: ['list_item']}]
+      nodes: [{ types: ['list_item'] }],
     },
     ul_list: {
-      nodes: [{ types: ['list_item']}]
+      nodes: [{ types: ['list_item'] }],
     },
     list_item: {
       nodes: [{ objects: ['text'] }],
-      parent: { types: ['ol_list', 'ul_list'] }
+      parent: { types: ['ol_list', 'ul_list'] },
     },
   },
 }
