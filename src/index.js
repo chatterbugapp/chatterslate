@@ -128,7 +128,7 @@ class TopicEditor extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="root">
         {this.renderToolbar()}
         {this.renderEditor()}
       </div>
