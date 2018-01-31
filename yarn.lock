@@ -3599,10 +3599,6 @@ slate-soft-break@^0.6.0:
   version "0.6.0"
   resolved "https://registry.npmjs.org/slate-soft-break/-/slate-soft-break-0.6.0.tgz#1e44815b7ff4ddada055bba14cd0d2d4ef0fd463"
 
-slate-trailing-block@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/slate-trailing-block/-/slate-trailing-block-0.4.0.tgz#92573d7729e4c2a05c45521616ae2db28197476c"
-
 slate@^0.31.3:
   version "0.31.3"
   resolved "https://registry.yarnpkg.com/slate/-/slate-0.31.3.tgz#21f95a1484a5a13937e33fd5a1aca1b34edf44f8"
