@@ -27,6 +27,28 @@ const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
 const EditTablePlugin = EditTable()
 const EditListPlugin = EditList()
 
+// Enforce no marks on a header
+const schema = {
+  blocks: {
+    heading_one: {
+      marks: [{}],
+    },
+    heading_two: {
+      marks: [{}],
+    },
+    ol_list: {
+      nodes: [{ types: ['list_item']}]
+    },
+    ul_list: {
+      nodes: [{ types: ['list_item']}]
+    },
+    list_item: {
+      nodes: [{ objects: ['text'] }],
+      parent: { types: ['ol_list', 'ul_list'] }
+    },
+  },
+}
+
 const plugins = [
   MarkPlugin({ hotkeys: { bold: 'mod+b', italic: 'mod+i', underline: 'mod+u' } }),
   TablePlugin(),
@@ -34,8 +56,8 @@ const plugins = [
   BlockPlugin({ block: 'ol_list', tag: 'ol' }),
   BlockPlugin({ block: 'ul_list', tag: 'ul' }),
   BlockPlugin({ block: 'list_item', tag: 'li' }),
-  BlockPlugin({ block: 'heading-one', tag: 'h1' }),
-  BlockPlugin({ block: 'heading-two', tag: 'h2' }),
+  BlockPlugin({ block: 'heading_one', tag: 'h1' }),
+  BlockPlugin({ block: 'heading_two', tag: 'h2' }),
   VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
@@ -171,8 +193,8 @@ class TopicEditor extends React.Component {
         <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
         <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />
         <AlignButton align="right" icon="align-right" title="Right Align" {...sharedProps} />
-        <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
-        <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
+        <BlockButton block="heading_one" icon="angle-double-up" title="Heading One" {...sharedProps} />
+        <BlockButton block="heading_two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <ListBlockButton block="ol_list" icon="list-ol" title="Numbered List" plugin={EditListPlugin} {...sharedProps} />
         <ListBlockButton block="ul_list" icon="list-ul" title="Bulleted List" plugin={EditListPlugin} {...sharedProps} />
         <div className="separator" />
@@ -250,6 +272,7 @@ class TopicEditor extends React.Component {
           value={this.state.value}
           onChange={this.onChange}
           plugins={plugins}
+          schema={schema}
           autoFocus
           spellCheck
         />
