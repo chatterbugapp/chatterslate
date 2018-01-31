@@ -6,7 +6,6 @@ import { Value } from 'slate'
 import EditTable from 'slate-edit-table'
 import EditList from 'slate-edit-list'
 import SoftBreak from 'slate-soft-break'
-import TrailingBlock from 'slate-trailing-block'
 
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
@@ -30,10 +29,10 @@ const EditListPlugin = EditList()
 // Enforce no marks on a header
 const schema = {
   blocks: {
-    heading_one: {
+    'heading-one': {
       marks: [{}],
     },
-    heading_two: {
+    'heading-two': {
       marks: [{}],
     },
     ol_list: {
@@ -56,8 +55,8 @@ const plugins = [
   BlockPlugin({ block: 'ol_list', tag: 'ol' }),
   BlockPlugin({ block: 'ul_list', tag: 'ul' }),
   BlockPlugin({ block: 'list_item', tag: 'li' }),
-  BlockPlugin({ block: 'heading_one', tag: 'h1' }),
-  BlockPlugin({ block: 'heading_two', tag: 'h2' }),
+  BlockPlugin({ block: 'heading-one', tag: 'h1' }),
+  BlockPlugin({ block: 'heading-two', tag: 'h2' }),
   VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
@@ -65,7 +64,6 @@ const plugins = [
   SoftBreak({ shift: true }),
   EditListPlugin,
   EditTablePlugin,
-  TrailingBlock(),
 ]
 
 /**
@@ -193,8 +191,8 @@ class TopicEditor extends React.Component {
         <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
         <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />
         <AlignButton align="right" icon="align-right" title="Right Align" {...sharedProps} />
-        <BlockButton block="heading_one" icon="angle-double-up" title="Heading One" {...sharedProps} />
-        <BlockButton block="heading_two" icon="angle-up" title="Heading Two" {...sharedProps} />
+        <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
+        <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
         <ListBlockButton block="ol_list" icon="list-ol" title="Numbered List" plugin={EditListPlugin} {...sharedProps} />
         <ListBlockButton block="ul_list" icon="list-ul" title="Bulleted List" plugin={EditListPlugin} {...sharedProps} />
         <div className="separator" />

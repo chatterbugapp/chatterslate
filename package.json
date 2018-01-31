@@ -43,8 +43,7 @@
     "slate-edit-list": "^0.10.1",
     "slate-edit-table": "^0.13.3",
     "slate-react": "^0.10.17",
-    "slate-soft-break": "^0.6.0",
-    "slate-trailing-block": "^0.4.0"
+    "slate-soft-break": "^0.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
