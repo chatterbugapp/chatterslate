@@ -59,6 +59,7 @@ table {
 td {
   padding: 10px;
   border: 2px solid #ddd;
+  transition: border-color .2s;
 }
 
 input {
@@ -408,6 +409,12 @@ input:focus {
 }
 .color_accusative {
   color: #baa2ee;
+}
+
+.table_active,
+.table_active tr,
+.table_active td {
+  border-color: #444;
 }
 
 .table_arrow {

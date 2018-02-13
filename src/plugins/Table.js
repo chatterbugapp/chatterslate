@@ -3,10 +3,13 @@ import React from 'react'
 
 export const TablePlugin = () => ({
   renderNode (nodeProps) {
-    const { attributes, node, children } = nodeProps
+    const {
+      attributes, node, children, editor,
+    } = nodeProps
 
     if (node.type === 'table') {
-      return <table className={node.data.get('className')} {...attributes}><tbody>{children}</tbody></table>
+      const isTableBeingEdited = !!node.getDescendant(editor.state.value.anchorBlock.key)
+      return <table className={`${isTableBeingEdited ? 'table_active' : ''} ${node.data.get('className')}`} {...attributes}><tbody>{children}</tbody></table>
     } else if (node.type === 'table_row') {
       return <tr {...attributes}>{children}</tr>
     } else if (node.type === 'table_cell') {
