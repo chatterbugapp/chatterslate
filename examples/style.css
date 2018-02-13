@@ -176,14 +176,6 @@ input:focus {
   margin-top: 1em;
 }
 
-.menu > * {
-  display: inline-block;
-}
-
-.menu > * + * {
-  margin-left: 8px;
-}
-
 .button {
   color: #666;
   cursor: pointer;
@@ -211,6 +203,20 @@ input:focus {
   margin: 0 -20px;
   border-bottom: 2px solid #eee;
   margin-bottom: 20px;
+}
+
+.toolbar-menu__left > *,
+.toolbar-menu__right > * {
+  display: inline-block;
+}
+
+.toolbar-menu__left > * + *,
+.toolbar-menu__right > * + * {
+  margin-left: 8px;
+}
+
+.toolbar-menu__right {
+  float: right;
 }
 
 .toolbar-menu i {
