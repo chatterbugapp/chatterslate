@@ -63,6 +63,7 @@ class TopicEditor extends React.Component {
 
     const existingValue = JSON.parse(localStorage.getItem(LocalStorageKey))
     this.state = {
+      mobileView: false,
       value: Value.fromJSON(existingValue || props.initialValue || DefaultValue),
       menus: {},
       debug: false,
@@ -107,8 +108,9 @@ class TopicEditor extends React.Component {
 
   render () {
     const { title } = this.props
+    const { mobileView } = this.state
     return (
-      <div>
+      <div className={`chatterslate ${mobileView ? 'chatterslate_mobile' : ''}`}>
         {this.renderToolbar()}
         {title}
         {this.renderEditor()}
@@ -132,73 +134,85 @@ class TopicEditor extends React.Component {
 
     return (
       <div className="menu toolbar-menu">
-        <MarkButton mark="bold" icon="bold" title="Bold" {...sharedProps} />
-        <MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
-        <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
-        <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
-        <div className="separator" />
-        <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
-        <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />
-        <AlignButton align="right" icon="align-right" title="Right Align" {...sharedProps} />
-        <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
-        <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
-        <ListBlockButton block="ol_list" icon="list-ol" title="Numbered List" plugin={EditListPlugin} {...sharedProps} />
-        <ListBlockButton block="ul_list" icon="list-ul" title="Bulleted List" plugin={EditListPlugin} {...sharedProps} />
-        <div className="separator" />
-        <ToolbarMenu type="color" icon="eyedropper" title="Font Color" {...menuProps}>
-          <div className="menu">
-            <ColorButton color="black" icon="font" title="Block" {...sharedProps} />
-            <ColorButton color="grey" icon="font" title="Grey" {...sharedProps} />
-            <ColorButton color="darkgrey" icon="font" title="Dark Grey" {...sharedProps} />
-          </div>
-          <div className="menu">
-            <ColorButton color="red" icon="font" title="Red" {...sharedProps} />
-            <ColorButton color="yellow" icon="font" title="Yellow" {...sharedProps} />
-            <ColorButton color="blue" icon="font" title="Blue" {...sharedProps} />
-          </div>
-          <div className="menu">
-            <ColorButton color="male" icon="font" title="Male" {...sharedProps} />
-            <ColorButton color="female" icon="font" title="Female" {...sharedProps} />
-            <ColorButton color="neuter" icon="font" title="Neuter" {...sharedProps} />
-          </div>
-          <div className="menu">
-            <ColorButton color="dative" icon="font" title="Dative" {...sharedProps} />
-            <ColorButton color="accusative" icon="font" title="Accusative" {...sharedProps} />
-          </div>
-        </ToolbarMenu>
-        <ToolbarMenu type="character" icon="keyboard-o" title="Character Map" {...menuProps}>
-          <div className="menu">
-            <PlainButton text="←" title="Left Arrow" {...sharedProps} />
-            <PlainButton text="→" title="Right Arrow" {...sharedProps} />
-            <PlainButton text="↔" title="Left Right Arrow" {...sharedProps} />
-            <PlainButton text="⇐" title="Leftwards Double Arrow" {...sharedProps} />
-            <PlainButton text="⇒" title="Rightwards Double Arrow" {...sharedProps} />
-          </div>
-          <div className="menu">
-            <PlainButton text="…" title="Ellipsis" {...sharedProps} />
-            <PlainButton text="«" title="Double Low Quote" {...sharedProps} />
-            <PlainButton text="»" title="Double High Quote" {...sharedProps} />
-            <PlainButton text="„" title="Double Angle Left Quote" {...sharedProps} />
-            <PlainButton text="”" title="Double Angle Right Quote" {...sharedProps} />
-          </div>
-        </ToolbarMenu>
-        <ToolbarMenu type="rule" icon="reorder" title="Rules" {...menuProps}>
-          <VoidButton type="underbar" text="4: ____" title="Small Space" {...sharedProps} />
-          <VoidButton type="underbar_l" text="6: ______" title="Medium Space" {...sharedProps} />
-          <VoidButton type="underbar_xl" text="8: ________" title="Large Space" {...sharedProps} />
-          <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
-        </ToolbarMenu>
-        <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
-          <PatternButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
-          <PatternButton type="middle" icon="th-large" title="Middle-Align Table" {...sharedProps} />
-          <PatternButton type="three" icon="table" title="Three Column Table" {...sharedProps} />
-          <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
-          <PatternButton type="examples" icon="lightbulb-o" title="Examples" {...sharedProps} />
-        </ToolbarMenu>
-        <div className="separator" />
-        <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
-        <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.handleClickRedo} />
-        {insideTable && <TableToolbarMenu plugin={EditTablePlugin} {...sharedProps} />}
+        <div className="toolbar-menu__right">
+          <ToolbarButton
+            title="View as in mobile app"
+            text="mobile"
+            active={this.state.mobileView}
+            onMouseDown={e => {
+              this.setState({ mobileView: !this.state.mobileView })
+            }}
+          />
+        </div>
+        <div className="toolbar-menu__left">
+          <MarkButton mark="bold" icon="bold" title="Bold" {...sharedProps} />
+          <MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
+          <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
+          <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
+          <div className="separator" />
+          <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
+          <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />
+          <AlignButton align="right" icon="align-right" title="Right Align" {...sharedProps} />
+          <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
+          <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
+          <ListBlockButton block="ol_list" icon="list-ol" title="Numbered List" plugin={EditListPlugin} {...sharedProps} />
+          <ListBlockButton block="ul_list" icon="list-ul" title="Bulleted List" plugin={EditListPlugin} {...sharedProps} />
+          <div className="separator" />
+          <ToolbarMenu type="color" icon="eyedropper" title="Font Color" {...menuProps}>
+            <div className="menu">
+              <ColorButton color="black" icon="font" title="Black" {...sharedProps} />
+              <ColorButton color="grey" icon="font" title="Grey" {...sharedProps} />
+              <ColorButton color="darkgrey" icon="font" title="Dark Grey" {...sharedProps} />
+            </div>
+            <div className="menu">
+              <ColorButton color="red" icon="font" title="Red" {...sharedProps} />
+              <ColorButton color="yellow" icon="font" title="Yellow" {...sharedProps} />
+              <ColorButton color="blue" icon="font" title="Blue" {...sharedProps} />
+            </div>
+            <div className="menu">
+              <ColorButton color="male" icon="font" title="Male" {...sharedProps} />
+              <ColorButton color="female" icon="font" title="Female" {...sharedProps} />
+              <ColorButton color="neuter" icon="font" title="Neuter" {...sharedProps} />
+            </div>
+            <div className="menu">
+              <ColorButton color="dative" icon="font" title="Dative" {...sharedProps} />
+              <ColorButton color="accusative" icon="font" title="Accusative" {...sharedProps} />
+            </div>
+          </ToolbarMenu>
+          <ToolbarMenu type="character" icon="keyboard-o" title="Character Map" {...menuProps}>
+            <div className="menu">
+              <PlainButton text="←" title="Left Arrow" {...sharedProps} />
+              <PlainButton text="→" title="Right Arrow" {...sharedProps} />
+              <PlainButton text="↔" title="Left Right Arrow" {...sharedProps} />
+              <PlainButton text="⇐" title="Leftwards Double Arrow" {...sharedProps} />
+              <PlainButton text="⇒" title="Rightwards Double Arrow" {...sharedProps} />
+            </div>
+            <div className="menu">
+              <PlainButton text="…" title="Ellipsis" {...sharedProps} />
+              <PlainButton text="«" title="Double Low Quote" {...sharedProps} />
+              <PlainButton text="»" title="Double High Quote" {...sharedProps} />
+              <PlainButton text="„" title="Double Angle Left Quote" {...sharedProps} />
+              <PlainButton text="”" title="Double Angle Right Quote" {...sharedProps} />
+            </div>
+          </ToolbarMenu>
+          <ToolbarMenu type="rule" icon="reorder" title="Rules" {...menuProps}>
+            <VoidButton type="underbar" text="4: ____" title="Small Space" {...sharedProps} />
+            <VoidButton type="underbar_l" text="6: ______" title="Medium Space" {...sharedProps} />
+            <VoidButton type="underbar_xl" text="8: ________" title="Large Space" {...sharedProps} />
+            <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
+          </ToolbarMenu>
+          <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
+            <PatternButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
+            <PatternButton type="middle" icon="th-large" title="Middle-Align Table" {...sharedProps} />
+            <PatternButton type="three" icon="table" title="Three Column Table" {...sharedProps} />
+            <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
+            <PatternButton type="examples" icon="lightbulb-o" title="Examples" {...sharedProps} />
+          </ToolbarMenu>
+          <div className="separator" />
+          <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
+          <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.handleClickRedo} />
+          {insideTable && <TableToolbarMenu plugin={EditTablePlugin} {...sharedProps} />}
+        </div>
       </div>
     )
   };
