@@ -143,7 +143,7 @@ class TopicEditor extends React.Component {
    *
    */
 
-  onMenuToggle = (event, type) => {
+  handleMenuToggle = (event, type) => {
     event.preventDefault()
     const menus = {}
     if (!this.state.menus[type]) {
@@ -162,7 +162,7 @@ class TopicEditor extends React.Component {
   renderToolbar = () => {
     const insideTable = EditTablePlugin.utils.isSelectionInTable(this.state.value)
     const sharedProps = { value: this.state.value, onChange: this.handleChange, insideTable }
-    const menuProps = { menus: this.state.menus, onMenuToggle: this.onMenuToggle }
+    const menuProps = { menus: this.state.menus, onMenuToggle: this.handleMenuToggle }
 
     return (
       <div className="menu toolbar-menu">
