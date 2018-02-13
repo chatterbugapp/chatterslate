@@ -56,6 +56,7 @@ class TopicEditor extends React.Component {
     initialValue: PropTypes.object,
     placeholder: PropTypes.string,
     className: PropTypes.string,
+    title: PropTypes.element,
   }
 
   static defaultProps = {
@@ -127,9 +128,11 @@ class TopicEditor extends React.Component {
    */
 
   render () {
+    const { title } = this.props
     return (
       <div>
         {this.renderToolbar()}
+        {title}
         {this.renderEditor()}
       </div>
     )
