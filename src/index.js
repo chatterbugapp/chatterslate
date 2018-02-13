@@ -46,16 +46,12 @@ const plugins = [
   TrailingBlock(),
 ]
 
-/**
- * Our editor!
- *
- * @type {Component}
- */
 class TopicEditor extends React.Component {
   static propTypes = {
     initialValue: PropTypes.object,
     placeholder: PropTypes.string,
     className: PropTypes.string,
+    title: PropTypes.element,
   }
 
   static defaultProps = {
@@ -78,8 +74,7 @@ class TopicEditor extends React.Component {
    *
    * @param {Change} change
    */
-
-  onChange = ({ value }) => {
+  handleChange = ({ value }) => {
     const jsonContent = JSON.stringify(value.toJSON())
 
     if (this.state.debug) {
@@ -96,51 +91,32 @@ class TopicEditor extends React.Component {
     })
   };
 
-  /**
-   * On undo in history.
-   *
-   */
-
-  onClickUndo = event => {
+  handleClickUndo = event => {
     event.preventDefault()
     const { value } = this.state
     const change = value.change().undo()
-    this.onChange(change)
+    this.handleChange(change)
   }
 
-  /**
-   * On redo in history.
-   *
-   */
-
-  onClickRedo = event => {
+  handleClickRedo = event => {
     event.preventDefault()
     const { value } = this.state
     const change = value.change().redo()
-    this.onChange(change)
+    this.handleChange(change)
   }
 
-  /**
-   * Render.
-   *
-   * @return {Element}
-   */
-
   render () {
+    const { title } = this.props
     return (
       <div>
         {this.renderToolbar()}
+        {title}
         {this.renderEditor()}
       </div>
     )
   }
 
-  /**
-   * Keeping menu state top-level
-   *
-   */
-
-  onMenuToggle = (event, type) => {
+  handleMenuToggle = (event, type) => {
     event.preventDefault()
     const menus = {}
     if (!this.state.menus[type]) {
@@ -149,17 +125,10 @@ class TopicEditor extends React.Component {
     this.setState({ menus })
   }
 
-  /**
-   * Render the toolbar.
-   *
-
-   * @return {Element}
-   */
-
   renderToolbar = () => {
     const insideTable = EditTablePlugin.utils.isSelectionInTable(this.state.value)
-    const sharedProps = { value: this.state.value, onChange: this.onChange, insideTable }
-    const menuProps = { menus: this.state.menus, onMenuToggle: this.onMenuToggle }
+    const sharedProps = { value: this.state.value, onChange: this.handleChange, insideTable }
+    const menuProps = { menus: this.state.menus, onMenuToggle: this.handleMenuToggle }
 
     return (
       <div className="menu toolbar-menu">
@@ -227,18 +196,12 @@ class TopicEditor extends React.Component {
           <PatternButton type="examples" icon="lightbulb-o" title="Examples" {...sharedProps} />
         </ToolbarMenu>
         <div className="separator" />
-        <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
-        <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
+        <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
+        <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.handleClickRedo} />
         {insideTable && <TableToolbarMenu plugin={EditTablePlugin} {...sharedProps} />}
       </div>
     )
   };
-
-  /**
-   * Render the Slate editor.
-   *
-   * @return {Element}
-   */
 
   renderEditor = () => {
     const { placeholder, className } = this.props
@@ -248,7 +211,7 @@ class TopicEditor extends React.Component {
           placeholder={placeholder}
           className={className}
           value={this.state.value}
-          onChange={this.onChange}
+          onChange={this.handleChange}
           plugins={plugins}
           autoFocus
           spellCheck
@@ -273,9 +236,5 @@ class TopicEditor extends React.Component {
     localStorage.removeItem(LocalStorageKey)
   }
 }
-
-/**
- * Export.
- */
 
 export { TopicEditor }

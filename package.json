@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "concurrently --names BABEL,BROWSERIFY,LIVERELOAD 'yarn build:watch' 'yarn build:browserify' 'yarn run livereload .' -c blue,magenta",
+    "start": "concurrently --names BABEL,BROWSERIFY,LIVERELOAD,SERVE 'yarn build:watch' 'yarn build:browserify' 'yarn run livereload .' 'yarn serve-example' -c blue,magenta,green,white",
     "build": "rm -rf dist && yarn run babel -- -d dist src",
     "build:watch": "yarn run build -- --watch",
     "build:browserify": "sleep 3 && yarn run watchify -- dist/index.js examples/index.js -o dist/bundle.js",
@@ -23,7 +23,8 @@
     "ci": "yarn run lint && yarn run test",
     "format": "yarn run prettier-eslint \"src/**/*.js\"",
     "heroku-prebuild": "yarn config set registry https://registry.npmjs.org",
-    "heroku-postbuild": "yarn install --production=false && yarn run build && yarn run browserify -- dist/index.js examples/index.js -o dist/bundle.js"
+    "heroku-postbuild": "yarn install --production=false && yarn run build && yarn run browserify -- dist/index.js examples/index.js -o dist/bundle.js",
+    "serve-example": "python -m SimpleHTTPServer 8080"
   },
   "repository": {
     "type": "git",
