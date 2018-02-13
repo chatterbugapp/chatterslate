@@ -80,7 +80,7 @@ class TopicEditor extends React.Component {
    * @param {Change} change
    */
 
-  onChange = ({ value }) => {
+  handleChange = ({ value }) => {
     const jsonContent = JSON.stringify(value.toJSON())
 
     if (this.state.debug) {
@@ -102,11 +102,11 @@ class TopicEditor extends React.Component {
    *
    */
 
-  onClickUndo = event => {
+  handleClickUndo = event => {
     event.preventDefault()
     const { value } = this.state
     const change = value.change().undo()
-    this.onChange(change)
+    this.handleChange(change)
   }
 
   /**
@@ -114,11 +114,11 @@ class TopicEditor extends React.Component {
    *
    */
 
-  onClickRedo = event => {
+  handleClickRedo = event => {
     event.preventDefault()
     const { value } = this.state
     const change = value.change().redo()
-    this.onChange(change)
+    this.handleChange(change)
   }
 
   /**
@@ -161,7 +161,7 @@ class TopicEditor extends React.Component {
 
   renderToolbar = () => {
     const insideTable = EditTablePlugin.utils.isSelectionInTable(this.state.value)
-    const sharedProps = { value: this.state.value, onChange: this.onChange, insideTable }
+    const sharedProps = { value: this.state.value, onChange: this.handleChange, insideTable }
     const menuProps = { menus: this.state.menus, onMenuToggle: this.onMenuToggle }
 
     return (
@@ -230,8 +230,8 @@ class TopicEditor extends React.Component {
           <PatternButton type="examples" icon="lightbulb-o" title="Examples" {...sharedProps} />
         </ToolbarMenu>
         <div className="separator" />
-        <ToolbarButton icon="undo" title="Undo" onMouseDown={this.onClickUndo} />
-        <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.onClickRedo} />
+        <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
+        <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.handleClickRedo} />
         {insideTable && <TableToolbarMenu plugin={EditTablePlugin} {...sharedProps} />}
       </div>
     )
@@ -251,7 +251,7 @@ class TopicEditor extends React.Component {
           placeholder={placeholder}
           className={className}
           value={this.state.value}
-          onChange={this.onChange}
+          onChange={this.handleChange}
           plugins={plugins}
           autoFocus
           spellCheck
