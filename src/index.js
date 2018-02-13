@@ -46,11 +46,6 @@ const plugins = [
   TrailingBlock(),
 ]
 
-/**
- * Our editor!
- *
- * @type {Component}
- */
 class TopicEditor extends React.Component {
   static propTypes = {
     initialValue: PropTypes.object,
@@ -79,7 +74,6 @@ class TopicEditor extends React.Component {
    *
    * @param {Change} change
    */
-
   handleChange = ({ value }) => {
     const jsonContent = JSON.stringify(value.toJSON())
 
@@ -97,11 +91,6 @@ class TopicEditor extends React.Component {
     })
   };
 
-  /**
-   * On undo in history.
-   *
-   */
-
   handleClickUndo = event => {
     event.preventDefault()
     const { value } = this.state
@@ -109,23 +98,12 @@ class TopicEditor extends React.Component {
     this.handleChange(change)
   }
 
-  /**
-   * On redo in history.
-   *
-   */
-
   handleClickRedo = event => {
     event.preventDefault()
     const { value } = this.state
     const change = value.change().redo()
     this.handleChange(change)
   }
-
-  /**
-   * Render.
-   *
-   * @return {Element}
-   */
 
   render () {
     const { title } = this.props
@@ -138,11 +116,6 @@ class TopicEditor extends React.Component {
     )
   }
 
-  /**
-   * Keeping menu state top-level
-   *
-   */
-
   handleMenuToggle = (event, type) => {
     event.preventDefault()
     const menus = {}
@@ -151,13 +124,6 @@ class TopicEditor extends React.Component {
     }
     this.setState({ menus })
   }
-
-  /**
-   * Render the toolbar.
-   *
-
-   * @return {Element}
-   */
 
   renderToolbar = () => {
     const insideTable = EditTablePlugin.utils.isSelectionInTable(this.state.value)
@@ -237,12 +203,6 @@ class TopicEditor extends React.Component {
     )
   };
 
-  /**
-   * Render the Slate editor.
-   *
-   * @return {Element}
-   */
-
   renderEditor = () => {
     const { placeholder, className } = this.props
     return (
@@ -276,9 +236,5 @@ class TopicEditor extends React.Component {
     localStorage.removeItem(LocalStorageKey)
   }
 }
-
-/**
- * Export.
- */
 
 export { TopicEditor }
