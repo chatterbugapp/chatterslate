@@ -1,9 +1,14 @@
 const Chatterslate = require('../dist')
+const Title = require('./Title')
 const React = require('react')
 const ReactDOM = require('react-dom')
 
 document.addEventListener('DOMContentLoaded', event => {
-  const props = { ref: editor => { global.editor = editor }, initialValue }
+  const props = {
+    initialValue,
+    title: React.createElement(Title),
+    ref: editor => { global.editor = editor },
+  }
   const element = document.getElementById('example')
   const editor = React.createElement(Chatterslate.TopicEditor, props)
   ReactDOM.render(editor, element)
