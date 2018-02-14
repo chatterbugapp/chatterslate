@@ -8,7 +8,6 @@
     <script>try{Typekit.load();}catch(e){}</script>
 
     <link rel="stylesheet" href="examples/style.css">
-    <script src="dist/bundle.js"></script>
   </head>
   <body>
     <main>
@@ -29,6 +28,7 @@
         <div class="tips" id="serializedContent"></div>
       </div>
     </main>
+    <script>document.write('<script src="dist/bundle.js?' + (new Date().getTime()) + '"></' + 'script>')</script>
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   </body>
 </html>
