@@ -7,6 +7,7 @@ import EditTable from 'slate-edit-table'
 import EditList from 'slate-edit-list'
 import SoftBreak from 'slate-soft-break'
 
+import ErrorBoundary from './components/ErrorBoundary'
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
@@ -72,6 +73,7 @@ class TopicEditor extends React.Component {
     placeholder: PropTypes.string,
     className: PropTypes.string,
     title: PropTypes.element,
+    handleError: PropTypes.func,
   }
 
   static defaultProps = {
@@ -127,13 +129,15 @@ class TopicEditor extends React.Component {
   }
 
   render () {
-    const { title } = this.props
+    const { title, handleError } = this.props
     const { mobileView } = this.state
     return (
       <div className={`chatterslate ${mobileView ? 'chatterslate_mobile' : ''}`}>
-        {this.renderToolbar()}
-        {title}
-        {this.renderEditor()}
+        <ErrorBoundary handleError={handleError}>
+          {this.renderToolbar()}
+          {title}
+          {this.renderEditor()}
+        </ErrorBoundary>
       </div>
     )
   }
