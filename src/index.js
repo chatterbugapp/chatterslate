@@ -6,7 +6,6 @@ import { Value } from 'slate'
 import EditTable from 'slate-edit-table'
 import EditList from 'slate-edit-list'
 import SoftBreak from 'slate-soft-break'
-import TrailingBlock from 'slate-trailing-block'
 
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
@@ -27,6 +26,28 @@ const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
 const EditTablePlugin = EditTable()
 const EditListPlugin = EditList()
 
+// Enforce no marks on a header
+const schema = {
+  blocks: {
+    'heading-one': {
+      marks: [{}],
+    },
+    'heading-two': {
+      marks: [{}],
+    },
+    ol_list: {
+      nodes: [{ types: ['list_item'] }],
+    },
+    ul_list: {
+      nodes: [{ types: ['list_item'] }],
+    },
+    list_item: {
+      nodes: [{ objects: ['text'] }],
+      parent: { types: ['ol_list', 'ul_list'] },
+    },
+  },
+}
+
 const plugins = [
   MarkPlugin({ hotkeys: { bold: 'mod+b', italic: 'mod+i', underline: 'mod+u' } }),
   TablePlugin(),
@@ -43,7 +64,6 @@ const plugins = [
   SoftBreak({ shift: true }),
   EditListPlugin,
   EditTablePlugin,
-  TrailingBlock(),
 ]
 
 class TopicEditor extends React.Component {
@@ -227,6 +247,7 @@ class TopicEditor extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
           plugins={plugins}
+          schema={schema}
           autoFocus
           spellCheck
         />
