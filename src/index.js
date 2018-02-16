@@ -74,6 +74,7 @@ class TopicEditor extends React.Component {
     className: PropTypes.string,
     title: PropTypes.element,
     handleError: PropTypes.func,
+    handleEditorChanged: PropTypes.func,
   }
 
   static defaultProps = {
@@ -106,6 +107,9 @@ class TopicEditor extends React.Component {
 
     if (value.document !== this.state.value.document) {
       localStorage.setItem(LocalStorageKey, jsonContent)
+      if (this.props.handleEditorChanged) {
+        this.props.handleEditorChanged.call(LocalStorageKey)
+      }
     }
 
     this.setState({

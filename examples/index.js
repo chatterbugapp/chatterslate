@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     className: 'topic-explanation',
     ref: (editor) => { global.editor = editor },
     handleError: (error, info) => { console.warn(error) },
+    handleEditorChanged: (key) => { console.log("Some changed the editor's data!") },
     initialValue: JSON.parse(jsonString),
   }
   const element = document.getElementById("example")
