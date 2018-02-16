@@ -1,18 +1,17 @@
-const Chatterslate = require("../dist")
-const React = require("react")
-const ReactDOM = require("react-dom")
+const Chatterslate = require('../dist')
+const Title = require('./Title')
+const React = require('react')
+const ReactDOM = require('react-dom')
 
-const jsonString = "{\"kind\":\"value\",\"document\":{\"kind\":\"document\",\"data\":{},\"nodes\":[{\"kind\":\"block\",\"type\":\"paragraph\",\"isVoid\":false,\"data\":{},\"nodes\":[{\"kind\":\"text\",\"leaves\":[{\"kind\":\"leaf\",\"text\":\"hi\",\"marks\":[{\"kind\":\"mark\",\"type\":\"bold\",\"data\":{}}]}]}]}]}}"
-
-document.addEventListener('DOMContentLoaded', function (event) {
+document.addEventListener('DOMContentLoaded', event => {
   const props = {
-    className: 'topic-explanation',
-    ref: (editor) => { global.editor = editor },
+    initialValue,
+    title: React.createElement(Title),
+    ref: editor => { global.editor = editor },
     handleError: (error, info) => { console.warn(error) },
     handleEditorChanged: (key) => { console.log("Some changed the editor's data!") },
-    initialValue: JSON.parse(jsonString),
   }
-  const element = document.getElementById("example")
+  const element = document.getElementById('example')
   const editor = React.createElement(Chatterslate.TopicEditor, props)
   ReactDOM.render(editor, element)
 
@@ -28,3 +27,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
     window.location.reload()
   }
 })
+
+const initialValue = {
+  kind: 'value',
+  document: {
+    kind: 'document',
+    data: {},
+    nodes: [{
+      kind: 'block', type: 'paragraph', isVoid: false, data: {}, nodes: [{ kind: 'text', leaves: [{ kind: 'leaf', text: 'hi', marks: [{ kind: 'mark', type: 'bold', data: {} }] }] }],
+    }],
+  },
+}
