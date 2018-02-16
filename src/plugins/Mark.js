@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { isKeyHotkey } from 'is-hotkey'
 import ToolbarButton from '../components/ToolbarButton'
 
-const hasMark = (value, foundMark) => value.activeMarks.some(mark => mark.type === foundMark)
+const hasMark = (value, foundMark) => value.marks.some(mark => mark.type === foundMark)
 const markStrategy = (change, mark) => change
   .toggleMark(mark)
   .focus()
