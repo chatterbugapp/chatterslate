@@ -136,13 +136,13 @@ class TopicEditor extends React.Component {
     const { title, handleError } = this.props
     const { mobileView } = this.state
     return (
-      <div className={`chatterslate ${mobileView ? 'chatterslate_mobile' : ''}`}>
-        <ErrorBoundary handleError={handleError}>
+      <ErrorBoundary handleError={handleError}>
+        <div className={`chatterslate ${mobileView ? 'chatterslate_mobile' : ''}`}>
           {this.renderToolbar()}
           {title}
           {this.renderEditor()}
-        </ErrorBoundary>
-      </div>
+        </div>
+      </ErrorBoundary>
     )
   }
 
