@@ -1,6 +1,6 @@
 {
   "name": "@chatterbug/chatterslate",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "SlateJS editor for Chatterbug",
   "main": "index.js",
   "engines": {
