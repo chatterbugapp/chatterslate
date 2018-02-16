@@ -6,8 +6,8 @@ import { Value } from 'slate'
 import EditTable from 'slate-edit-table'
 import EditList from 'slate-edit-list'
 import SoftBreak from 'slate-soft-break'
-import TrailingBlock from 'slate-trailing-block'
 
+import ErrorBoundary from './components/ErrorBoundary'
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
@@ -27,6 +27,28 @@ const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
 const EditTablePlugin = EditTable()
 const EditListPlugin = EditList()
 
+// Enforce no marks on a header
+const schema = {
+  blocks: {
+    'heading-one': {
+      marks: [{}],
+    },
+    'heading-two': {
+      marks: [{}],
+    },
+    ol_list: {
+      nodes: [{ types: ['list_item'] }],
+    },
+    ul_list: {
+      nodes: [{ types: ['list_item'] }],
+    },
+    list_item: {
+      nodes: [{ objects: ['text'] }],
+      parent: { types: ['ol_list', 'ul_list'] },
+    },
+  },
+}
+
 const plugins = [
   MarkPlugin({ hotkeys: { bold: 'mod+b', italic: 'mod+i', underline: 'mod+u' } }),
   TablePlugin(),
@@ -43,7 +65,6 @@ const plugins = [
   SoftBreak({ shift: true }),
   EditListPlugin,
   EditTablePlugin,
-  TrailingBlock(),
 ]
 
 class TopicEditor extends React.Component {
@@ -52,6 +73,8 @@ class TopicEditor extends React.Component {
     placeholder: PropTypes.string,
     className: PropTypes.string,
     title: PropTypes.element,
+    handleError: PropTypes.func,
+    handleEditorChanged: PropTypes.func,
   }
 
   static defaultProps = {
@@ -84,6 +107,9 @@ class TopicEditor extends React.Component {
 
     if (value.document !== this.state.value.document) {
       localStorage.setItem(LocalStorageKey, jsonContent)
+      if (this.props.handleEditorChanged) {
+        this.props.handleEditorChanged.call(LocalStorageKey)
+      }
     }
 
     this.setState({
@@ -107,13 +133,15 @@ class TopicEditor extends React.Component {
   }
 
   render () {
-    const { title } = this.props
+    const { title, handleError } = this.props
     const { mobileView } = this.state
     return (
       <div className={`chatterslate ${mobileView ? 'chatterslate_mobile' : ''}`}>
-        {this.renderToolbar()}
-        {title}
-        {this.renderEditor()}
+        <ErrorBoundary handleError={handleError}>
+          {this.renderToolbar()}
+          {title}
+          {this.renderEditor()}
+        </ErrorBoundary>
       </div>
     )
   }
@@ -227,6 +255,7 @@ class TopicEditor extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
           plugins={plugins}
+          schema={schema}
           autoFocus
           spellCheck
         />

@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', event => {
     initialValue,
     title: React.createElement(Title),
     ref: editor => { global.editor = editor },
+    handleError: (error, info) => { console.warn(error) },
+    handleEditorChanged: (key) => { console.log("Some changed the editor's data!") },
   }
   const element = document.getElementById('example')
   const editor = React.createElement(Chatterslate.TopicEditor, props)

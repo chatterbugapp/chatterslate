@@ -1373,7 +1373,7 @@ date-now@^0.1.4:
 
 debug@^2.2.0, debug@^2.3.2, debug@^2.6.8:
   version "2.6.9"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
+  resolved "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   dependencies:
     ms "2.0.0"
 
@@ -1469,7 +1469,7 @@ diffie-hellman@^5.0.0:
 
 direction@^0.1.5:
   version "0.1.5"
-  resolved "https://registry.yarnpkg.com/direction/-/direction-0.1.5.tgz#ce5d797f97e26f8be7beff53f7dc40e1c1a9ec4c"
+  resolved "https://registry.npmjs.org/direction/-/direction-0.1.5.tgz#ce5d797f97e26f8be7beff53f7dc40e1c1a9ec4c"
 
 dlv@^1.1.0:
   version "1.1.0"
@@ -1721,7 +1721,7 @@ esrecurse@^4.1.0:
 
 esrever@^0.2.0:
   version "0.2.0"
-  resolved "https://registry.yarnpkg.com/esrever/-/esrever-0.2.0.tgz#96e9d28f4f1b1a76784cd5d490eaae010e7407b8"
+  resolved "https://registry.npmjs.org/esrever/-/esrever-0.2.0.tgz#96e9d28f4f1b1a76784cd5d490eaae010e7407b8"
 
 estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1, estraverse@^4.2.0:
   version "4.2.0"
@@ -1946,7 +1946,7 @@ get-caller-file@^1.0.1:
 
 get-document@1:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/get-document/-/get-document-1.0.0.tgz#4821bce66f1c24cb0331602be6cb6b12c4f01c4b"
+  resolved "https://registry.npmjs.org/get-document/-/get-document-1.0.0.tgz#4821bce66f1c24cb0331602be6cb6b12c4f01c4b"
 
 get-stdin@^5.0.1:
   version "5.0.1"
@@ -1957,8 +1957,8 @@ get-stream@^3.0.0:
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
 
 get-window@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/get-window/-/get-window-1.1.1.tgz#0750f8970c88a54ac1294deb97add9568b3db594"
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/get-window/-/get-window-1.1.2.tgz#65fbaa999fb87f86ea5d30770f4097707044f47f"
   dependencies:
     get-document "1"
 
@@ -2264,7 +2264,7 @@ is-dotfile@^1.0.0:
 
 is-empty@^1.0.0:
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/is-empty/-/is-empty-1.2.0.tgz#de9bb5b278738a05a0b09a57e1fb4d4a341a9f6b"
+  resolved "https://registry.npmjs.org/is-empty/-/is-empty-1.2.0.tgz#de9bb5b278738a05a0b09a57e1fb4d4a341a9f6b"
 
 is-equal-shallow@^0.1.3:
   version "0.1.3"
@@ -2308,7 +2308,7 @@ is-hotkey@^0.1.1:
 
 is-in-browser@^1.1.3:
   version "1.1.3"
-  resolved "https://registry.yarnpkg.com/is-in-browser/-/is-in-browser-1.1.3.tgz#56ff4db683a078c6082eb95dad7dc62e1d04f835"
+  resolved "https://registry.npmjs.org/is-in-browser/-/is-in-browser-1.1.3.tgz#56ff4db683a078c6082eb95dad7dc62e1d04f835"
 
 is-number@^2.1.0:
   version "2.1.0"
@@ -2340,7 +2340,7 @@ is-path-inside@^1.0.0:
 
 is-plain-object@^2.0.4:
   version "2.0.4"
-  resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-2.0.4.tgz#2c163b3fafb1b606d9d17928f05c2a1c38e07677"
+  resolved "https://registry.npmjs.org/is-plain-object/-/is-plain-object-2.0.4.tgz#2c163b3fafb1b606d9d17928f05c2a1c38e07677"
   dependencies:
     isobject "^3.0.1"
 
@@ -2382,7 +2382,7 @@ is-typedarray@~1.0.0:
 
 is-window@^1.0.2:
   version "1.0.2"
-  resolved "https://registry.yarnpkg.com/is-window/-/is-window-1.0.2.tgz#2c896ca53db97de45d3c33133a65d8c9f563480d"
+  resolved "https://registry.npmjs.org/is-window/-/is-window-1.0.2.tgz#2c896ca53db97de45d3c33133a65d8c9f563480d"
 
 isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
@@ -2404,11 +2404,11 @@ isobject@^2.0.0:
 
 isobject@^3.0.1:
   version "3.0.1"
-  resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
+  resolved "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
 
 isomorphic-base64@^1.0.2:
   version "1.0.2"
-  resolved "https://registry.yarnpkg.com/isomorphic-base64/-/isomorphic-base64-1.0.2.tgz#f426aae82569ba8a4ec5ca73ad21a44ab1ee7803"
+  resolved "https://registry.npmjs.org/isomorphic-base64/-/isomorphic-base64-1.0.2.tgz#f426aae82569ba8a4ec5ca73ad21a44ab1ee7803"
 
 isomorphic-fetch@^2.1.1:
   version "2.2.1"
@@ -2505,7 +2505,7 @@ jsx-ast-utils@^2.0.0:
 
 keycode@^2.1.2:
   version "2.1.9"
-  resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.1.9.tgz#964a23c54e4889405b4861a5c9f0480d45141dfa"
+  resolved "https://registry.npmjs.org/keycode/-/keycode-2.1.9.tgz#964a23c54e4889405b4861a5c9f0480d45141dfa"
 
 kind-of@^3.0.2:
   version "3.2.2"
@@ -2590,7 +2590,11 @@ lodash.unescape@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.unescape/-/lodash.unescape-4.0.1.tgz#bf2249886ce514cda112fae9218cdc065211fc9c"
 
-lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.5.1:
+lodash@^4.1.1, lodash@^4.17.4:
+  version "4.17.5"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
+
+lodash@^4.2.0, lodash@^4.3.0, lodash@^4.5.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -2752,7 +2756,7 @@ module-deps@^4.0.8:
 
 ms@2.0.0:
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+  resolved "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
 mute-stream@0.0.7:
   version "0.0.7"
@@ -3235,11 +3239,11 @@ react-dom@^16.1.1:
 
 react-immutable-proptypes@^2.1.0:
   version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-immutable-proptypes/-/react-immutable-proptypes-2.1.0.tgz#023d6f39bb15c97c071e9e60d00d136eac5fa0b4"
+  resolved "https://registry.npmjs.org/react-immutable-proptypes/-/react-immutable-proptypes-2.1.0.tgz#023d6f39bb15c97c071e9e60d00d136eac5fa0b4"
 
 react-portal@^3.1.0:
   version "3.2.0"
-  resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-3.2.0.tgz#4224e19b2b05d5cbe730a7ba0e34ec7585de0043"
+  resolved "https://registry.npmjs.org/react-portal/-/react-portal-3.2.0.tgz#4224e19b2b05d5cbe730a7ba0e34ec7585de0043"
   dependencies:
     prop-types "^15.5.8"
 
@@ -3483,7 +3487,7 @@ safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@~5.1.0, 
 
 selection-is-backward@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/selection-is-backward/-/selection-is-backward-1.0.0.tgz#97a54633188a511aba6419fc5c1fa91b467e6be1"
+  resolved "https://registry.npmjs.org/selection-is-backward/-/selection-is-backward-1.0.0.tgz#97a54633188a511aba6419fc5c1fa91b467e6be1"
 
 "semver@2 || 3 || 4 || 5", semver@5.4.1, semver@^5.3.0:
   version "5.4.1"
@@ -3546,39 +3550,39 @@ slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
-slate-base64-serializer@^0.2.13:
-  version "0.2.13"
-  resolved "https://registry.yarnpkg.com/slate-base64-serializer/-/slate-base64-serializer-0.2.13.tgz#73c1ce321bbd15248d0f7bc2861b9ba7f81ece55"
+slate-base64-serializer@^0.2.23:
+  version "0.2.23"
+  resolved "https://registry.npmjs.org/slate-base64-serializer/-/slate-base64-serializer-0.2.23.tgz#d19b8a29ac800135d8c359f9153ba4af6210c407"
   dependencies:
     isomorphic-base64 "^1.0.2"
 
-slate-dev-logger@^0.1.36:
-  version "0.1.36"
-  resolved "https://registry.yarnpkg.com/slate-dev-logger/-/slate-dev-logger-0.1.36.tgz#ecdb37dbf944dfc742bab23b6a20d5a0472db95e"
+slate-dev-logger@^0.1.39:
+  version "0.1.39"
+  resolved "https://registry.npmjs.org/slate-dev-logger/-/slate-dev-logger-0.1.39.tgz#744a69b85034244713e6de51483af5713c345af4"
 
-slate-edit-list@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/slate-edit-list/-/slate-edit-list-0.10.1.tgz#9c6a142a314b0ff22a327f1b50c8f5c85468cb17"
+slate-edit-list@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.npmjs.org/slate-edit-list/-/slate-edit-list-0.11.2.tgz#c67b961d98435f9f7747d20b870cbc51d25af7a8"
 
-slate-edit-table@^0.13.3:
-  version "0.13.3"
-  resolved "https://registry.npmjs.org/slate-edit-table/-/slate-edit-table-0.13.3.tgz#3ef051b5fa5048df97ead371a56784b42590adcf"
+slate-edit-table@^0.14.3:
+  version "0.14.3"
+  resolved "https://registry.npmjs.org/slate-edit-table/-/slate-edit-table-0.14.3.tgz#54769bc060531ba4a6e1d8df9a0e16216b0102fc"
 
-slate-plain-serializer@^0.4.11:
-  version "0.4.11"
-  resolved "https://registry.yarnpkg.com/slate-plain-serializer/-/slate-plain-serializer-0.4.11.tgz#824d1f55737d6a1f3772a909c9ca06b539acae11"
+slate-plain-serializer@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.npmjs.org/slate-plain-serializer/-/slate-plain-serializer-0.5.4.tgz#ba5a1713a50e6e9020e080c10e5869f38820dc96"
   dependencies:
-    slate-dev-logger "^0.1.36"
+    slate-dev-logger "^0.1.39"
 
-slate-prop-types@^0.4.11:
-  version "0.4.11"
-  resolved "https://registry.yarnpkg.com/slate-prop-types/-/slate-prop-types-0.4.11.tgz#1cfe75192beac0bc50b9d663c9b134611e128b15"
+slate-prop-types@^0.4.21:
+  version "0.4.21"
+  resolved "https://registry.npmjs.org/slate-prop-types/-/slate-prop-types-0.4.21.tgz#618214e867d44469fb7da9b8ac4ea68e9e0fa56b"
   dependencies:
-    slate-dev-logger "^0.1.36"
+    slate-dev-logger "^0.1.39"
 
-slate-react@^0.10.17:
-  version "0.10.17"
-  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.10.17.tgz#450a43a43c245212e0104aa2feb038b98b99de5f"
+slate-react@^0.11.4:
+  version "0.11.4"
+  resolved "https://registry.npmjs.org/slate-react/-/slate-react-0.11.4.tgz#c24d2cb8a3724e9a41c1f3566136ab8d3fa1ac8e"
   dependencies:
     debug "^2.3.2"
     get-window "^1.1.1"
@@ -3586,26 +3590,27 @@ slate-react@^0.10.17:
     is-in-browser "^1.1.3"
     is-window "^1.0.2"
     keycode "^2.1.2"
+    lodash "^4.1.1"
     prop-types "^15.5.8"
     react-immutable-proptypes "^2.1.0"
     react-portal "^3.1.0"
     selection-is-backward "^1.0.0"
-    slate-base64-serializer "^0.2.13"
-    slate-dev-logger "^0.1.36"
-    slate-plain-serializer "^0.4.11"
-    slate-prop-types "^0.4.11"
+    slate-base64-serializer "^0.2.23"
+    slate-dev-logger "^0.1.39"
+    slate-plain-serializer "^0.5.4"
+    slate-prop-types "^0.4.21"
+
+slate-schema-violations@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/slate-schema-violations/-/slate-schema-violations-0.1.2.tgz#45f2e6ed2e77c98925bb1e159bf24cad9dc7f8ac"
 
 slate-soft-break@^0.6.0:
   version "0.6.0"
   resolved "https://registry.npmjs.org/slate-soft-break/-/slate-soft-break-0.6.0.tgz#1e44815b7ff4ddada055bba14cd0d2d4ef0fd463"
 
-slate-trailing-block@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/slate-trailing-block/-/slate-trailing-block-0.4.0.tgz#92573d7729e4c2a05c45521616ae2db28197476c"
-
-slate@^0.31.3:
-  version "0.31.3"
-  resolved "https://registry.yarnpkg.com/slate/-/slate-0.31.3.tgz#21f95a1484a5a13937e33fd5a1aca1b34edf44f8"
+slate@^0.32.4:
+  version "0.32.4"
+  resolved "https://registry.npmjs.org/slate/-/slate-0.32.4.tgz#dcc971d1cf4e4b7ac158b5bac9c39c9915805435"
   dependencies:
     debug "^2.3.2"
     direction "^0.1.5"
@@ -3613,7 +3618,8 @@ slate@^0.31.3:
     is-empty "^1.0.0"
     is-plain-object "^2.0.4"
     lodash "^4.17.4"
-    slate-dev-logger "^0.1.36"
+    slate-dev-logger "^0.1.39"
+    slate-schema-violations "^0.1.2"
     type-of "^2.0.1"
 
 slice-ansi@1.0.0:
@@ -3911,7 +3917,7 @@ type-check@~0.3.2:
 
 type-of@^2.0.1:
   version "2.0.1"
-  resolved "https://registry.yarnpkg.com/type-of/-/type-of-2.0.1.tgz#e72a1741896568e9f628378d816d6912f7f23972"
+  resolved "https://registry.npmjs.org/type-of/-/type-of-2.0.1.tgz#e72a1741896568e9f628378d816d6912f7f23972"
 
 typedarray@^0.0.6, typedarray@~0.0.5:
   version "0.0.6"
