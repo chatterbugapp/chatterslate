@@ -36,16 +36,6 @@ const schema = {
     'heading-two': {
       marks: [{}],
     },
-    ol_list: {
-      nodes: [{ types: ['list_item'] }],
-    },
-    ul_list: {
-      nodes: [{ types: ['list_item'] }],
-    },
-    list_item: {
-      nodes: [{ objects: ['text'] }],
-      parent: { types: ['ol_list', 'ul_list'] },
-    },
   },
 }
 
@@ -62,7 +52,7 @@ const plugins = [
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
-  SoftBreak({ shift: true }),
+  SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell'] }),
   EditListPlugin,
   EditTablePlugin,
 ]
