@@ -66,11 +66,11 @@
     "node-static": "^0.7.10",
     "prettier-eslint": "^8.2.2",
     "prettier-eslint-cli": "^4.4.0",
-    "react-dom": "^16.1.1",
+    "react-dom": "^15.0.0",
     "watchify": "^3.9.0"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
-    "react": "^16.0.0"
+    "react": "^15.0.0"
   }
 }
