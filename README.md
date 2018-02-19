@@ -8,7 +8,10 @@ Run:
 
 ```
 yarn install
+yarn install:peers
 ```
+
+(Note, we'll have to install React as a peer dependency until [this issue](https://github.com/yarnpkg/yarn/issues/1503) is fixed).
 
 Then:
 

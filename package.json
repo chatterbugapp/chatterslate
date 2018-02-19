@@ -24,7 +24,8 @@
     "format": "yarn run prettier-eslint \"src/**/*.js\"",
     "heroku-prebuild": "yarn config set registry https://registry.npmjs.org",
     "heroku-postbuild": "yarn install --production=false && yarn run build && yarn run browserify -- dist/index.js examples/index.js -o dist/bundle.js",
-    "serve-example": "python -m SimpleHTTPServer 8080"
+    "serve-example": "python -m SimpleHTTPServer 8080",
+    "install:peers": "yarn add -P $(jq -r '.peerDependencies | to_entries | map(\"\\(.key)@\\(.value | tostring)\") | join(\" \")' package.json)"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,6 @@
   "dependencies": {
     "immutable": "^3.8.2",
     "is-hotkey": "^0.1.1",
-    "react": "^16.1.1",
     "slate": "^0.32.4",
     "slate-edit-list": "^0.11.2",
     "slate-edit-table": "^0.14.3",
@@ -68,5 +68,9 @@
     "prettier-eslint-cli": "^4.4.0",
     "react-dom": "^16.1.1",
     "watchify": "^3.9.0"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0"
   }
 }
