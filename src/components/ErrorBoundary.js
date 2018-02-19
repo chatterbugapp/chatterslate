@@ -10,8 +10,8 @@ class ErrorBoundary extends React.Component {
 
   componentDidCatch (error, info) {
     this.setState({ error })
-    if (this.props.handleError) {
-      this.props.handleError.call(error, info)
+    if (this.props.onError) {
+      this.props.onError.call(error, info)
     }
   }
 
@@ -29,7 +29,7 @@ class ErrorBoundary extends React.Component {
 }
 
 ErrorBoundary.propTypes = {
-  handleError: PropTypes.func,
+  onError: PropTypes.func,
   children: PropTypes.node,
 }
 

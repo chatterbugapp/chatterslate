@@ -63,8 +63,8 @@ class TopicEditor extends React.Component {
     placeholder: PropTypes.string,
     className: PropTypes.string,
     title: PropTypes.element,
-    handleError: PropTypes.func,
-    handleEditorChanged: PropTypes.func,
+    onError: PropTypes.func,
+    onEditorChanged: PropTypes.func,
   }
 
   static defaultProps = {
@@ -84,6 +84,15 @@ class TopicEditor extends React.Component {
   }
 
   /**
+   * Load a value into the editor, for example when clearing changes
+   *
+   * @param {object} value - parsed into a SlateJS {Value}
+   */
+  setValue (value) {
+    this.setState({ value: Value.fromJSON(value) })
+  }
+
+  /**
    * On change, save the new `value`, and hide the color menu
    *
    * @param {Change} change
@@ -97,8 +106,8 @@ class TopicEditor extends React.Component {
 
     if (value.document !== this.state.value.document) {
       localStorage.setItem(LocalStorageKey, jsonContent)
-      if (this.props.handleEditorChanged) {
-        this.props.handleEditorChanged.call(LocalStorageKey)
+      if (this.props.onEditorChanged) {
+        this.props.onEditorChanged.call(LocalStorageKey)
       }
     }
 
@@ -106,7 +115,7 @@ class TopicEditor extends React.Component {
       value,
       menus: {},
     })
-  };
+  }
 
   handleClickUndo = event => {
     event.preventDefault()
@@ -123,10 +132,10 @@ class TopicEditor extends React.Component {
   }
 
   render () {
-    const { title, handleError } = this.props
+    const { title, onError } = this.props
     const { mobileView } = this.state
     return (
-      <ErrorBoundary handleError={handleError}>
+      <ErrorBoundary onError={onError}>
         <div className={`chatterslate ${mobileView ? 'chatterslate_mobile' : ''}`}>
           {this.renderToolbar()}
           {title}
