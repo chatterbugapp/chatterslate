@@ -7,21 +7,23 @@ import EditTable from 'slate-edit-table'
 import EditList from 'slate-edit-list'
 import SoftBreak from 'slate-soft-break'
 
+import BlockButton from './components/BlockButton'
 import ErrorBoundary from './components/ErrorBoundary'
+import ListBlockButton from './components/ListBlockButton'
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
 import PatternButton from './components/PatternButton'
 import DefaultValue from './blocks/default'
 
+import { PatternPlugin } from './plugins/Pattern'
 import { MarkPlugin, MarkButton } from './plugins/Mark'
-import { BlockPlugin, BlockButton } from './plugins/Block'
+import { BlockPlugin } from './plugins/Block'
 import { VoidPlugin, VoidButton } from './plugins/Void'
 import { TablePlugin } from './plugins/Table'
 import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
 import { AlignButton, AlignPlugin } from './plugins/Align'
-import { ListBlockButton } from './plugins/ListBlock'
 
 const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
 const EditTablePlugin = EditTable()
@@ -35,6 +37,15 @@ const schema = {
     },
     'heading-two': {
       marks: [{}],
+    },
+    examples_block: {
+      nodes: [{ types: ['examples_header', 'examples_subheader'] }],
+    },
+    examples_header: {
+      nodes: [{ objects: ['text'] }],
+    },
+    examples_subheader: {
+      nodes: [{ objects: ['text'] }],
     },
   },
 }
@@ -52,6 +63,7 @@ const plugins = [
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
+  PatternPlugin(),
   SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell'] }),
   EditListPlugin,
   EditTablePlugin,
@@ -155,7 +167,7 @@ class TopicEditor extends React.Component {
   }
 
   renderToolbar = () => {
-    const insideTable = EditTablePlugin.utils.isSelectionInTable(this.state.value)
+    const insideTable = false //EditTablePlugin.utils.isSelectionInTable(this.state.value)
     const sharedProps = { value: this.state.value, onChange: this.handleChange, insideTable }
     const menuProps = { menus: this.state.menus, onMenuToggle: this.handleMenuToggle }
 
@@ -180,8 +192,6 @@ class TopicEditor extends React.Component {
           <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
           <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />
           <AlignButton align="right" icon="align-right" title="Right Align" {...sharedProps} />
-          <BlockButton block="heading-one" icon="angle-double-up" title="Heading One" {...sharedProps} />
-          <BlockButton block="heading-two" icon="angle-up" title="Heading Two" {...sharedProps} />
           <ListBlockButton block="ol_list" icon="list-ol" title="Numbered List" plugin={EditListPlugin} {...sharedProps} />
           <ListBlockButton block="ul_list" icon="list-ul" title="Bulleted List" plugin={EditListPlugin} {...sharedProps} />
           <div className="separator" />
@@ -240,6 +250,12 @@ class TopicEditor extends React.Component {
             <PatternButton type="three" icon="table" title="Three Column Table" {...sharedProps} />
             <small>Deprecated Patterns</small>
             <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
+          </ToolbarMenu>
+          <ToolbarMenu type="blocks" icon="paint-brush" title="Blocks" {...menuProps}>
+            <BlockButton block="heading-one" title="Body H1" {...sharedProps} />
+            <BlockButton block="heading-two" title="Body H2" {...sharedProps} />
+            <BlockButton block="examples_header" title="Examples H1" {...sharedProps} />
+            <BlockButton block="examples_subheader" title="Examples H2" {...sharedProps} />
           </ToolbarMenu>
           <div className="separator" />
           <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />

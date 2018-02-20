@@ -1,64 +1,34 @@
 export default {
   kind: 'block',
-  type: 'paragraph',
-  data: {
-    className: 'pattern_examples',
-  },
+  type: 'examples_block',
   nodes: [
     {
       kind: 'block',
-      type: 'paragraph',
+      type: 'examples_header',
       nodes: [
         {
           kind: 'text',
           leaves: [
             {
-              text: 'Examples:',
-              marks: [
-                {
-                  kind: 'mark',
-                  type: 'bold',
-                },
-                {
-                  kind: 'mark',
-                  type: 'color',
-                  data: {
-                    color: 'neuter',
-                  },
-                },
-              ],
+              text: 'This is a large example to teach something.',
             },
           ],
-        },
-      ],
+        }
+      ]
     },
     {
       kind: 'block',
-      type: 'paragraph',
+      type: 'examples_subheader',
       nodes: [
         {
           kind: 'text',
           leaves: [
             {
-              text: '',
+              text: 'Here is a smaller blurb to describe what you just taught!',
             },
           ],
-        },
-      ],
-    },
-    {
-      kind: 'block',
-      type: 'paragraph',
-      nodes: [
-        {
-          kind: 'text',
-          leaves: [
-            {
-              text: 'An example.',
-            },
-          ],
-        },
-      ],
+        }
+      ]
     },
   ],
 }

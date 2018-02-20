@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ToolbarButton from '../components/ToolbarButton'
+import ToolbarButton from './ToolbarButton'
 
 // plugin is an instance of EditListPlugin
 // via https://github.com/GitbookIO/slate-edit-list/blob/master/example/main.js
-export const ListBlockButton = ({
+const ListBlockButton = ({
   block, icon, title, value, onChange, insideTable, plugin,
 }) => {
-  const inList = plugin.utils.isSelectionInList(value)
+  const inList = false //plugin.utils.isSelectionInList(value)
   const activeInListType = inList && value.blocks.some(lookBlock => {
     return !!value.document.getClosest(lookBlock.key, parent => parent.type === block)
   })
@@ -35,3 +35,5 @@ ListBlockButton.propTypes = {
   insideTable: PropTypes.bool.isRequired,
   plugin: PropTypes.object.isRequired,
 }
+
+export default ListBlockButton

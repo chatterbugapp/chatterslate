@@ -230,7 +230,8 @@ input:focus {
 .toolbar-menu .menu_color,
 .toolbar-menu .menu_character,
 .toolbar-menu .menu_rule,
-.toolbar-menu .menu_patterns {
+.toolbar-menu .menu_patterns,
+.toolbar-menu .menu_blocks {
   position: absolute;
   background: #fff;
   border: 1px solid #000;
@@ -239,19 +240,23 @@ input:focus {
 }
 
 .toolbar-menu .menu_color {
-  left: 355px;
+  left: 300px;
 }
 
 .toolbar-menu .menu_character {
-  left: 385px;
+  left: 330px;
 }
 
 .toolbar-menu .menu_rule {
-  left: 415px;
+  left: 360px;
 }
 
 .toolbar-menu .menu_patterns {
-  left: 445px;
+  left: 390px;
+}
+
+.toolbar-menu .menu_blocks {
+  left: 420px;
 }
 
 .toolbar-menu .menu_rule span {
@@ -266,7 +271,8 @@ input:focus {
   width: 15px;
 }
 
-.toolbar-menu .menu_patterns span {
+.toolbar-menu .menu_patterns span,
+.toolbar-menu .menu_blocks span {
   display: block;
   text-align: left;
   padding-top: 3px;
@@ -431,12 +437,6 @@ input:focus {
   min-width: 100px;
 }
 
-/*
-.table_arrow tr td:first-child {
-  text-align: right;
-}
-*/
-
 .table_arrow tr td:nth-child(2) {
   width: 16px;
   min-width: 16px;
@@ -514,4 +514,20 @@ input:focus {
 
 .align_right {
   text-align: right;
+}
+
+.pattern__examples--block {
+  padding: 20px;
+  background: #eee;
+  text-align: center;
+}
+
+.pattern__examples--header {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.pattern__examples--subheader {
+  font-size: 14px;
+  color: #888;
 }
