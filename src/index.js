@@ -229,11 +229,17 @@ class TopicEditor extends React.Component {
             <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
           </ToolbarMenu>
           <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
+            <small>Patterns</small>
+            <PatternButton type="examples" icon="lightbulb-o" title="Example Block" {...sharedProps} />
+            <PatternButton type="center-block" icon="book" title="Center Aligned Block" {...sharedProps} />
+            <PatternButton type="watch-out-aside" icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
+            <PatternButton type="cultural-aside" icon="globe" title="Cultural Aside" {...sharedProps} />
+            <PatternButton type="note-aside" icon="sticky-note" title="Note Aside" {...sharedProps} />
             <PatternButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
             <PatternButton type="middle" icon="th-large" title="Middle-Align Table" {...sharedProps} />
             <PatternButton type="three" icon="table" title="Three Column Table" {...sharedProps} />
+            <small>Deprecated Patterns</small>
             <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
-            <PatternButton type="examples" icon="lightbulb-o" title="Examples" {...sharedProps} />
           </ToolbarMenu>
           <div className="separator" />
           <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
