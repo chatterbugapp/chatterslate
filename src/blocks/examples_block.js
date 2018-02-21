@@ -7,7 +7,7 @@ export default {
       type: 'heading-one',
       nodes: [
         {
-          kind: 'text',
+          object: 'text',
           leaves: [
             {
               text: 'This is a large example to teach something.',
@@ -21,7 +21,7 @@ export default {
       type: 'heading-two',
       nodes: [
         {
-          kind: 'text',
+          object: 'text',
           leaves: [
             {
               text: 'Here is a smaller blurb to describe what you just taught!',

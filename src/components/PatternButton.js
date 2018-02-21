@@ -7,14 +7,16 @@ import ArrowPattern from '../blocks/arrow'
 import MiddlePattern from '../blocks/middle'
 import ThreePattern from '../blocks/three'
 import ConversationPattern from '../blocks/conversation'
-import ExamplesPattern from '../blocks/examples'
+import ExamplesBlockPattern from '../blocks/examples_block'
+import CenterBlockPattern from '../blocks/center_block'
 
 const Patterns = {
   arrow: ArrowPattern,
   conversation: ConversationPattern,
   middle: MiddlePattern,
   three: ThreePattern,
-  examples: ExamplesPattern,
+  examples_block: ExamplesBlockPattern,
+  center_block: CenterBlockPattern,
 }
 
 const prefabStrategy = (change, type) =>

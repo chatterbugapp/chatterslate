@@ -8,6 +8,8 @@ export const PatternPlugin = () => ({
 
     if (node.type === 'examples_block') {
       return <div className="pattern__examples--block" {...attributes}>{children}</div>
+    } else if (node.type === 'center_block') {
+      return <div className="pattern__center--block" {...attributes}>{children}</div>
     } else if (node.type === 'heading-one') {
       if (parent.type === 'examples_block') {
         return <div className="pattern__examples--header" {...attributes}>{children}</div>

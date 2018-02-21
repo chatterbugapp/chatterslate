@@ -531,3 +531,9 @@ input:focus {
   font-size: 14px;
   color: #888;
 }
+
+.pattern__center--block {
+  padding: 20px;
+  background: #ccc;
+  text-align: center;
+}

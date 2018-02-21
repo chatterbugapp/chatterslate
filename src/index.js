@@ -41,6 +41,9 @@ const schema = {
     examples_block: {
       nodes: [{ types: ['heading-one', 'heading-two'] }],
     },
+    center_block: {
+      nodes: [{ types: ['paragraph', 'heading-one', 'heading-two'] }],
+    },
   },
 }
 
@@ -232,11 +235,11 @@ class TopicEditor extends React.Component {
           </ToolbarMenu>
           <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
             <small>Patterns</small>
-            <PatternButton type="examples" icon="lightbulb-o" title="Example Block" {...sharedProps} />
-            <PatternButton type="center-block" icon="book" title="Center Aligned Block" {...sharedProps} />
-            <PatternButton type="watch-out-aside" icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
-            <PatternButton type="cultural-aside" icon="globe" title="Cultural Aside" {...sharedProps} />
-            <PatternButton type="note-aside" icon="sticky-note" title="Note Aside" {...sharedProps} />
+            <PatternButton type="examples_block" icon="lightbulb-o" title="Examples Block" {...sharedProps} />
+            <PatternButton type="center_block" icon="book" title="Center Aligned Block" {...sharedProps} />
+            <PatternButton type="watch_out_aside" icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
+            <PatternButton type="cultural_aside" icon="globe" title="Cultural Aside" {...sharedProps} />
+            <PatternButton type="note_aside" icon="sticky-note" title="Note Aside" {...sharedProps} />
             <PatternButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
             <PatternButton type="middle" icon="th-large" title="Middle-Align Table" {...sharedProps} />
             <PatternButton type="three" icon="table" title="Three Column Table" {...sharedProps} />
