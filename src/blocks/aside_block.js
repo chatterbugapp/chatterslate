@@ -1,6 +1,6 @@
 export default {
   object: 'block',
-  type: 'center_block',
+  type: 'aside_block',
   nodes: [
     {
       object: 'block',
@@ -10,7 +10,7 @@ export default {
           object: 'text',
           leaves: [
             {
-              text: 'Here is some text that is centered on the page.',
+              text: 'Here is some important text to learn about.',
             },
           ],
         },

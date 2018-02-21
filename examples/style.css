@@ -537,3 +537,18 @@ input:focus {
   background: #ccc;
   text-align: center;
 }
+
+.pattern__watchout--block {
+  padding: 20px;
+  background: rgba(254, 247, 205, 1);
+}
+
+.pattern__cultural--block {
+  padding: 20px;
+  background: rgba(226, 247, 252, 1);
+}
+
+.pattern__note--block {
+  padding: 20px;
+  background: rgba(249, 249, 249, 1);
+}

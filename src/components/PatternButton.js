@@ -8,7 +8,7 @@ import MiddlePattern from '../blocks/middle'
 import ThreePattern from '../blocks/three'
 import ConversationPattern from '../blocks/conversation'
 import ExamplesBlockPattern from '../blocks/examples_block'
-import CenterBlockPattern from '../blocks/center_block'
+import AsideBlockPattern from '../blocks/aside_block'
 
 const Patterns = {
   arrow: ArrowPattern,
@@ -16,28 +16,34 @@ const Patterns = {
   middle: MiddlePattern,
   three: ThreePattern,
   examples_block: ExamplesBlockPattern,
-  center_block: CenterBlockPattern,
+  aside_block: AsideBlockPattern,
 }
 
-const prefabStrategy = (change, type) =>
-  change.insertBlock(Patterns[type])
+const prefabStrategy = (change, type, className) => {
+  let pattern = Object.assign({}, Patterns[type])
+  if (className) {
+    pattern.data = { className }
+  }
+  return change.insertBlock(pattern)
+}
 
 const PatternButton = ({
-  type, icon, title, value, onChange,
+  type, icon, className, title, value, onChange,
 }) => (
   <ToolbarButton
     icon={icon}
     title={title}
     text={title}
     onMouseDown={e => {
-      return onChange(prefabStrategy(value.change(), type))
+      return onChange(prefabStrategy(value.change(), type, className))
     }}
   />
 )
 
 PatternButton.propTypes = {
   type: PropTypes.string.isRequired,
-  icon: PropTypes.string,
+  icon: PropTypes.string.isRequired,
+  className: PropTypes.string,
   title: PropTypes.string.isRequired,
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
