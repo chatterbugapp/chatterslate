@@ -247,6 +247,7 @@ class TopicEditor extends React.Component {
             <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
           </ToolbarMenu>
           <ToolbarMenu type="blocks" icon="paint-brush" title="Blocks" {...menuProps}>
+            <BlockButton block="paragraph" title="Paragraph" {...sharedProps} />
             <BlockButton block="heading-one" title="Header One" {...sharedProps} />
             <BlockButton block="heading-two" title="Header Two" {...sharedProps} />
           </ToolbarMenu>
