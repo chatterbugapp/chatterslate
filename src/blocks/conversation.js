@@ -1,20 +1,20 @@
 export default {
-  kind: 'block',
+  object: 'block',
   type: 'table',
   data: {
     className: 'table_conversation',
   },
   nodes: [
     {
-      kind: 'block',
+      object: 'block',
       type: 'table_row',
       nodes: [
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Icon',
@@ -24,11 +24,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Teacher Text',
@@ -40,15 +40,15 @@ export default {
       ],
     },
     {
-      kind: 'block',
+      object: 'block',
       type: 'table_row',
       nodes: [
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Icon',
@@ -58,11 +58,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Student Text',

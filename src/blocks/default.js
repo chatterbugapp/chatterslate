@@ -2,7 +2,7 @@ export default {
   document: {
     nodes: [
       {
-        kind: 'block',
+        object: 'block',
         type: 'paragraph',
         nodes: [],
       },

@@ -1,20 +1,20 @@
 export default {
-  kind: 'block',
+  object: 'block',
   type: 'table',
   data: {
     className: 'table_three',
   },
   nodes: [
     {
-      kind: 'block',
+      object: 'block',
       type: 'table_row',
       nodes: [
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Left',
@@ -24,11 +24,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Middle',
@@ -38,11 +38,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Right',
@@ -54,15 +54,15 @@ export default {
       ],
     },
     {
-      kind: 'block',
+      object: 'block',
       type: 'table_row',
       nodes: [
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Left',
@@ -72,11 +72,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Middle',
@@ -86,11 +86,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Right',
@@ -102,15 +102,15 @@ export default {
       ],
     },
     {
-      kind: 'block',
+      object: 'block',
       type: 'table_row',
       nodes: [
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Left',
@@ -120,11 +120,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Middle',
@@ -134,11 +134,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Right',

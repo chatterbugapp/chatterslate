@@ -1,10 +1,10 @@
 export default {
-  kind: 'block',
+  object: 'block',
   type: 'examples_block',
   nodes: [
     {
-      kind: 'block',
-      type: 'examples_header',
+      object: 'block',
+      type: 'heading-one',
       nodes: [
         {
           kind: 'text',
@@ -17,8 +17,8 @@ export default {
       ]
     },
     {
-      kind: 'block',
-      type: 'examples_subheader',
+      object: 'block',
+      type: 'heading-two',
       nodes: [
         {
           kind: 'text',

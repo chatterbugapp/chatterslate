@@ -1,23 +1,23 @@
 export default {
-  kind: 'block',
+  object: 'block',
   type: 'table',
   data: {
     className: 'table_arrow',
   },
   nodes: [
     {
-      kind: 'block',
+      object: 'block',
       type: 'table_row',
       nodes: [
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           data: {
             align: 'right',
           },
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Left',
@@ -27,11 +27,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: '→',
@@ -41,11 +41,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Right',
@@ -57,18 +57,18 @@ export default {
       ],
     },
     {
-      kind: 'block',
+      object: 'block',
       type: 'table_row',
       nodes: [
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           data: {
             align: 'right',
           },
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Left',
@@ -78,11 +78,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: '→',
@@ -92,11 +92,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Right',
@@ -108,18 +108,18 @@ export default {
       ],
     },
     {
-      kind: 'block',
+      object: 'block',
       type: 'table_row',
       nodes: [
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           data: {
             align: 'right',
           },
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Left',
@@ -129,11 +129,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: '→',
@@ -143,11 +143,11 @@ export default {
           ],
         },
         {
-          kind: 'block',
+          object: 'block',
           type: 'table_cell',
           nodes: [
             {
-              kind: 'text',
+              object: 'text',
               leaves: [
                 {
                   text: 'Right',
