@@ -159,7 +159,7 @@ class TopicEditor extends React.Component {
   }
 
   renderToolbar = () => {
-    const insideTable = false //EditTablePlugin.utils.isSelectionInTable(this.state.value)
+    const insideTable = false // EditTablePlugin.utils.isSelectionInTable(this.state.value)
     const sharedProps = { value: this.state.value, onChange: this.handleChange, insideTable }
     const menuProps = { menus: this.state.menus, onMenuToggle: this.handleMenuToggle }
 

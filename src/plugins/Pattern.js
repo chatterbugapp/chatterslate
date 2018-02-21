@@ -3,23 +3,21 @@ import React from 'react'
 export const PatternPlugin = () => ({
   renderNode (nodeProps) {
     const {
-      attributes, node, children, parent
+      attributes, node, children, parent,
     } = nodeProps
 
     if (node.type === 'examples_block') {
-      return <div className='pattern__examples--block' {...attributes}>{children}</div>
+      return <div className="pattern__examples--block" {...attributes}>{children}</div>
     } else if (node.type === 'heading-one') {
       if (parent.type === 'examples_block') {
-        return <div className='pattern__examples--header' {...attributes}>{children}</div>
-      } else {
-        return <h1 {...attributes}>{children}</h1>
+        return <div className="pattern__examples--header" {...attributes}>{children}</div>
       }
+      return <h1 {...attributes}>{children}</h1>
     } else if (node.type === 'heading-two') {
       if (parent.type === 'examples_block') {
-        return <div className='pattern__examples--subheader' {...attributes}>{children}</div>
-      } else {
-        return <h2 {...attributes}>{children}</h2>
+        return <div className="pattern__examples--subheader" {...attributes}>{children}</div>
       }
+      return <h2 {...attributes}>{children}</h2>
     }
     return null
   },

@@ -13,8 +13,8 @@ export default {
               text: 'This is a large example to teach something.',
             },
           ],
-        }
-      ]
+        },
+      ],
     },
     {
       object: 'block',
@@ -27,8 +27,8 @@ export default {
               text: 'Here is a smaller blurb to describe what you just taught!',
             },
           ],
-        }
-      ]
+        },
+      ],
     },
   ],
 }
