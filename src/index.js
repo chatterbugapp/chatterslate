@@ -59,7 +59,7 @@ const plugins = [
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
   PatternPlugin(),
-  SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell'] }),
+  SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell', 'table_header'] }),
   EditListPlugin,
   EditTablePlugin,
 ]
@@ -240,9 +240,9 @@ class TopicEditor extends React.Component {
             <PatternButton type="aside_block" className="watchout" icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
             <PatternButton type="aside_block" className="cultural" icon="globe" title="Cultural Aside" {...sharedProps} />
             <PatternButton type="aside_block" className="note" icon="sticky-note" title="Note Aside" {...sharedProps} />
-            <PatternButton type="arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
-            <PatternButton type="middle" icon="th-large" title="Middle-Align Table" {...sharedProps} />
-            <PatternButton type="three" icon="table" title="Three Column Table" {...sharedProps} />
+            <PatternButton type="table_arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
+            <PatternButton type="table_two" icon="th-large" title="Two Column Table" {...sharedProps} />
+            <PatternButton type="table_three" icon="table" title="Three Column Table" {...sharedProps} />
             <small>Deprecated Patterns</small>
             <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
           </ToolbarMenu>

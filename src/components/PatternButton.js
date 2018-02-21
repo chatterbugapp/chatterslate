@@ -3,20 +3,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ToolbarButton from '../components/ToolbarButton'
 
-import ArrowPattern from '../blocks/arrow'
-import MiddlePattern from '../blocks/middle'
-import ThreePattern from '../blocks/three'
+import TableArrowPattern from '../blocks/table_arrow'
+import TableTwoPattern from '../blocks/table_two'
+import TableThreePattern from '../blocks/table_three'
 import ConversationPattern from '../blocks/conversation'
 import ExamplesBlockPattern from '../blocks/examples_block'
 import AsideBlockPattern from '../blocks/aside_block'
 
 const Patterns = {
-  arrow: ArrowPattern,
-  conversation: ConversationPattern,
-  middle: MiddlePattern,
-  three: ThreePattern,
+  table_arrow: TableArrowPattern,
+  table_two: TableTwoPattern,
+  table_three: TableThreePattern,
   examples_block: ExamplesBlockPattern,
   aside_block: AsideBlockPattern,
+  conversation: ConversationPattern,
 }
 
 const prefabStrategy = (change, type, className) => {

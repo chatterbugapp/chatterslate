@@ -2,7 +2,7 @@ export default {
   object: 'block',
   type: 'table',
   data: {
-    className: 'table_middle',
+    className: 'table_two',
   },
   nodes: [
     {
@@ -13,8 +13,45 @@ export default {
           object: 'block',
           type: 'table_cell',
           data: {
-            align: 'right',
+            header: true
           },
+          nodes: [
+            {
+              object: 'text',
+              leaves: [
+                {
+                  text: 'Left',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          object: 'block',
+          type: 'table_cell',
+          data: {
+            header: true
+          },
+          nodes: [
+            {
+              object: 'text',
+              leaves: [
+                {
+                  text: 'Right',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      object: 'block',
+      type: 'table_row',
+      nodes: [
+        {
+          object: 'block',
+          type: 'table_cell',
           nodes: [
             {
               object: 'text',
@@ -49,46 +86,6 @@ export default {
         {
           object: 'block',
           type: 'table_cell',
-          data: {
-            align: 'right',
-          },
-          nodes: [
-            {
-              object: 'text',
-              leaves: [
-                {
-                  text: 'Left',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          object: 'block',
-          type: 'table_cell',
-          nodes: [
-            {
-              object: 'text',
-              leaves: [
-                {
-                  text: 'Right',
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      object: 'block',
-      type: 'table_row',
-      nodes: [
-        {
-          object: 'block',
-          type: 'table_cell',
-          data: {
-            align: 'right',
-          },
           nodes: [
             {
               object: 'text',

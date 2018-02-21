@@ -12,6 +12,9 @@ export default {
         {
           object: 'block',
           type: 'table_cell',
+          data: {
+            header: true
+          },
           nodes: [
             {
               object: 'text',
@@ -26,6 +29,9 @@ export default {
         {
           object: 'block',
           type: 'table_cell',
+          data: {
+            header: true
+          },
           nodes: [
             {
               object: 'text',
@@ -40,6 +46,9 @@ export default {
         {
           object: 'block',
           type: 'table_cell',
+          data: {
+            header: true
+          },
           nodes: [
             {
               object: 'text',

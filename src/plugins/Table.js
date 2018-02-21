@@ -7,15 +7,20 @@ export const TablePlugin = () => ({
       attributes, node, children, editor,
     } = nodeProps
 
+    console.log(node.type)
     if (node.type === 'table') {
       const isTableBeingEdited = !!node.getDescendant(editor.state.value.anchorBlock.key)
       return <table className={`${isTableBeingEdited ? 'table_active' : ''} ${node.data.get('className')}`} {...attributes}><tbody>{children}</tbody></table>
     } else if (node.type === 'table_row') {
       return <tr {...attributes}>{children}</tr>
+    } else if (node.type === 'table_header') {
+      return <th {...attributes}>{children}</th>
     } else if (node.type === 'table_cell') {
+      const tag = node.data.get('header') ? "th" : "td"
       const align = node.data.get('align')
       const className = align ? `align_${align}` : null
-      return <td className={className} {...attributes}>{children}</td>
+
+      return React.createElement(tag, Object.assign({className}, attributes), children)
     }
     return null
   },
