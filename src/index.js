@@ -33,19 +33,13 @@ const EditListPlugin = EditList()
 const schema = {
   blocks: {
     'heading-one': {
-      marks: [{}],
+      nodes: [{ objects: ['text'] }],
     },
     'heading-two': {
-      marks: [{}],
+      nodes: [{ objects: ['text'] }],
     },
     examples_block: {
-      nodes: [{ types: ['examples_header', 'examples_subheader'] }],
-    },
-    examples_header: {
-      nodes: [{ objects: ['text'] }],
-    },
-    examples_subheader: {
-      nodes: [{ objects: ['text'] }],
+      nodes: [{ types: ['heading-one', 'heading-two'] }],
     },
   },
 }
@@ -57,8 +51,6 @@ const plugins = [
   BlockPlugin({ block: 'ol_list', tag: 'ol' }),
   BlockPlugin({ block: 'ul_list', tag: 'ul' }),
   BlockPlugin({ block: 'list_item', tag: 'li' }),
-  BlockPlugin({ block: 'heading-one', tag: 'h1' }),
-  BlockPlugin({ block: 'heading-two', tag: 'h2' }),
   VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
@@ -252,10 +244,8 @@ class TopicEditor extends React.Component {
             <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
           </ToolbarMenu>
           <ToolbarMenu type="blocks" icon="paint-brush" title="Blocks" {...menuProps}>
-            <BlockButton block="heading-one" title="Body H1" {...sharedProps} />
-            <BlockButton block="heading-two" title="Body H2" {...sharedProps} />
-            <BlockButton block="examples_header" title="Examples H1" {...sharedProps} />
-            <BlockButton block="examples_subheader" title="Examples H2" {...sharedProps} />
+            <BlockButton block="heading-one" title="Header One" {...sharedProps} />
+            <BlockButton block="heading-two" title="Header Two" {...sharedProps} />
           </ToolbarMenu>
           <div className="separator" />
           <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
