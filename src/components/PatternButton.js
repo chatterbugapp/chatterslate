@@ -20,7 +20,7 @@ const Patterns = {
 }
 
 const prefabStrategy = (change, type, className) => {
-  let pattern = Object.assign({}, Patterns[type])
+  const pattern = Object.assign({}, Patterns[type])
   if (className) {
     pattern.data = { className }
   }

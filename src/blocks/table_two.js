@@ -13,7 +13,7 @@ export default {
           object: 'block',
           type: 'table_cell',
           data: {
-            header: true
+            header: true,
           },
           nodes: [
             {
@@ -30,7 +30,7 @@ export default {
           object: 'block',
           type: 'table_cell',
           data: {
-            header: true
+            header: true,
           },
           nodes: [
             {
