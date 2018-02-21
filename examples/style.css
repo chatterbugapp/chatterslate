@@ -560,3 +560,13 @@ input:focus {
   padding: 20px;
   background: rgba(249, 249, 249, 1);
 }
+
+.pattern__student--block {
+  padding: 20px;
+  background-color: cyan;
+}
+
+.pattern__teacher--block {
+  padding: 20px;
+  background-color: lightgreen;
+}

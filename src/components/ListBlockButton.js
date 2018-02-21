@@ -7,7 +7,7 @@ import ToolbarButton from './ToolbarButton'
 const ListBlockButton = ({
   block, icon, title, value, onChange, insideTable, plugin,
 }) => {
-  const inList = false // plugin.utils.isSelectionInList(value)
+  const inList = plugin.utils.isSelectionInList(value)
   const activeInListType = inList && value.blocks.some(lookBlock => {
     return !!value.document.getClosest(lookBlock.key, parent => parent.type === block)
   })

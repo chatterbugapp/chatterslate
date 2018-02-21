@@ -234,17 +234,16 @@ class TopicEditor extends React.Component {
             <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
           </ToolbarMenu>
           <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
-            <small>Patterns</small>
             <PatternButton type="examples_block" icon="lightbulb-o" title="Examples Block" {...sharedProps} />
             <PatternButton type="aside_block" className="center" icon="book" title="Plain Aside" {...sharedProps} />
             <PatternButton type="aside_block" className="watchout" icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
             <PatternButton type="aside_block" className="cultural" icon="globe" title="Cultural Aside" {...sharedProps} />
             <PatternButton type="aside_block" className="note" icon="sticky-note" title="Note Aside" {...sharedProps} />
+            <PatternButton type="aside_block" className="student" icon="user" title="Student" {...sharedProps} />
+            <PatternButton type="aside_block" className="teacher" icon="user" title="Teacher" {...sharedProps} />
             <PatternButton type="table_arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
             <PatternButton type="table_two" icon="th-large" title="Two Column Table" {...sharedProps} />
             <PatternButton type="table_three" icon="table" title="Three Column Table" {...sharedProps} />
-            <small>Deprecated Patterns</small>
-            <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
           </ToolbarMenu>
           <ToolbarMenu type="blocks" icon="paint-brush" title="Blocks" {...menuProps}>
             <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
