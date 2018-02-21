@@ -247,9 +247,9 @@ class TopicEditor extends React.Component {
             <PatternButton type="conversation" icon="comments" title="Conversation" {...sharedProps} />
           </ToolbarMenu>
           <ToolbarMenu type="blocks" icon="paint-brush" title="Blocks" {...menuProps}>
-            <BlockButton block="paragraph" title="Paragraph" {...sharedProps} />
-            <BlockButton block="heading-one" title="Header One" {...sharedProps} />
-            <BlockButton block="heading-two" title="Header Two" {...sharedProps} />
+            <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
+            <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
+            <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
           </ToolbarMenu>
           <div className="separator" />
           <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
