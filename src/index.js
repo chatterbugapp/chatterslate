@@ -38,12 +38,12 @@ const schema = {
     'heading-two': {
       nodes: [{ objects: ['text'] }],
     },
-    examples_block: {
-      nodes: [{ types: ['heading-one', 'heading-two'] }],
-    },
-    center_block: {
-      nodes: [{ types: ['paragraph', 'heading-one', 'heading-two'] }],
-    },
+    //examples_block: {
+    //  nodes: [{ types: ['paragraph', 'heading-one', 'heading-two'] }],
+    //},
+    //aside_block: {
+    //  nodes: [{ types: ['paragraph', 'heading-one', 'heading-two'] }],
+    //},
   },
 }
 
@@ -59,7 +59,7 @@ const plugins = [
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
   PatternPlugin(),
-  SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell', 'table_header'] }),
+  SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell', 'examples_block', 'aside_block'] }),
   EditListPlugin,
   EditTablePlugin,
 ]
@@ -162,7 +162,7 @@ class TopicEditor extends React.Component {
   }
 
   renderToolbar = () => {
-    const insideTable = EditTablePlugin.utils.isSelectionInTable(this.state.value)
+    const insideTable = false //EditTablePlugin.utils.isSelectionInTable(this.state.value)
     const sharedProps = { value: this.state.value, onChange: this.handleChange, insideTable }
     const menuProps = { menus: this.state.menus, onMenuToggle: this.handleMenuToggle }
 
@@ -249,6 +249,7 @@ class TopicEditor extends React.Component {
             <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
             <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
             <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
+            <BlockButton block="examples_block" icon="lightbulb-o" title="Examples" {...sharedProps} />
           </ToolbarMenu>
           <div className="separator" />
           <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />

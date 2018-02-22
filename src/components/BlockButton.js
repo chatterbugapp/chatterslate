@@ -2,7 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ToolbarButton from './ToolbarButton'
 
-const blockStrategy = (value, foundBlock) => value.change().setBlock(foundBlock)
+const blockStrategy = (value, foundBlock) =>
+  value.change()
+  .setBlock(foundBlock)
+  .unwrapBlock('paragraph')
+  .unwrapBlock('heading-one')
+  .unwrapBlock('heading-two')
+  .unwrapBlock('examples_block')
+  .unwrapBlock('aside_block')
 
 const BlockButton = ({
   block, title, icon, value, onChange, insideTable,
@@ -12,7 +19,7 @@ const BlockButton = ({
     icon={icon}
     text={title}
     onMouseDown={e => {
-      return onChange(blockStrategy(value, block))
+      return onChange(blockStrategy(value, block, data))
     }}
     disabled={insideTable}
   />
