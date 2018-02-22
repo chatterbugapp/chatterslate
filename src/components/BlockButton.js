@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ToolbarButton from './ToolbarButton'
 
-const blockStrategy = (value, foundBlock) =>
+const blockStrategy = (value, type, data) =>
   value.change()
-  .setBlock(foundBlock)
+  .setBlock({ type, data })
   .unwrapBlock('paragraph')
   .unwrapBlock('heading-one')
   .unwrapBlock('heading-two')
@@ -12,7 +12,7 @@ const blockStrategy = (value, foundBlock) =>
   .unwrapBlock('aside_block')
 
 const BlockButton = ({
-  block, title, icon, value, onChange, insideTable,
+  block, data, title, icon, value, onChange, insideTable,
 }) => (
   <ToolbarButton
     title={title}
@@ -27,6 +27,7 @@ const BlockButton = ({
 
 BlockButton.propTypes = {
   block: PropTypes.string.isRequired,
+  data: PropTypes.object,
   title: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   value: PropTypes.object.isRequired,

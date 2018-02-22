@@ -6,26 +6,14 @@ import ToolbarButton from '../components/ToolbarButton'
 import TableArrowPattern from '../blocks/table_arrow'
 import TableTwoPattern from '../blocks/table_two'
 import TableThreePattern from '../blocks/table_three'
-import ConversationPattern from '../blocks/conversation'
-import ExamplesBlockPattern from '../blocks/examples_block'
-import AsideBlockPattern from '../blocks/aside_block'
 
 const Patterns = {
   table_arrow: TableArrowPattern,
   table_two: TableTwoPattern,
   table_three: TableThreePattern,
-  examples_block: ExamplesBlockPattern,
-  aside_block: AsideBlockPattern,
-  conversation: ConversationPattern,
 }
 
-const prefabStrategy = (change, type, className) => {
-  const pattern = Object.assign({}, Patterns[type])
-  if (className) {
-    pattern.data = { className }
-  }
-  return change.insertBlock(pattern)
-}
+const prefabStrategy = (change, type, className) => change.insertBlock(Patterns[type])
 
 const PatternButton = ({
   type, icon, className, title, value, onChange,

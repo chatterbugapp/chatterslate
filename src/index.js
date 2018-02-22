@@ -38,6 +38,9 @@ const schema = {
     'heading-two': {
       nodes: [{ objects: ['text'] }],
     },
+    list_item: {
+      nodes: [{ objects: ['text'] }],
+    },
     //examples_block: {
     //  nodes: [{ types: ['paragraph', 'heading-one', 'heading-two'] }],
     //},
@@ -233,23 +236,22 @@ class TopicEditor extends React.Component {
             <VoidButton type="underbar_xl" text="8: ________" title="Large Space" {...sharedProps} />
             <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
           </ToolbarMenu>
-          <ToolbarMenu type="patterns" icon="graduation-cap" title="Patterns" {...menuProps}>
-            <PatternButton type="examples_block" icon="lightbulb-o" title="Examples Block" {...sharedProps} />
-            <PatternButton type="aside_block" className="center" icon="book" title="Plain Aside" {...sharedProps} />
-            <PatternButton type="aside_block" className="watchout" icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
-            <PatternButton type="aside_block" className="cultural" icon="globe" title="Cultural Aside" {...sharedProps} />
-            <PatternButton type="aside_block" className="note" icon="sticky-note" title="Note Aside" {...sharedProps} />
-            <PatternButton type="aside_block" className="student" icon="user" title="Student" {...sharedProps} />
-            <PatternButton type="aside_block" className="teacher" icon="user" title="Teacher" {...sharedProps} />
+          <ToolbarMenu type="tables" icon="table" title="Tables" {...menuProps}>
             <PatternButton type="table_arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
             <PatternButton type="table_two" icon="th-large" title="Two Column Table" {...sharedProps} />
             <PatternButton type="table_three" icon="table" title="Three Column Table" {...sharedProps} />
           </ToolbarMenu>
-          <ToolbarMenu type="blocks" icon="paint-brush" title="Blocks" {...menuProps}>
+          <ToolbarMenu type="patterns" icon="paint-brush" title="Patterns" {...menuProps}>
             <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
             <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
             <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
             <BlockButton block="examples_block" icon="lightbulb-o" title="Examples" {...sharedProps} />
+            <BlockButton block="aside_block" data={{className: "center"}} icon="book" title="Plain Aside" {...sharedProps} />
+            <BlockButton block="aside_block" data={{className: "watchout"}} icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
+            <BlockButton block="aside_block" data={{className: "cultural"}} icon="globe" title="Cultural Aside" {...sharedProps} />
+            <BlockButton block="aside_block" data={{className: "note"}} icon="sticky-note" title="Note Aside" {...sharedProps} />
+            <BlockButton block="aside_block" data={{className: "student"}} icon="user" title="Student" {...sharedProps} />
+            <BlockButton block="aside_block" data={{className: "teacher"}} icon="user" title="Teacher" {...sharedProps} />
           </ToolbarMenu>
           <div className="separator" />
           <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />

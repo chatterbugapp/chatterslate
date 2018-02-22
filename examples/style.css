@@ -237,8 +237,8 @@ input:focus {
 .toolbar-menu .menu_color,
 .toolbar-menu .menu_character,
 .toolbar-menu .menu_rule,
-.toolbar-menu .menu_patterns,
-.toolbar-menu .menu_blocks {
+.toolbar-menu .menu_tables,
+.toolbar-menu .menu_patterns {
   position: absolute;
   background: #fff;
   border: 1px solid #000;
@@ -258,11 +258,11 @@ input:focus {
   left: 360px;
 }
 
-.toolbar-menu .menu_patterns {
+.toolbar-menu .menu_tables {
   left: 390px;
 }
 
-.toolbar-menu .menu_blocks {
+.toolbar-menu .menu_patterns {
   left: 420px;
 }
 
@@ -278,8 +278,8 @@ input:focus {
   width: 15px;
 }
 
-.toolbar-menu .menu_patterns span,
-.toolbar-menu .menu_blocks span {
+.toolbar-menu .menu_tables span,
+.toolbar-menu .menu_patterns span {
   display: block;
   text-align: left;
   padding-top: 3px;
@@ -289,7 +289,7 @@ input:focus {
 .toolbar-menu .menu_color .menu,
 .toolbar-menu .menu_character .menu,
 .toolbar-menu .menu_rule .menu,
-.toolbar-menu .menu_patterns .menu {
+.toolbar-menu .menu_tables .menu {
   padding: 5px;
 }
 
