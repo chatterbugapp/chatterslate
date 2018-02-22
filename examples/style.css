@@ -194,6 +194,8 @@ input:focus {
   overflow: visible;
   padding: 0;
   text-align: center;
+  min-width: 20px;
+  display: inline-block;
 }
 
 .button:disabled {
