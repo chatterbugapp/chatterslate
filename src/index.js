@@ -13,7 +13,7 @@ import ListBlockButton from './components/ListBlockButton'
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
-import PatternButton from './components/PatternButton'
+import TableButton from './components/TableButton'
 import DefaultValue from './blocks/default'
 
 import { PatternPlugin } from './plugins/Pattern'
@@ -237,9 +237,9 @@ class TopicEditor extends React.Component {
             <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
           </ToolbarMenu>
           <ToolbarMenu type="tables" icon="table" title="Tables" {...menuProps}>
-            <PatternButton type="table_arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
-            <PatternButton type="table_two" icon="th-large" title="Two Column Table" {...sharedProps} />
-            <PatternButton type="table_three" icon="table" title="Three Column Table" {...sharedProps} />
+            <TableButton type="table_arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
+            <TableButton type="table_two" icon="th-large" title="Two Column Table" {...sharedProps} />
+            <TableButton type="table_three" icon="table" title="Three Column Table" {...sharedProps} />
           </ToolbarMenu>
           <ToolbarMenu type="patterns" icon="paint-brush" title="Patterns" {...menuProps}>
             <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />

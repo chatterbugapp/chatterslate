@@ -3,19 +3,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ToolbarButton from '../components/ToolbarButton'
 
-import TableArrowPattern from '../blocks/table_arrow'
-import TableTwoPattern from '../blocks/table_two'
-import TableThreePattern from '../blocks/table_three'
+import TableArrowTable from '../tables/table_arrow'
+import TableTwoTable from '../tables/table_two'
+import TableThreeTable from '../tables/table_three'
 
-const Patterns = {
-  table_arrow: TableArrowPattern,
-  table_two: TableTwoPattern,
-  table_three: TableThreePattern,
+const Tables = {
+  table_arrow: TableArrowTable,
+  table_two: TableTwoTable,
+  table_three: TableThreeTable,
 }
 
-const prefabStrategy = (change, type, className) => change.insertBlock(Patterns[type])
+const prefabStrategy = (change, type, className) => change.insertBlock(Tables[type])
 
-const PatternButton = ({
+const TableButton = ({
   type, icon, className, title, value, onChange,
 }) => (
   <ToolbarButton
@@ -28,7 +28,7 @@ const PatternButton = ({
   />
 )
 
-PatternButton.propTypes = {
+TableButton.propTypes = {
   type: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   className: PropTypes.string,
@@ -37,4 +37,4 @@ PatternButton.propTypes = {
   onChange: PropTypes.func.isRequired,
 }
 
-export default PatternButton
+export default TableButton
