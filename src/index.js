@@ -9,6 +9,7 @@ import SoftBreak from 'slate-soft-break'
 
 import BlockButton from './components/BlockButton'
 import ErrorBoundary from './components/ErrorBoundary'
+import InlineButton from './components/InlineButton'
 import ListBlockButton from './components/ListBlockButton'
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
@@ -252,6 +253,8 @@ class TopicEditor extends React.Component {
             <BlockButton block="aside_block" data={{className: "note"}} icon="sticky-note" title="Note Aside" {...sharedProps} />
             <BlockButton block="aside_block" data={{className: "student"}} icon="user" title="Student" {...sharedProps} />
             <BlockButton block="aside_block" data={{className: "teacher"}} icon="user" title="Teacher" {...sharedProps} />
+            <InlineButton inline="examples_header" icon="angle-double-up" title="Header One" {...sharedProps} />
+            <InlineButton inline="examples_subheader" icon="angle-up" title="Header Two" {...sharedProps} />
           </ToolbarMenu>
           <div className="separator" />
           <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
