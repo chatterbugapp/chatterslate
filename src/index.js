@@ -161,10 +161,10 @@ class TopicEditor extends React.Component {
 
   renderToolbar = () => {
     const { menus, value, mobileView } = this.state
-    const insideTable = false //EditTablePlugin.utils.isSelectionInTable(value)
+    const insideTable = EditTablePlugin.utils.isSelectionInTable(value)
     const insideExamples = value.selection.startKey && value.blocks.some(lookBlock => lookBlock.type === 'examples_block')
-    const sharedProps = { value: value, onChange: this.handleChange, insideTable }
-    const menuProps = { menus: menus, onMenuToggle: this.handleMenuToggle }
+    const sharedProps = { value, onChange: this.handleChange, insideTable }
+    const menuProps = { menus, onMenuToggle: this.handleMenuToggle }
 
     return (
       <div className="menu toolbar-menu">
@@ -251,7 +251,7 @@ class TopicEditor extends React.Component {
     )
   };
 
-  renderPatterns = (sharedProps) => {
+  renderPatterns = sharedProps => {
     return (
       <div>
         <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
@@ -267,7 +267,7 @@ class TopicEditor extends React.Component {
     )
   };
 
-  renderInExamples = (sharedProps) => {
+  renderInExamples = sharedProps => {
     return (
       <div>
         <InlineButton inline="examples_header" icon="angle-double-up" title="Example Header" {...sharedProps} />
