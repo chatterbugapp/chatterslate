@@ -3,7 +3,7 @@ import React from 'react'
 export const PatternPlugin = () => ({
   renderNode (nodeProps) {
     const {
-      attributes, node, children
+      attributes, node, children,
     } = nodeProps
 
     if (node.type === 'examples_block') {

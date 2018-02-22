@@ -42,12 +42,6 @@ const schema = {
     list_item: {
       nodes: [{ objects: ['text'] }],
     },
-    //examples_block: {
-    //  nodes: [{ types: ['paragraph', 'heading-one', 'heading-two'] }],
-    //},
-    //aside_block: {
-    //  nodes: [{ types: ['paragraph', 'heading-one', 'heading-two'] }],
-    //},
   },
 }
 
@@ -166,9 +160,11 @@ class TopicEditor extends React.Component {
   }
 
   renderToolbar = () => {
-    const insideTable = false //EditTablePlugin.utils.isSelectionInTable(this.state.value)
-    const sharedProps = { value: this.state.value, onChange: this.handleChange, insideTable }
-    const menuProps = { menus: this.state.menus, onMenuToggle: this.handleMenuToggle }
+    const { menus, value, mobileView } = this.state
+    const insideTable = false //EditTablePlugin.utils.isSelectionInTable(value)
+    const insideExamples = value.selection.startKey && value.blocks.some(lookBlock => lookBlock.type === 'examples_block')
+    const sharedProps = { value: value, onChange: this.handleChange, insideTable }
+    const menuProps = { menus: menus, onMenuToggle: this.handleMenuToggle }
 
     return (
       <div className="menu toolbar-menu">
@@ -176,7 +172,7 @@ class TopicEditor extends React.Component {
           <ToolbarButton
             title="View as in mobile app"
             text="mobile"
-            active={this.state.mobileView}
+            active={mobileView}
             onMouseDown={e => {
               this.setState({ mobileView: !this.state.mobileView })
             }}
@@ -244,17 +240,7 @@ class TopicEditor extends React.Component {
           </ToolbarMenu>
           <ToolbarMenu type="patterns" icon="paint-brush" title="Patterns" {...menuProps}>
             <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
-            <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
-            <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
-            <BlockButton block="examples_block" icon="lightbulb-o" title="Examples" {...sharedProps} />
-            <BlockButton block="aside_block" data={{className: "center"}} icon="book" title="Plain Aside" {...sharedProps} />
-            <BlockButton block="aside_block" data={{className: "watchout"}} icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
-            <BlockButton block="aside_block" data={{className: "cultural"}} icon="globe" title="Cultural Aside" {...sharedProps} />
-            <BlockButton block="aside_block" data={{className: "note"}} icon="sticky-note" title="Note Aside" {...sharedProps} />
-            <BlockButton block="aside_block" data={{className: "student"}} icon="user" title="Student" {...sharedProps} />
-            <BlockButton block="aside_block" data={{className: "teacher"}} icon="user" title="Teacher" {...sharedProps} />
-            <InlineButton inline="examples_header" icon="angle-double-up" title="Header One" {...sharedProps} />
-            <InlineButton inline="examples_subheader" icon="angle-up" title="Header Two" {...sharedProps} />
+            {insideExamples ? this.renderInExamples(sharedProps) : this.renderPatterns(sharedProps)}
           </ToolbarMenu>
           <div className="separator" />
           <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
@@ -264,6 +250,31 @@ class TopicEditor extends React.Component {
       </div>
     )
   };
+
+  renderPatterns = (sharedProps) => {
+    return (
+      <div>
+        <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
+        <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
+        <BlockButton block="examples_block" icon="lightbulb-o" title="Examples" {...sharedProps} />
+        <BlockButton block="aside_block" data={{ className: 'center' }} icon="book" title="Plain Aside" {...sharedProps} />
+        <BlockButton block="aside_block" data={{ className: 'watchout' }} icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
+        <BlockButton block="aside_block" data={{ className: 'cultural' }} icon="globe" title="Cultural Aside" {...sharedProps} />
+        <BlockButton block="aside_block" data={{ className: 'note' }} icon="sticky-note" title="Note Aside" {...sharedProps} />
+        <BlockButton block="aside_block" data={{ className: 'student' }} icon="user" title="Student" {...sharedProps} />
+        <BlockButton block="aside_block" data={{ className: 'teacher' }} icon="user" title="Teacher" {...sharedProps} />
+      </div>
+    )
+  };
+
+  renderInExamples = (sharedProps) => {
+    return (
+      <div>
+        <InlineButton inline="examples_header" icon="angle-double-up" title="Example Header" {...sharedProps} />
+        <InlineButton inline="examples_subheader" icon="angle-up" title="Example Subheader" {...sharedProps} />
+      </div>
+    )
+  }
 
   renderEditor = () => {
     const { placeholder, className } = this.props

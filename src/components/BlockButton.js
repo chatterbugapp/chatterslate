@@ -4,12 +4,12 @@ import ToolbarButton from './ToolbarButton'
 
 const blockStrategy = (value, type, data) =>
   value.change()
-  .setBlock({ type, data })
-  .unwrapBlock('paragraph')
-  .unwrapBlock('heading-one')
-  .unwrapBlock('heading-two')
-  .unwrapBlock('examples_block')
-  .unwrapBlock('aside_block')
+    .setBlock({ type, data })
+    .unwrapBlock('paragraph')
+    .unwrapBlock('heading-one')
+    .unwrapBlock('heading-two')
+    .unwrapBlock('examples_block')
+    .unwrapBlock('aside_block')
 
 const BlockButton = ({
   block, data, title, icon, value, onChange, insideTable,
