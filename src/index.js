@@ -152,12 +152,13 @@ class TopicEditor extends React.Component {
     const {
       title, onError, placeholder, className,
     } = this.props
-    const { mobileView, value, menus } = this.state
+    const { menus, mobileView, value } = this.state
     return (
       <ErrorBoundary onError={onError}>
         <div className={`chatterslate ${mobileView ? 'chatterslate_mobile' : ''}`}>
           <TopicToolbar
             menus={menus}
+            mobileView={mobileView}
             value={value}
             onChange={this.handleChange}
             onMenuToggle={this.handleMenuToggle}

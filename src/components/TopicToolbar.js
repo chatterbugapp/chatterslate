@@ -135,8 +135,8 @@ const TopicToolbar = ({
 
 TopicToolbar.propTypes = {
   menus: PropTypes.object.isRequired,
-  value: PropTypes.object.isRequired,
   mobileView: PropTypes.bool.isRequired,
+  value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onMenuToggle: PropTypes.func.isRequired,
   onMobileToggle: PropTypes.func.isRequired,
