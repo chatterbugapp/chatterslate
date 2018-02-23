@@ -1,15 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { isKeyHotkey } from 'is-hotkey'
-import ToolbarButton from '../components/ToolbarButton'
 
-const hasMark = (value, foundMark) => value.marks.some(mark => mark.type === foundMark)
 const markStrategy = (change, mark) => change
   .toggleMark(mark)
   .focus()
 
 // Handling Color too...ugh
-export const MarkPlugin = ({ hotkeys }) => ({
+const MarkPlugin = ({ hotkeys }) => ({
   renderMark (markProps) {
     const { marks, attributes, children } = markProps
     if (marks.size > 0 && typeof (children) === 'string') {
@@ -34,23 +31,4 @@ export const MarkPlugin = ({ hotkeys }) => ({
   },
 })
 
-export const MarkButton = ({
-  mark, icon, title, value, onChange,
-}) => (
-  <ToolbarButton
-    icon={icon}
-    title={title}
-    onMouseDown={e => {
-      return onChange(markStrategy(value.change(), mark))
-    }}
-    active={hasMark(value, mark)}
-  />
-)
-
-MarkButton.propTypes = {
-  mark: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  value: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
-}
+export default MarkPlugin
