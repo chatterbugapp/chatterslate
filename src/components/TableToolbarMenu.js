@@ -1,30 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SlateEditTable from 'slate-edit-table'
 import ToolbarButton from './ToolbarButton'
 
-const onClickAddTableRow = (event, plugin, value) => {
-  return plugin.changes.insertRow(value.change())
-}
+const { insertRow, removeRow, removeTable } = SlateEditTable().changes
 
-const onClickRemoveTableRow = (event, plugin, value) => {
-  return plugin.changes.removeRow(value.change())
-}
-
-const onClickRemoveTable = (event, plugin, value) => {
-  return plugin.changes.removeTable(value.change())
-}
-
-const TableToolbarMenu = ({ plugin, value, onChange }) => (
+const TableToolbarMenu = ({ value, onChange }) => (
   <div>
     <small>Edit Table</small>
-    <ToolbarButton icon="plus" text="Add Row" onMouseDown={e => onChange(onClickAddTableRow(e, plugin, value))} />
-    <ToolbarButton icon="minus" text="Remove Row" onMouseDown={e => onChange(onClickRemoveTableRow(e, plugin, value))} />
-    <ToolbarButton icon="trash" text="Remove Table" onMouseDown={e => onChange(onClickRemoveTable(e, plugin, value))} />
+    <ToolbarButton icon="plus" text="Add Row" onMouseDown={e => onChange(insertRow(value.change()))} />
+    <ToolbarButton icon="minus" text="Remove Row" onMouseDown={e => onChange(removeRow(value.change()))} />
+    <ToolbarButton icon="trash" text="Remove Table" onMouseDown={e => onChange(removeTable(value.change()))} />
   </div>
 )
 
 TableToolbarMenu.propTypes = {
-  plugin: PropTypes.object.isRequired,
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
 }

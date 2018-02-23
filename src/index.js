@@ -7,19 +7,8 @@ import EditTable from 'slate-edit-table'
 import EditList from 'slate-edit-list'
 import SoftBreak from 'slate-soft-break'
 
-import AlignButton from './components/AlignButton'
-import BlockButton from './components/BlockButton'
-import ColorButton from './components/ColorButton'
 import ErrorBoundary from './components/ErrorBoundary'
-import InlineButton from './components/InlineButton'
-import ListBlockButton from './components/ListBlockButton'
-import MarkButton from './components/MarkButton'
-import PlainButton from './components/PlainButton'
-import ToolbarButton from './components/ToolbarButton'
-import ToolbarMenu from './components/ToolbarMenu'
-import TableToolbarMenu from './components/TableToolbarMenu'
-import TableButton from './components/TableButton'
-import VoidButton from './components/VoidButton'
+import TopicToolbar from './components/TopicToolbar'
 
 import AlignPlugin from './plugins/AlignPlugin'
 import MarkPlugin from './plugins/MarkPlugin'
@@ -28,8 +17,6 @@ import TablePlugin from './plugins/TablePlugin'
 import VoidPlugin from './plugins/VoidPlugin'
 
 const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
-const EditTablePlugin = EditTable()
-const EditListPlugin = EditList()
 const DefaultValue = {
   document: {
     nodes: [
@@ -69,8 +56,8 @@ const plugins = [
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
   PatternPlugin(),
   SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell', 'examples_block', 'aside_block'] }),
-  EditListPlugin,
-  EditTablePlugin,
+  EditTable(),
+  EditList(),
 ]
 
 class TopicEditor extends React.Component {
@@ -147,20 +134,6 @@ class TopicEditor extends React.Component {
     this.handleChange(change)
   }
 
-  render () {
-    const { title, onError } = this.props
-    const { mobileView } = this.state
-    return (
-      <ErrorBoundary onError={onError}>
-        <div className={`chatterslate ${mobileView ? 'chatterslate_mobile' : ''}`}>
-          {this.renderToolbar()}
-          {title}
-          {this.renderEditor()}
-        </div>
-      </ErrorBoundary>
-    )
-  }
-
   handleMenuToggle = (event, type) => {
     event.preventDefault()
     const menus = {}
@@ -170,140 +143,45 @@ class TopicEditor extends React.Component {
     this.setState({ menus })
   }
 
-  renderToolbar = () => {
-    const { menus, value, mobileView } = this.state
-    const insideTable = EditTablePlugin.utils.isSelectionInTable(value)
-    const insideExamples = value.selection.startKey && value.blocks.some(lookBlock => lookBlock.type === 'examples_block')
-    const sharedProps = { value, onChange: this.handleChange, insideTable }
-    const menuProps = { menus, onMenuToggle: this.handleMenuToggle }
-
-    return (
-      <div className="menu toolbar-menu">
-        <div className="toolbar-menu__right">
-          <ToolbarButton
-            title="View as in mobile app"
-            text="mobile"
-            active={mobileView}
-            onMouseDown={e => {
-              this.setState({ mobileView: !this.state.mobileView })
-            }}
-          />
-        </div>
-        <div className="toolbar-menu__left">
-          <MarkButton mark="bold" icon="bold" title="Bold" {...sharedProps} />
-          <MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
-          <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
-          <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
-          <div className="separator" />
-          <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
-          <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />
-          <AlignButton align="right" icon="align-right" title="Right Align" {...sharedProps} />
-          <ListBlockButton block="ol_list" icon="list-ol" title="Numbered List" plugin={EditListPlugin} {...sharedProps} />
-          <ListBlockButton block="ul_list" icon="list-ul" title="Bulleted List" plugin={EditListPlugin} {...sharedProps} />
-          <div className="separator" />
-          <ToolbarMenu type="color" icon="eyedropper" title="Font Color" {...menuProps}>
-            <div className="menu">
-              <ColorButton color="black" icon="font" title="Black" {...sharedProps} />
-              <ColorButton color="grey" icon="font" title="Grey" {...sharedProps} />
-              <ColorButton color="darkgrey" icon="font" title="Dark Grey" {...sharedProps} />
-            </div>
-            <div className="menu">
-              <ColorButton color="red" icon="font" title="Red" {...sharedProps} />
-              <ColorButton color="yellow" icon="font" title="Yellow" {...sharedProps} />
-              <ColorButton color="blue" icon="font" title="Blue" {...sharedProps} />
-            </div>
-            <div className="menu">
-              <ColorButton color="male" icon="font" title="Male" {...sharedProps} />
-              <ColorButton color="female" icon="font" title="Female" {...sharedProps} />
-              <ColorButton color="neuter" icon="font" title="Neuter" {...sharedProps} />
-            </div>
-            <div className="menu">
-              <ColorButton color="dative" icon="font" title="Dative" {...sharedProps} />
-              <ColorButton color="accusative" icon="font" title="Accusative" {...sharedProps} />
-            </div>
-          </ToolbarMenu>
-          <ToolbarMenu type="character" icon="keyboard-o" title="Character Map" {...menuProps}>
-            <div className="menu">
-              <PlainButton text="←" title="Left Arrow" {...sharedProps} />
-              <PlainButton text="→" title="Right Arrow" {...sharedProps} />
-              <PlainButton text="↔" title="Left Right Arrow" {...sharedProps} />
-              <PlainButton text="⇐" title="Leftwards Double Arrow" {...sharedProps} />
-              <PlainButton text="⇒" title="Rightwards Double Arrow" {...sharedProps} />
-            </div>
-            <div className="menu">
-              <PlainButton text="…" title="Ellipsis" {...sharedProps} />
-              <PlainButton text="«" title="Double Low Quote" {...sharedProps} />
-              <PlainButton text="»" title="Double High Quote" {...sharedProps} />
-              <PlainButton text="„" title="Double Angle Left Quote" {...sharedProps} />
-              <PlainButton text="”" title="Double Angle Right Quote" {...sharedProps} />
-            </div>
-          </ToolbarMenu>
-          <ToolbarMenu type="rule" icon="reorder" title="Rules" {...menuProps}>
-            <VoidButton type="underbar" text="4: ____" title="Small Space" {...sharedProps} />
-            <VoidButton type="underbar_l" text="6: ______" title="Medium Space" {...sharedProps} />
-            <VoidButton type="underbar_xl" text="8: ________" title="Large Space" {...sharedProps} />
-            <VoidButton type="horizontal-rule" text="HR: ———————" title="Horizontal Rule" {...sharedProps} />
-          </ToolbarMenu>
-          <ToolbarMenu type="tables" icon="table" title="Tables" {...menuProps}>
-            <TableButton type="table_arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
-            <TableButton type="table_two" icon="th-large" title="Two Column Table" {...sharedProps} />
-            <TableButton type="table_three" icon="table" title="Three Column Table" {...sharedProps} />
-            {insideTable && <TableToolbarMenu plugin={EditTablePlugin} {...sharedProps} />}
-          </ToolbarMenu>
-          <ToolbarMenu type="patterns" icon="paint-brush" title="Patterns" {...menuProps}>
-            <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
-            {insideExamples ? this.renderInExamples(sharedProps) : this.renderPatterns(sharedProps)}
-          </ToolbarMenu>
-          <div className="separator" />
-          <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
-          <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.handleClickRedo} />
-        </div>
-      </div>
-    )
-  };
-
-  renderPatterns = sharedProps => {
-    return (
-      <div>
-        <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
-        <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
-        <BlockButton block="examples_block" icon="lightbulb-o" title="Examples" {...sharedProps} />
-        <BlockButton block="aside_block" data={{ className: 'center' }} icon="book" title="Plain Aside" {...sharedProps} />
-        <BlockButton block="aside_block" data={{ className: 'watchout' }} icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
-        <BlockButton block="aside_block" data={{ className: 'cultural' }} icon="globe" title="Cultural Aside" {...sharedProps} />
-        <BlockButton block="aside_block" data={{ className: 'note' }} icon="sticky-note" title="Note Aside" {...sharedProps} />
-        <BlockButton block="aside_block" data={{ className: 'student' }} icon="user" title="Student" {...sharedProps} />
-        <BlockButton block="aside_block" data={{ className: 'teacher' }} icon="user" title="Teacher" {...sharedProps} />
-      </div>
-    )
-  };
-
-  renderInExamples = sharedProps => {
-    return (
-      <div>
-        <InlineButton inline="examples_header" icon="angle-double-up" title="Example Header" {...sharedProps} />
-        <InlineButton inline="examples_subheader" icon="angle-up" title="Example Subheader" {...sharedProps} />
-      </div>
-    )
+  handleMobileToggle = event => {
+    event.preventDefault()
+    this.setState({ mobileView: !this.state.mobileView })
   }
 
-  renderEditor = () => {
-    const { placeholder, className } = this.props
+  render () {
+    const {
+      title, onError, placeholder, className,
+    } = this.props
+    const { mobileView, value, menus } = this.state
     return (
-      <div className="editor" ref={editor => { this.editor = editor }}>
-        <Editor
-          placeholder={placeholder}
-          className={className}
-          value={this.state.value}
-          onChange={this.handleChange}
-          plugins={plugins}
-          schema={schema}
-          autoFocus
-          spellCheck
-        />
-      </div>
+      <ErrorBoundary onError={onError}>
+        <div className={`chatterslate ${mobileView ? 'chatterslate_mobile' : ''}`}>
+          <TopicToolbar
+            menus={menus}
+            value={value}
+            onChange={this.handleChange}
+            onMenuToggle={this.handleMenuToggle}
+            onMobileToggle={this.handleMobileToggle}
+            onClickUndo={this.handleClickUndo}
+            onClickRedo={this.handleClickRedo}
+          />
+          {title}
+          <div className="editor" ref={editor => { this.editor = editor }}>
+            <Editor
+              placeholder={placeholder}
+              className={className}
+              value={value}
+              onChange={this.handleChange}
+              plugins={plugins}
+              schema={schema}
+              autoFocus
+              spellCheck
+            />
+          </div>
+        </div>
+      </ErrorBoundary>
     )
-  };
+  }
 
   // Public: Export JSON!
   serializeJSON = () => {
