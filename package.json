@@ -22,7 +22,7 @@
     "prepublishOnly": "yarn run build",
     "ci": "yarn run lint && yarn run test",
     "format": "yarn run prettier-eslint \"src/**/*.js\"",
-    "heroku-prebuild": "yarn config set registry https://registry.npmjs.org",
+    "heroku-prebuild": "yarn config set registry https://registry.npmjs.org && yarn install:peers",
     "heroku-postbuild": "yarn install --production=false && yarn run build && yarn run browserify -- dist/index.js examples/index.js -o dist/bundle.js",
     "serve-example": "python -m SimpleHTTPServer 8080",
     "install:peers": "yarn add -P $(jq -r '.peerDependencies | to_entries | map(\"\\(.key)@\\(.value | tostring)\") | join(\" \")' package.json)"
