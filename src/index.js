@@ -42,7 +42,7 @@ const schema = {
       nodes: [{ objects: ['text'] }],
     },
     list_item: {
-      nodes: [{ objects: ['text'] }],
+      nodes: [{ types: ['paragraph'] }],
     },
   },
 }
