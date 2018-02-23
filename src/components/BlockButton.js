@@ -19,9 +19,11 @@ const BlockButton = ({
     icon={icon}
     text={title}
     onMouseDown={e => {
+      if (insideTable) {
+        return null
+      }
       return onChange(blockStrategy(value, block, data))
     }}
-    disabled={insideTable}
   />
 )
 

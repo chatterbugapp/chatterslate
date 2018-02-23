@@ -6,7 +6,7 @@ const inlineStrategy = (value, type) =>
   value.change().wrapInline(type).collapseToEnd()
 
 const InlineButton = ({
-  inline, title, icon, value, onChange, insideTable,
+  inline, title, icon, value, onChange,
 }) => (
   <ToolbarButton
     title={title}
@@ -15,7 +15,6 @@ const InlineButton = ({
     onMouseDown={e => {
       return onChange(inlineStrategy(value, inline))
     }}
-    disabled={insideTable}
   />
 )
 

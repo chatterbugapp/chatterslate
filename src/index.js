@@ -34,9 +34,11 @@ const EditListPlugin = EditList()
 const schema = {
   blocks: {
     'heading-one': {
+      marks: [{}],
       nodes: [{ objects: ['text'] }],
     },
     'heading-two': {
+      marks: [{}],
       nodes: [{ objects: ['text'] }],
     },
     list_item: {
@@ -237,6 +239,7 @@ class TopicEditor extends React.Component {
             <TableButton type="table_arrow" icon="arrow-right" title="Arrow Table" {...sharedProps} />
             <TableButton type="table_two" icon="th-large" title="Two Column Table" {...sharedProps} />
             <TableButton type="table_three" icon="table" title="Three Column Table" {...sharedProps} />
+            {insideTable && <TableToolbarMenu plugin={EditTablePlugin} {...sharedProps} />}
           </ToolbarMenu>
           <ToolbarMenu type="patterns" icon="paint-brush" title="Patterns" {...menuProps}>
             <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
@@ -245,7 +248,6 @@ class TopicEditor extends React.Component {
           <div className="separator" />
           <ToolbarButton icon="undo" title="Undo" onMouseDown={this.handleClickUndo} />
           <ToolbarButton icon="repeat" title="Redo" onMouseDown={this.handleClickRedo} />
-          {insideTable && <TableToolbarMenu plugin={EditTablePlugin} {...sharedProps} />}
         </div>
       </div>
     )

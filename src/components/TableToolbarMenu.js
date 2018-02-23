@@ -2,24 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ToolbarButton from './ToolbarButton'
 
-const onClickAddPatternRow = (event, plugin, value) => {
+const onClickAddTableRow = (event, plugin, value) => {
   return plugin.changes.insertRow(value.change())
 }
 
-const onClickRemovePatternRow = (event, plugin, value) => {
+const onClickRemoveTableRow = (event, plugin, value) => {
   return plugin.changes.removeRow(value.change())
 }
 
-const onClickRemovePattern = (event, plugin, value) => {
+const onClickRemoveTable = (event, plugin, value) => {
   return plugin.changes.removeTable(value.change())
 }
 
 const TableToolbarMenu = ({ plugin, value, onChange }) => (
-  <div className="menu">
-    <div className="separator" />
-    <ToolbarButton icon="plus" title="Add Row" onMouseDown={e => onChange(onClickAddPatternRow(e, plugin, value))} />
-    <ToolbarButton icon="minus" title="Remove Row" onMouseDown={e => onChange(onClickRemovePatternRow(e, plugin, value))} />
-    <ToolbarButton icon="trash" title="Remove Pattern" onMouseDown={e => onChange(onClickRemovePattern(e, plugin, value))} />
+  <div>
+    <small>Edit Table</small>
+    <ToolbarButton icon="plus" text="Add Row" onMouseDown={e => onChange(onClickAddTableRow(e, plugin, value))} />
+    <ToolbarButton icon="minus" text="Remove Row" onMouseDown={e => onChange(onClickRemoveTableRow(e, plugin, value))} />
+    <ToolbarButton icon="trash" text="Remove Table" onMouseDown={e => onChange(onClickRemoveTable(e, plugin, value))} />
   </div>
 )
 
