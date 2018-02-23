@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ToolbarButton from '../components/ToolbarButton'
+import ToolbarButton from './ToolbarButton'
 
 const hasAlign = (value, foundAlign) => {
   return value.blocks.some(node => node.data.get('align') === foundAlign)
@@ -18,7 +18,7 @@ const alignStrategy = (change, align) => {
   }).focus()
 }
 
-export const AlignButton = ({
+const AlignButton = ({
   align, icon, title, value, onChange,
 }) => (
   <ToolbarButton
@@ -31,17 +31,6 @@ export const AlignButton = ({
   />
 )
 
-export const AlignPlugin = () => ({
-  renderNode (nodeProps) {
-    const { attributes, children, node } = nodeProps
-    const align = node.data.get('align')
-    if (align) {
-      return <div {...attributes} className={`align_${align}`}>{children}</div>
-    }
-    return null
-  },
-})
-
 AlignButton.propTypes = {
   align: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
@@ -49,3 +38,5 @@ AlignButton.propTypes = {
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
 }
+
+export default AlignButton

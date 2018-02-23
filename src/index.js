@@ -7,6 +7,7 @@ import EditTable from 'slate-edit-table'
 import EditList from 'slate-edit-list'
 import SoftBreak from 'slate-soft-break'
 
+import AlignButton from './components/AlignButton'
 import BlockButton from './components/BlockButton'
 import ErrorBoundary from './components/ErrorBoundary'
 import InlineButton from './components/InlineButton'
@@ -15,19 +16,29 @@ import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
 import TableButton from './components/TableButton'
-import DefaultValue from './blocks/default'
 
+import AlignPlugin from './plugins/AlignPlugin'
 import { PatternPlugin } from './plugins/Pattern'
 import { MarkPlugin, MarkButton } from './plugins/Mark'
 import { VoidPlugin, VoidButton } from './plugins/Void'
 import { TablePlugin } from './plugins/Table'
 import { ColorButton } from './plugins/Color'
 import { PlainButton } from './plugins/Plain'
-import { AlignButton, AlignPlugin } from './plugins/Align'
 
 const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
 const EditTablePlugin = EditTable()
 const EditListPlugin = EditList()
+const DefaultValue = {
+  document: {
+    nodes: [
+      {
+        object: 'block',
+        type: 'paragraph',
+        nodes: [],
+      },
+    ],
+  },
+}
 
 // Enforce no marks on a header
 const schema = {
