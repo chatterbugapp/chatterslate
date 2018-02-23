@@ -19,7 +19,6 @@ import DefaultValue from './blocks/default'
 
 import { PatternPlugin } from './plugins/Pattern'
 import { MarkPlugin, MarkButton } from './plugins/Mark'
-import { BlockPlugin } from './plugins/Block'
 import { VoidPlugin, VoidButton } from './plugins/Void'
 import { TablePlugin } from './plugins/Table'
 import { ColorButton } from './plugins/Color'
@@ -51,9 +50,6 @@ const plugins = [
   MarkPlugin({ hotkeys: { bold: 'mod+b', italic: 'mod+i', underline: 'mod+u' } }),
   TablePlugin(),
   AlignPlugin(),
-  BlockPlugin({ block: 'ol_list', tag: 'ol' }),
-  BlockPlugin({ block: 'ul_list', tag: 'ul' }),
-  BlockPlugin({ block: 'list_item', tag: 'li' }),
   VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
   VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
