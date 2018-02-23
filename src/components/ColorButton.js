@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ToolbarButton from '../components/ToolbarButton'
+import ToolbarButton from './ToolbarButton'
 
 const DEFAULT_COLOR = 'black'
 const hasAnyColor = value => (value.marks.some(mark => mark.type === 'color'))
@@ -33,7 +33,7 @@ const colorStrategy = (value, color) => {
   return change
 }
 
-export const ColorButton = ({
+const ColorButton = ({
   color, icon, title, value, onChange,
 }) => (
   <ToolbarButton
@@ -54,3 +54,5 @@ ColorButton.propTypes = {
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
 }
+
+export default ColorButton

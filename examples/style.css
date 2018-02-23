@@ -62,6 +62,13 @@ td {
   transition: border-color .2s;
 }
 
+th {
+  padding: 10px;
+  border: 2px solid #ddd;
+  transition: border-color .2s;
+  background: #eee;
+}
+
 input {
   box-sizing: border-box;
   font-size: .85em;
@@ -187,6 +194,8 @@ input:focus {
   overflow: visible;
   padding: 0;
   text-align: center;
+  min-width: 20px;
+  display: inline-block;
 }
 
 .button:disabled {
@@ -230,6 +239,7 @@ input:focus {
 .toolbar-menu .menu_color,
 .toolbar-menu .menu_character,
 .toolbar-menu .menu_rule,
+.toolbar-menu .menu_tables,
 .toolbar-menu .menu_patterns {
   position: absolute;
   background: #fff;
@@ -239,19 +249,23 @@ input:focus {
 }
 
 .toolbar-menu .menu_color {
-  left: 355px;
+  left: 300px;
 }
 
 .toolbar-menu .menu_character {
-  left: 385px;
+  left: 330px;
 }
 
 .toolbar-menu .menu_rule {
-  left: 415px;
+  left: 360px;
+}
+
+.toolbar-menu .menu_tables {
+  left: 390px;
 }
 
 .toolbar-menu .menu_patterns {
-  left: 445px;
+  left: 420px;
 }
 
 .toolbar-menu .menu_rule span {
@@ -266,6 +280,7 @@ input:focus {
   width: 15px;
 }
 
+.toolbar-menu .menu_tables span,
 .toolbar-menu .menu_patterns span {
   display: block;
   text-align: left;
@@ -276,7 +291,7 @@ input:focus {
 .toolbar-menu .menu_color .menu,
 .toolbar-menu .menu_character .menu,
 .toolbar-menu .menu_rule .menu,
-.toolbar-menu .menu_patterns .menu {
+.toolbar-menu .menu_tables .menu {
   padding: 5px;
 }
 
@@ -419,6 +434,7 @@ input:focus {
 
 .table_active,
 .table_active tr,
+.table_active th,
 .table_active td {
   border-color: #444;
 }
@@ -430,12 +446,6 @@ input:focus {
 .table_arrow tr td {
   min-width: 100px;
 }
-
-/*
-.table_arrow tr td:first-child {
-  text-align: right;
-}
-*/
 
 .table_arrow tr td:nth-child(2) {
   width: 16px;
@@ -514,4 +524,51 @@ input:focus {
 
 .align_right {
   text-align: right;
+}
+
+.pattern__examples--block {
+  padding: 20px;
+  background: #eee;
+  text-align: center;
+}
+
+.pattern__examples--header {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.pattern__examples--subheader {
+  font-size: 14px;
+  color: #888;
+}
+
+.pattern__center--block {
+  padding: 20px;
+  background: #ccc;
+  text-align: center;
+}
+
+.pattern__watchout--block {
+  padding: 20px;
+  background: rgba(254, 247, 205, 1);
+}
+
+.pattern__cultural--block {
+  padding: 20px;
+  background: rgba(226, 247, 252, 1);
+}
+
+.pattern__note--block {
+  padding: 20px;
+  background: rgba(249, 249, 249, 1);
+}
+
+.pattern__student--block {
+  padding: 20px;
+  background-color: cyan;
+}
+
+.pattern__teacher--block {
+  padding: 20px;
+  background-color: lightgreen;
 }
