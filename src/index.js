@@ -9,21 +9,22 @@ import SoftBreak from 'slate-soft-break'
 
 import AlignButton from './components/AlignButton'
 import BlockButton from './components/BlockButton'
+import ColorButton from './components/ColorButton'
 import ErrorBoundary from './components/ErrorBoundary'
 import InlineButton from './components/InlineButton'
 import ListBlockButton from './components/ListBlockButton'
+import PlainButton from './components/PlainButton'
 import ToolbarButton from './components/ToolbarButton'
 import ToolbarMenu from './components/ToolbarMenu'
 import TableToolbarMenu from './components/TableToolbarMenu'
 import TableButton from './components/TableButton'
+import VoidButton from './components/VoidButton'
 
 import AlignPlugin from './plugins/AlignPlugin'
-import { PatternPlugin } from './plugins/Pattern'
+import PatternPlugin from './plugins/PatternPlugin'
 import { MarkPlugin, MarkButton } from './plugins/Mark'
-import { VoidPlugin, VoidButton } from './plugins/Void'
-import { TablePlugin } from './plugins/Table'
-import { ColorButton } from './plugins/Color'
-import { PlainButton } from './plugins/Plain'
+import TablePlugin from './plugins/TablePlugin'
+import VoidPlugin from './plugins/VoidPlugin'
 
 const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
 const EditTablePlugin = EditTable()

@@ -1,7 +1,7 @@
 // via https://github.com/ianstormtaylor/slate/blob/master/examples/tables/index.js
 import React from 'react'
 
-export const TablePlugin = () => ({
+const TablePlugin = () => ({
   renderNode (nodeProps) {
     const {
       attributes, node, children, editor,
@@ -24,3 +24,5 @@ export const TablePlugin = () => ({
     return null
   },
 })
+
+export default TablePlugin

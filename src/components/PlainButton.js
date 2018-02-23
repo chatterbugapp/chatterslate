@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ToolbarButton from '../components/ToolbarButton'
+import ToolbarButton from './ToolbarButton'
 
 const plainStrategy = (change, text) => change.insertText(text)
 
-export const PlainButton = ({
+const PlainButton = ({
   text, title, value, onChange,
 }) => (
   <ToolbarButton
@@ -22,3 +22,5 @@ PlainButton.propTypes = {
   value: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
 }
+
+export default PlainButton

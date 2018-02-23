@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const PatternPlugin = () => ({
+const PatternPlugin = () => ({
   renderNode (nodeProps) {
     const {
       attributes, node, children,
@@ -28,3 +28,5 @@ export const PatternPlugin = () => ({
     }
   },
 })
+
+export default PatternPlugin
