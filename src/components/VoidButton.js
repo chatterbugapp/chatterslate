@@ -4,7 +4,7 @@ import ToolbarButton from './ToolbarButton'
 
 const voidStrategy = (change, type) => change.insertInline({ type, isVoid: true })
 
-export const VoidButton = ({
+const VoidButton = ({
   type, text, icon, title, value, onChange,
 }) => (
   <ToolbarButton
