@@ -17,6 +17,8 @@ const PatternPlugin = () => ({
         return <span className="pattern__examples--subheader" {...attributes}>{children}</span>
       case 'heading-one':
         return <h1 {...attributes}>{children}</h1>
+      case 'heading-two':
+        return <h2 {...attributes}>{children}</h2>
       case 'ol_list':
         return <ol {...attributes}>{children}</ol>
       case 'ul_list':
