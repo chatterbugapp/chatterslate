@@ -574,14 +574,16 @@ input:focus {
   background: #e3e;
 }
 
-.pattern__student_item {
+/* Just a plain list item can be a student item! */
+.pattern__conversation_list .pattern__list_item,
+.pattern__conversation_list .pattern__student_item {
   padding: 10px;
   background-color: cyan;
-  text-align: right;
+  text-align: left;
 }
 
 .pattern__tutor_item {
   padding: 10px;
   background-color: lightgreen;
-  text-align: left;
+  text-align: right;
 }
