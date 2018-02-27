@@ -21,11 +21,6 @@ const conversationStrategy = (change, data) => {
 const ConversationButton = ({
   icon, title, value, onChange, data
 }) => {
-  //const inList = isSelectionInList(value)
-  //const activeInListType = inList && value.blocks.some(lookBlock => {
-    //return !!value.document.getClosest(lookBlock.key, parent => parent.type === block)
-  //})
-
   return (<ToolbarButton
     icon={icon}
     text={title}
