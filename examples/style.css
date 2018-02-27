@@ -526,49 +526,49 @@ input:focus {
   text-align: right;
 }
 
-.pattern__examples--block {
+.pattern__examples_block {
   padding: 20px;
   background: #eee;
   text-align: center;
 }
 
-.pattern__examples--header {
+.pattern__examples_header {
   font-size: 20px;
   font-weight: bold;
 }
 
-.pattern__examples--subheader {
+.pattern__examples_subheader {
   font-size: 14px;
   color: #888;
 }
 
-.pattern__center--block {
+.pattern__center_block {
   padding: 20px;
   background: #ccc;
   text-align: center;
 }
 
-.pattern__watchout--block {
+.pattern__watchout_block {
   padding: 20px;
   background: rgba(254, 247, 205, 1);
 }
 
-.pattern__cultural--block {
+.pattern__cultural_block {
   padding: 20px;
   background: rgba(226, 247, 252, 1);
 }
 
-.pattern__note--block {
+.pattern__note_block {
   padding: 20px;
   background: rgba(249, 249, 249, 1);
 }
 
-.pattern__student--block {
+.pattern__student_block {
   padding: 20px;
   background-color: cyan;
 }
 
-.pattern__teacher--block {
+.pattern__tutor_block {
   padding: 20px;
   background-color: lightgreen;
 }

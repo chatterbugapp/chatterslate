@@ -28,7 +28,7 @@ const renderPatterns = sharedProps => {
       <BlockButton block="aside_block" data={{ className: 'cultural' }} icon="globe" title="Cultural Aside" {...sharedProps} />
       <BlockButton block="aside_block" data={{ className: 'note' }} icon="sticky-note" title="Note Aside" {...sharedProps} />
       <BlockButton block="aside_block" data={{ className: 'student' }} icon="user" title="Student" {...sharedProps} />
-      <BlockButton block="aside_block" data={{ className: 'teacher' }} icon="user" title="Teacher" {...sharedProps} />
+      <BlockButton block="aside_block" data={{ className: 'tutor' }} icon="user" title="Tutor" {...sharedProps} />
     </div>
   )
 }
