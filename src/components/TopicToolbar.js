@@ -65,6 +65,7 @@ const TopicToolbar = ({
         <MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
         <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
         <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
+        <MarkButton mark="learningLanguage" icon="globe" title="Learning Language" {...sharedProps} />
         <div className="separator" />
         <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
         <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />

@@ -249,23 +249,23 @@ input:focus {
 }
 
 .toolbar-menu .menu_color {
-  left: 300px;
-}
-
-.toolbar-menu .menu_character {
   left: 330px;
 }
 
-.toolbar-menu .menu_rule {
+.toolbar-menu .menu_character {
   left: 360px;
 }
 
-.toolbar-menu .menu_tables {
+.toolbar-menu .menu_rule {
   left: 390px;
 }
 
-.toolbar-menu .menu_patterns {
+.toolbar-menu .menu_tables {
   left: 420px;
+}
+
+.toolbar-menu .menu_patterns {
+  left: 450px;
 }
 
 .toolbar-menu .menu_rule span {
@@ -512,6 +512,11 @@ input:focus {
 
 .mark_strikethrough {
   text-decoration: line-through;
+}
+
+.mark_learningLanguage {
+  background: #eee;
+  padding: 5px;
 }
 
 .align_left {
