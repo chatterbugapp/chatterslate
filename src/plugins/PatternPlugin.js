@@ -10,7 +10,11 @@ const PatternPlugin = () => ({
       case 'examples_block':
         return <div className="pattern__examples_block" {...attributes}>{children}</div>
       case 'aside_block':
-        return <div className={`pattern__${node.data.get('className')}_block`} {...attributes}>{children}</div>
+        return (
+          <div className={`pattern__${node.data.get('className')}_container`}>
+            <div className={`pattern__${node.data.get('className')}_block`} {...attributes}>{children}</div>
+          </div>
+        )
       case 'examples_header':
         return <span className="pattern__examples_header" {...attributes}>{children}</span>
       case 'examples_subheader':
