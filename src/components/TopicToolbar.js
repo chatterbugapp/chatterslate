@@ -5,6 +5,7 @@ import SlateEditTable from 'slate-edit-table'
 import AlignButton from './AlignButton'
 import BlockButton from './BlockButton'
 import ColorButton from './ColorButton'
+import ConversationButton from './ConversationButton'
 import InlineButton from './InlineButton'
 import ListBlockButton from './ListBlockButton'
 import MarkButton from './MarkButton'
@@ -27,8 +28,8 @@ const renderPatterns = sharedProps => {
       <BlockButton block="aside_block" data={{ className: 'watchout' }} icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
       <BlockButton block="aside_block" data={{ className: 'cultural' }} icon="globe" title="Cultural Aside" {...sharedProps} />
       <BlockButton block="aside_block" data={{ className: 'note' }} icon="sticky-note" title="Note Aside" {...sharedProps} />
-      <BlockButton block="aside_block" data={{ className: 'student' }} icon="user" title="Student" {...sharedProps} />
-      <BlockButton block="aside_block" data={{ className: 'tutor' }} icon="user" title="Tutor" {...sharedProps} />
+      <ConversationButton data={{ className: 'student' }} icon="user" title="Student" {...sharedProps} />
+      <ConversationButton data={{ className: 'tutor' }} icon="user" title="Tutor" {...sharedProps} />
     </div>
   )
 }
@@ -72,6 +73,7 @@ const TopicToolbar = ({
         <AlignButton align="right" icon="align-right" title="Right Align" {...sharedProps} />
         <ListBlockButton block="ol_list" icon="list-ol" title="Numbered List" {...sharedProps} />
         <ListBlockButton block="ul_list" icon="list-ul" title="Bulleted List" {...sharedProps} />
+        <ListBlockButton block="conversation_list" icon="comments" title="Conversation" {...sharedProps} />
         <div className="separator" />
         <ToolbarMenu type="color" icon="eyedropper" title="Font Color" {...menuProps}>
           <div className="menu">

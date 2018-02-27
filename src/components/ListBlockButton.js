@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import SlateEditList from 'slate-edit-list'
 import ToolbarButton from './ToolbarButton'
 
-const { isSelectionInList, unwrapList, wrapInList } = SlateEditList().utils
+const plugin = SlateEditList()
+const { isSelectionInList } = plugin.utils
+const { unwrapList, wrapInList } = plugin.changes
 
 const ListBlockButton = ({
   block, icon, title, value, onChange, insideTable,

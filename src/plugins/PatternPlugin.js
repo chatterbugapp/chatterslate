@@ -24,11 +24,13 @@ const PatternPlugin = () => ({
       case 'heading-two':
         return <h2 {...attributes}>{children}</h2>
       case 'ol_list':
-        return <ol {...attributes}>{children}</ol>
+        return <ol className="pattern__normal_list" {...attributes}>{children}</ol>
       case 'ul_list':
-        return <ul {...attributes}>{children}</ul>
+        return <ul className="pattern__normal_list" {...attributes}>{children}</ul>
+      case 'conversation_list':
+        return <ul className="pattern__conversation_list" {...attributes}>{children}</ul>
       case 'list_item':
-        return <li {...attributes}>{children}</li>
+        return <li className={`pattern__${node.data.get('className') || 'list'}_item`}{...attributes}>{children}</li>
       default:
         return null
     }

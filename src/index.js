@@ -57,7 +57,7 @@ const plugins = [
   PatternPlugin(),
   SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell', 'examples_block', 'aside_block'] }),
   EditTable(),
-  EditList(),
+  EditList({ types: ['ol_list', 'ul_list', 'conversation_list'] }),
 ]
 
 class TopicEditor extends React.Component {

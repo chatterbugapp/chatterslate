@@ -249,23 +249,23 @@ input:focus {
 }
 
 .toolbar-menu .menu_color {
-  left: 330px;
-}
-
-.toolbar-menu .menu_character {
   left: 360px;
 }
 
-.toolbar-menu .menu_rule {
+.toolbar-menu .menu_character {
   left: 390px;
 }
 
-.toolbar-menu .menu_tables {
+.toolbar-menu .menu_rule {
   left: 420px;
 }
 
-.toolbar-menu .menu_patterns {
+.toolbar-menu .menu_tables {
   left: 450px;
+}
+
+.toolbar-menu .menu_patterns {
+  left: 480px;
 }
 
 .toolbar-menu .menu_rule span {
@@ -568,12 +568,20 @@ input:focus {
   background: rgba(249, 249, 249, 1);
 }
 
-.pattern__student_block {
+.pattern__conversation_list {
+  list-style: none;
   padding: 20px;
-  background-color: cyan;
+  background: #e3e;
 }
 
-.pattern__tutor_block {
-  padding: 20px;
+.pattern__student_item {
+  padding: 10px;
+  background-color: cyan;
+  text-align: right;
+}
+
+.pattern__tutor_item {
+  padding: 10px;
   background-color: lightgreen;
+  text-align: left;
 }
