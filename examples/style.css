@@ -532,12 +532,12 @@ input:focus {
   text-align: center;
 }
 
-.pattern__examples_header {
+.pattern__examples_text {
   font-size: 20px;
   font-weight: bold;
 }
 
-.pattern__examples_subheader {
+.pattern__examples_translation {
   font-size: 14px;
   color: #888;
 }

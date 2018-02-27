@@ -23,7 +23,7 @@ const renderPatterns = sharedProps => {
       <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
       <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
       <BlockButton block="examples_block" icon="lightbulb-o" title="Examples" {...sharedProps} />
-      <BlockButton block="aside_block" data={{ className: 'center' }} icon="book" title="Plain Aside" {...sharedProps} />
+      <BlockButton block="aside_block" data={{ className: 'center' }} icon="book" title="Centered Aside" {...sharedProps} />
       <BlockButton block="aside_block" data={{ className: 'watchout' }} icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
       <BlockButton block="aside_block" data={{ className: 'cultural' }} icon="globe" title="Cultural Aside" {...sharedProps} />
       <BlockButton block="aside_block" data={{ className: 'note' }} icon="sticky-note" title="Note Aside" {...sharedProps} />
@@ -36,8 +36,8 @@ const renderPatterns = sharedProps => {
 const renderInExamples = sharedProps => {
   return (
     <div>
-      <InlineButton inline="examples_header" icon="angle-double-up" title="Example Header" {...sharedProps} />
-      <InlineButton inline="examples_subheader" icon="angle-up" title="Example Subheader" {...sharedProps} />
+      <InlineButton inline="examples_text" icon="comment" title="Example Text" {...sharedProps} />
+      <InlineButton inline="examples_translation" icon="globe" title="Example Translation" {...sharedProps} />
     </div>
   )
 }
