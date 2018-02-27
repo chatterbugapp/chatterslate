@@ -6,8 +6,9 @@ SlateJS editor for Chatterbug.
 
 Run:
 
-```
+```sh
 yarn install
+brew install jq # install:peers needs this....
 yarn install:peers
 ```
 
