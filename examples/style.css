@@ -195,6 +195,7 @@ input:focus {
   padding: 0;
   text-align: center;
   min-width: 20px;
+  min-height: 20px;
   display: inline-block;
 }
 
@@ -249,23 +250,23 @@ input:focus {
 }
 
 .toolbar-menu .menu_color {
-  left: 360px;
+  left: 330px;
 }
 
 .toolbar-menu .menu_character {
-  left: 390px;
+  left: 360px;
 }
 
 .toolbar-menu .menu_rule {
-  left: 420px;
+  left: 390px;
 }
 
 .toolbar-menu .menu_tables {
-  left: 450px;
+  left: 415px;
 }
 
 .toolbar-menu .menu_patterns {
-  left: 480px;
+  left: 445px;
 }
 
 .toolbar-menu .menu_rule span {
@@ -531,18 +532,12 @@ input:focus {
   text-align: right;
 }
 
-.pattern__examples_block {
-  padding: 20px;
-  background: #eee;
-  text-align: center;
-}
-
-.pattern__examples_text {
+.pattern__text_item {
   font-size: 20px;
   font-weight: bold;
 }
 
-.pattern__examples_translation {
+.pattern__translation_item {
   font-size: 14px;
   color: #888;
 }
@@ -568,15 +563,20 @@ input:focus {
   background: rgba(249, 249, 249, 1);
 }
 
-.pattern__conversation_list {
-  list-style: none;
+.pattern__conversation_block {
   padding: 20px;
   background: #e3e;
 }
 
+.pattern__examples_block {
+  padding: 20px;
+  background: #eee;
+  text-align: center;
+}
+
 /* Just a plain list item can be a student item! */
-.pattern__conversation_list .pattern__list_item,
-.pattern__conversation_list .pattern__student_item {
+.pattern__conversation_block .pattern__normal_item,
+.pattern__conversation_block .pattern__student_item {
   padding: 10px;
   background-color: cyan;
   text-align: left;

@@ -3,22 +3,10 @@ import React from 'react'
 const PatternPlugin = () => ({
   renderNode (nodeProps) {
     const {
-      attributes, node, children,
+      attributes, node, children, parent
     } = nodeProps
 
     switch (node.type) {
-      case 'examples_block':
-        return <div className="pattern__examples_block" {...attributes}>{children}</div>
-      case 'aside_block':
-        return (
-          <div className={`pattern__${node.data.get('className')}_container`}>
-            <div className={`pattern__${node.data.get('className')}_block`} {...attributes}>{children}</div>
-          </div>
-        )
-      case 'examples_text':
-        return <span className="pattern__examples_text" {...attributes}>{children}</span>
-      case 'examples_translation':
-        return <span className="pattern__examples_translation" {...attributes}>{children}</span>
       case 'heading-one':
         return <h1 {...attributes}>{children}</h1>
       case 'heading-two':
@@ -27,10 +15,18 @@ const PatternPlugin = () => ({
         return <ol className="pattern__normal_list" {...attributes}>{children}</ol>
       case 'ul_list':
         return <ul className="pattern__normal_list" {...attributes}>{children}</ul>
-      case 'conversation_list':
-        return <ul className="pattern__conversation_list" {...attributes}>{children}</ul>
+      case 'pattern_conversation':
+        return <div className="pattern__conversation_block" {...attributes}>{children}</div>
+      case 'pattern_examples':
+        return <div className="pattern__examples_block" {...attributes}>{children}</div>
+      case 'pattern_aside':
+        return <div className={`pattern__${node.data.get('className') || 'center'}_block`} {...attributes}>{children}</div>
       case 'list_item':
-        return <li className={`pattern__${node.data.get('className') || 'list'}_item`}{...attributes}>{children}</li>
+        if (parent.type === 'ol_list' || parent.type === 'ul_list') {
+          return <li className='pattern__normal_item' {...attributes}>{children}</li>
+        } else {
+          return <div className={`pattern__${node.data.get('className') || 'normal'}_item`}{...attributes}>{children}</div>
+        }
       default:
         return null
     }

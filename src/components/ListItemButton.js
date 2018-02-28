@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ToolbarButton from './ToolbarButton'
 
-const conversationStrategy = (change, data) => {
+const listItemStrategy = (change, data) => {
   const firstBlock = change.value.startBlock
   if (firstBlock) {
     const itemBlock = change.value.document.getClosestBlock(firstBlock.key)
@@ -13,18 +13,18 @@ const conversationStrategy = (change, data) => {
   return change
 }
 
-const ConversationButton = ({
+const ListItemButton = ({
   icon, title, value, onChange, data,
 }) => {
   return (<ToolbarButton
     icon={icon}
     text={title}
     title={title}
-    onMouseDown={() => { return onChange(conversationStrategy(value.change(), data)) }}
+    onMouseDown={() => { return onChange(listItemStrategy(value.change(), data)) }}
   />)
 }
 
-ConversationButton.propTypes = {
+ListItemButton.propTypes = {
   icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   value: PropTypes.object.isRequired,
@@ -32,4 +32,4 @@ ConversationButton.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-export default ConversationButton
+export default ListItemButton
