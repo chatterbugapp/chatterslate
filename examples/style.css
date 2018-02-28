@@ -587,3 +587,29 @@ input:focus {
   background-color: lightgreen;
   text-align: right;
 }
+
+.heading-one {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.heading-two {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.pattern__center_block .heading-one,
+.pattern__watchout_block .heading-one,
+.pattern__cultural_block .heading-one,
+.pattern__note_block .heading-one {
+  font-size: 24px;
+  font-style: italic;
+}
+
+.pattern__center_block .heading-two,
+.pattern__watchout_block .heading-two,
+.pattern__cultural_block .heading-two,
+.pattern__note_block .heading-two {
+  font-size: 18px;
+  font-style: normal;
+}

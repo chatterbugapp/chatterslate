@@ -22,9 +22,6 @@ const { isSelectionInList, getCurrentList } = EditListPlugin.utils
 const renderPatterns = sharedProps => {
   return (
     <div>
-      <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
-      <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
-      <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
       <ListBlockButton block="pattern_examples" icon="lightbulb-o" text="Examples" {...sharedProps} />
       <ListBlockButton block="pattern_conversation" icon="comments" text="Conversation" {...sharedProps} />
       <ListBlockButton block="pattern_aside" data={{ className: 'center' }} icon="book" text="Centered Aside" {...sharedProps} />
@@ -143,6 +140,9 @@ const TopicToolbar = ({
           {insideTable && <TableToolbarMenu {...sharedProps} />}
         </ToolbarMenu>
         <ToolbarMenu type="patterns" icon="paint-brush" title="Patterns" {...menuProps}>
+          <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
+          <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
+          <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
           {insideExamples && renderInExamples(sharedProps)}
           {insideConversation && renderInConversation(sharedProps)}
           {!insideTable && !insideList && renderPatterns(sharedProps)}

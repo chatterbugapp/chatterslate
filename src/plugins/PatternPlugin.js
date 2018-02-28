@@ -8,9 +8,9 @@ const PatternPlugin = () => ({
 
     switch (node.type) {
       case 'heading-one':
-        return <h1 {...attributes}>{children}</h1>
+        return <header className="heading-one" {...attributes}>{children}</header>
       case 'heading-two':
-        return <h2 {...attributes}>{children}</h2>
+        return <header className="heading-two" {...attributes}>{children}</header>
       case 'ol_list':
         return <ol className="pattern__normal_list" {...attributes}>{children}</ol>
       case 'ul_list':
