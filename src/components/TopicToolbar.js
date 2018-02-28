@@ -7,7 +7,6 @@ import AlignButton from './AlignButton'
 import BlockButton from './BlockButton'
 import ColorButton from './ColorButton'
 import ListItemButton from './ListItemButton'
-import InlineButton from './InlineButton'
 import ListBlockButton from './ListBlockButton'
 import MarkButton from './MarkButton'
 import PlainButton from './PlainButton'
@@ -59,13 +58,16 @@ const TopicToolbar = ({
 }) => {
   const insideTable = isSelectionInTable(value)
   const insideList = isSelectionInList(value)
-  let insideExamples, insideConversation = false
+  let insideExamples = false
+  let insideConversation = false
   if (insideList) {
     const currentList = getCurrentList(value)
     insideExamples = currentList.type === 'pattern_examples'
     insideConversation = currentList.type === 'pattern_conversation'
   }
-  const sharedProps = { value, onChange, insideTable, insideList }
+  const sharedProps = {
+    value, onChange, insideTable, insideList,
+  }
   const menuProps = { menus, onMenuToggle }
 
   return (

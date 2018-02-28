@@ -23,7 +23,7 @@ const TableButton = ({
     title={title}
     text={title}
     onMouseDown={e => {
-      return onChange(prefabStrategy(value.change(), type, className))
+      return onChange(prefabStrategy(value.change(), type))
     }}
     active={!insideList}
   />

@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SlateEditList from 'slate-edit-list'
 import ToolbarButton from './ToolbarButton'
 
 import EditListPlugin from '../plugins/EditListPlugin'
+
 const { isSelectionInList } = EditListPlugin.utils
 const { unwrapList, wrapInList } = EditListPlugin.changes
 
 const ListBlockButton = ({
-  block, icon, text, title, value, data, onChange
+  block, icon, text, title, value, data, onChange,
 }) => {
   const inList = isSelectionInList(value)
   const activeInListType = inList && value.blocks.some(lookBlock => {

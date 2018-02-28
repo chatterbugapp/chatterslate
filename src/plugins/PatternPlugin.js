@@ -3,7 +3,7 @@ import React from 'react'
 const PatternPlugin = () => ({
   renderNode (nodeProps) {
     const {
-      attributes, node, children, parent
+      attributes, node, children, parent,
     } = nodeProps
 
     switch (node.type) {
@@ -23,10 +23,10 @@ const PatternPlugin = () => ({
         return <div className={`pattern__${node.data.get('className') || 'center'}_block`} {...attributes}>{children}</div>
       case 'list_item':
         if (parent.type === 'ol_list' || parent.type === 'ul_list') {
-          return <li className='pattern__normal_item' {...attributes}>{children}</li>
-        } else {
-          return <div className={`pattern__${node.data.get('className') || 'normal'}_item`}{...attributes}>{children}</div>
+          return <li className="pattern__normal_item" {...attributes}>{children}</li>
         }
+        return <div className={`pattern__${node.data.get('className') || 'normal'}_item`}{...attributes}>{children}</div>
+
       default:
         return null
     }
