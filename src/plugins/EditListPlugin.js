@@ -6,11 +6,11 @@ const EditListPlugin = EditList({
     'ul_list',
     'pattern__examples',
     'pattern__conversation',
-    "pattern__center",
-    "pattern__watchout",
-    "pattern__cultural",
-    "pattern__note",
-  ]
+    'pattern__center',
+    'pattern__watchout',
+    'pattern__cultural',
+    'pattern__note',
+  ],
 })
 
 export default EditListPlugin
