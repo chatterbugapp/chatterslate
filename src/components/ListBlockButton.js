@@ -20,9 +20,15 @@ const ListBlockButton = ({
     text={text}
     title={title}
     onMouseDown={() => {
-      if (inList) {
+      // Unwrap list if same list button is hit as the active list
+      if (activeInListType) {
         return onChange(unwrapList(value.change(), block))
       }
+      // rewrap list if different list block
+      if (inList) {
+        return onChange(wrapInList(unwrapList(value.change(), block), block, data))
+      }
+      // wrap list if no list
       return onChange(wrapInList(value.change(), block, data))
     }}
     active={activeInListType}

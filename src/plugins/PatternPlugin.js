@@ -15,12 +15,15 @@ const PatternPlugin = () => ({
         return <ol className="pattern__normal_list" {...attributes}>{children}</ol>
       case 'ul_list':
         return <ul className="pattern__normal_list" {...attributes}>{children}</ul>
-      case 'pattern_conversation':
-        return <div className="pattern__conversation_block" {...attributes}>{children}</div>
-      case 'pattern_examples':
-        return <div className="pattern__examples_block" {...attributes}>{children}</div>
+      case 'pattern__conversation':
+      case 'pattern__examples':
+        return <div className={`${node.type}_block`} {...attributes}>{children}</div>
+      case 'pattern__note':
+      case 'pattern__center':
+      case 'pattern__cultural':
+      case 'pattern__watchout':
       case 'pattern_aside':
-        return <div className={`pattern__${node.data.get('className') || 'center'}_block`} {...attributes}>{children}</div>
+        return <div className={`${node.type}_block`} {...attributes}>{children}</div>
       case 'list_item':
         if (parent.type === 'ol_list' || parent.type === 'ul_list') {
           return <li className="pattern__normal_item" {...attributes}>{children}</li>

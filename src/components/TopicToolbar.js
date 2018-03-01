@@ -19,15 +19,18 @@ import VoidButton from './VoidButton'
 const { isSelectionInTable } = SlateEditTable().utils
 const { isSelectionInList, getCurrentList } = EditListPlugin.utils
 
-const renderPatterns = sharedProps => {
+const renderPatterns = (insideExamples, sharedProps) => {
   return (
     <div>
-      <ListBlockButton block="pattern_examples" icon="lightbulb-o" text="Examples" {...sharedProps} />
-      <ListBlockButton block="pattern_conversation" icon="comments" text="Conversation" {...sharedProps} />
-      <ListBlockButton block="pattern_aside" data={{ className: 'center' }} icon="book" text="Centered Aside" {...sharedProps} />
-      <ListBlockButton block="pattern_aside" data={{ className: 'watchout' }} icon="exclamation-triangle" text="Watch Out Aside" {...sharedProps} />
-      <ListBlockButton block="pattern_aside" data={{ className: 'cultural' }} icon="globe" text="Cultural Aside" {...sharedProps} />
-      <ListBlockButton block="pattern_aside" data={{ className: 'note' }} icon="sticky-note" text="Note Aside" {...sharedProps} />
+      <small>Patterns</small>
+      {!insideExamples && <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />}
+      {!insideExamples && <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />}
+      <ListBlockButton block="pattern__examples" icon="lightbulb-o" text="Examples" {...sharedProps} />
+      <ListBlockButton block="pattern__conversation" icon="comments" text="Conversation" {...sharedProps} />
+      <ListBlockButton block="pattern__center" icon="book" text="Centered Aside" {...sharedProps} />
+      <ListBlockButton block="pattern__watchout" icon="exclamation-triangle" text="Watch Out Aside" {...sharedProps} />
+      <ListBlockButton block="pattern__cultural" icon="globe" text="Cultural Aside" {...sharedProps} />
+      <ListBlockButton block="pattern__note" icon="sticky-note" text="Note Aside" {...sharedProps} />
     </div>
   )
 }
@@ -35,6 +38,7 @@ const renderPatterns = sharedProps => {
 const renderInExamples = sharedProps => {
   return (
     <div>
+      <small>Examples</small>
       <ListItemButton data={{ className: 'text' }} icon="sign-language" title="Examples Text" {...sharedProps} />
       <ListItemButton data={{ className: 'translation' }} icon="american-sign-language-interpreting" title="Examples Translation" {...sharedProps} />
     </div>
@@ -44,6 +48,7 @@ const renderInExamples = sharedProps => {
 const renderInConversation = sharedProps => {
   return (
     <div>
+      <small>Conversations</small>
       <ListItemButton data={{ className: 'student' }} icon="user" title="Student" {...sharedProps} />
       <ListItemButton data={{ className: 'tutor' }} icon="user" title="Tutor" {...sharedProps} />
     </div>
@@ -59,8 +64,8 @@ const TopicToolbar = ({
   let insideConversation = false
   if (insideList) {
     const currentList = getCurrentList(value)
-    insideExamples = currentList.type === 'pattern_examples'
-    insideConversation = currentList.type === 'pattern_conversation'
+    insideExamples = currentList.type === 'pattern__examples'
+    insideConversation = currentList.type === 'pattern__conversation'
   }
   const sharedProps = {
     value, onChange, insideTable, insideList,
@@ -140,12 +145,9 @@ const TopicToolbar = ({
           {insideTable && <TableToolbarMenu {...sharedProps} />}
         </ToolbarMenu>
         <ToolbarMenu type="patterns" icon="paint-brush" title="Patterns" {...menuProps}>
-          <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
-          <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
-          <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
           {insideExamples && renderInExamples(sharedProps)}
           {insideConversation && renderInConversation(sharedProps)}
-          {!insideTable && !insideList && renderPatterns(sharedProps)}
+          {!insideTable && renderPatterns(insideExamples, sharedProps)}
         </ToolbarMenu>
         <div className="separator" />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={onClickUndo} />
