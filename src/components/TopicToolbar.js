@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SlateEditTable from 'slate-edit-table'
+import EditListPlugin from '../plugins/EditListPlugin'
 
 import AlignButton from './AlignButton'
 import BlockButton from './BlockButton'
 import ColorButton from './ColorButton'
-import InlineButton from './InlineButton'
+import ListItemButton from './ListItemButton'
 import ListBlockButton from './ListBlockButton'
 import MarkButton from './MarkButton'
 import PlainButton from './PlainButton'
@@ -16,19 +17,20 @@ import TableButton from './TableButton'
 import VoidButton from './VoidButton'
 
 const { isSelectionInTable } = SlateEditTable().utils
+const { isSelectionInList, getCurrentList } = EditListPlugin.utils
 
-const renderPatterns = sharedProps => {
+const renderPatterns = (insideExamples, sharedProps) => {
   return (
     <div>
-      <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />
-      <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />
-      <BlockButton block="examples_block" icon="lightbulb-o" title="Examples" {...sharedProps} />
-      <BlockButton block="aside_block" data={{ className: 'center' }} icon="book" title="Centered Aside" {...sharedProps} />
-      <BlockButton block="aside_block" data={{ className: 'watchout' }} icon="exclamation-triangle" title="Watch Out Aside" {...sharedProps} />
-      <BlockButton block="aside_block" data={{ className: 'cultural' }} icon="globe" title="Cultural Aside" {...sharedProps} />
-      <BlockButton block="aside_block" data={{ className: 'note' }} icon="sticky-note" title="Note Aside" {...sharedProps} />
-      <BlockButton block="aside_block" data={{ className: 'student' }} icon="user" title="Student" {...sharedProps} />
-      <BlockButton block="aside_block" data={{ className: 'tutor' }} icon="user" title="Tutor" {...sharedProps} />
+      <small>Patterns</small>
+      {!insideExamples && <BlockButton block="heading-one" icon="angle-double-up" title="Header One" {...sharedProps} />}
+      {!insideExamples && <BlockButton block="heading-two" icon="angle-up" title="Header Two" {...sharedProps} />}
+      <ListBlockButton block="pattern__examples" icon="lightbulb-o" text="Examples" {...sharedProps} />
+      <ListBlockButton block="pattern__conversation" icon="comments" text="Conversation" {...sharedProps} />
+      <ListBlockButton block="pattern__center" icon="book" text="Centered Aside" {...sharedProps} />
+      <ListBlockButton block="pattern__watchout" icon="exclamation-triangle" text="Watch Out Aside" {...sharedProps} />
+      <ListBlockButton block="pattern__cultural" icon="globe" text="Cultural Aside" {...sharedProps} />
+      <ListBlockButton block="pattern__note" icon="sticky-note" text="Note Aside" {...sharedProps} />
     </div>
   )
 }
@@ -36,8 +38,19 @@ const renderPatterns = sharedProps => {
 const renderInExamples = sharedProps => {
   return (
     <div>
-      <InlineButton inline="examples_text" icon="sign-language" title="Example Text" {...sharedProps} />
-      <InlineButton inline="examples_translation" icon="american-sign-language-interpreting" title="Example Translation" {...sharedProps} />
+      <small>Examples</small>
+      <ListItemButton data={{ className: 'text' }} icon="sign-language" title="Examples Text" {...sharedProps} />
+      <ListItemButton data={{ className: 'translation' }} icon="american-sign-language-interpreting" title="Examples Translation" {...sharedProps} />
+    </div>
+  )
+}
+
+const renderInConversation = sharedProps => {
+  return (
+    <div>
+      <small>Conversations</small>
+      <ListItemButton data={{ className: 'student' }} icon="user" title="Student" {...sharedProps} />
+      <ListItemButton data={{ className: 'tutor' }} icon="user" title="Tutor" {...sharedProps} />
     </div>
   )
 }
@@ -46,8 +59,17 @@ const TopicToolbar = ({
   menus, value, mobileView, onChange, onMenuToggle, onMobileToggle, onClickUndo, onClickRedo,
 }) => {
   const insideTable = isSelectionInTable(value)
-  const insideExamples = value.selection.startKey && value.blocks.some(lookBlock => lookBlock.type === 'examples_block')
-  const sharedProps = { value, onChange, insideTable }
+  const insideList = isSelectionInList(value)
+  let insideExamples = false
+  let insideConversation = false
+  if (insideList) {
+    const currentList = getCurrentList(value)
+    insideExamples = currentList.type === 'pattern__examples'
+    insideConversation = currentList.type === 'pattern__conversation'
+  }
+  const sharedProps = {
+    value, onChange, insideTable, insideList,
+  }
   const menuProps = { menus, onMenuToggle }
 
   return (
@@ -123,8 +145,9 @@ const TopicToolbar = ({
           {insideTable && <TableToolbarMenu {...sharedProps} />}
         </ToolbarMenu>
         <ToolbarMenu type="patterns" icon="paint-brush" title="Patterns" {...menuProps}>
-          <BlockButton block="paragraph" icon="paragraph" title="Paragraph" {...sharedProps} />
-          {insideExamples ? renderInExamples(sharedProps) : renderPatterns(sharedProps)}
+          {insideExamples && renderInExamples(sharedProps)}
+          {insideConversation && renderInConversation(sharedProps)}
+          {!insideTable && renderPatterns(insideExamples, sharedProps)}
         </ToolbarMenu>
         <div className="separator" />
         <ToolbarButton icon="undo" title="Undo" onMouseDown={onClickUndo} />

@@ -3,32 +3,33 @@ import React from 'react'
 const PatternPlugin = () => ({
   renderNode (nodeProps) {
     const {
-      attributes, node, children,
+      attributes, node, children, parent,
     } = nodeProps
 
     switch (node.type) {
-      case 'examples_block':
-        return <div className="pattern__examples_block" {...attributes}>{children}</div>
-      case 'aside_block':
-        return (
-          <div className={`pattern__${node.data.get('className')}_container`}>
-            <div className={`pattern__${node.data.get('className')}_block`} {...attributes}>{children}</div>
-          </div>
-        )
-      case 'examples_text':
-        return <span className="pattern__examples_text" {...attributes}>{children}</span>
-      case 'examples_translation':
-        return <span className="pattern__examples_translation" {...attributes}>{children}</span>
       case 'heading-one':
-        return <h1 {...attributes}>{children}</h1>
+        return <header className="heading-one" {...attributes}>{children}</header>
       case 'heading-two':
-        return <h2 {...attributes}>{children}</h2>
+        return <header className="heading-two" {...attributes}>{children}</header>
       case 'ol_list':
-        return <ol {...attributes}>{children}</ol>
+        return <ol className="pattern__normal_list" {...attributes}>{children}</ol>
       case 'ul_list':
-        return <ul {...attributes}>{children}</ul>
+        return <ul className="pattern__normal_list" {...attributes}>{children}</ul>
+      case 'pattern__conversation':
+      case 'pattern__examples':
+        return <div className={`${node.type}_block`} {...attributes}>{children}</div>
+      case 'pattern__note':
+      case 'pattern__center':
+      case 'pattern__cultural':
+      case 'pattern__watchout':
+      case 'pattern_aside':
+        return <div className={`${node.type}_block`} {...attributes}>{children}</div>
       case 'list_item':
-        return <li {...attributes}>{children}</li>
+        if (parent.type === 'ol_list' || parent.type === 'ul_list') {
+          return <li className="pattern__normal_item" {...attributes}>{children}</li>
+        }
+        return <div className={`pattern__${node.data.get('className') || 'normal'}_item`}{...attributes}>{children}</div>
+
       default:
         return null
     }

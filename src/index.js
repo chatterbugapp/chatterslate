@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import EditTable from 'slate-edit-table'
-import EditList from 'slate-edit-list'
 import SoftBreak from 'slate-soft-break'
 
 import ErrorBoundary from './components/ErrorBoundary'
 import TopicToolbar from './components/TopicToolbar'
 
 import AlignPlugin from './plugins/AlignPlugin'
+import EditListPlugin from './plugins/EditListPlugin'
 import MarkPlugin from './plugins/MarkPlugin'
 import PatternPlugin from './plugins/PatternPlugin'
 import TablePlugin from './plugins/TablePlugin'
@@ -40,9 +40,6 @@ const schema = {
       marks: [{}],
       nodes: [{ objects: ['text'] }],
     },
-    list_item: {
-      nodes: [{ types: ['paragraph'] }],
-    },
   },
 }
 
@@ -55,9 +52,9 @@ const plugins = [
   VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
   VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
   PatternPlugin(),
-  SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell', 'examples_block', 'aside_block'] }),
+  SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell'] }),
   EditTable(),
-  EditList(),
+  EditListPlugin,
 ]
 
 class TopicEditor extends React.Component {

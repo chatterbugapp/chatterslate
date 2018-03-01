@@ -13,27 +13,28 @@ const Tables = {
   table_three: TableThreeTable,
 }
 
-const prefabStrategy = (change, type, className) => change.insertBlock(Tables[type])
+const prefabStrategy = (change, type) => change.insertBlock(Tables[type])
 
 const TableButton = ({
-  type, icon, className, title, value, onChange,
+  type, icon, title, value, insideList, onChange,
 }) => (
   <ToolbarButton
     icon={icon}
     title={title}
     text={title}
     onMouseDown={e => {
-      return onChange(prefabStrategy(value.change(), type, className))
+      return onChange(prefabStrategy(value.change(), type))
     }}
+    active={!insideList}
   />
 )
 
 TableButton.propTypes = {
   type: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-  className: PropTypes.string,
   title: PropTypes.string.isRequired,
   value: PropTypes.object.isRequired,
+  insideList: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
 }
 

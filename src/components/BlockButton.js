@@ -8,8 +8,6 @@ const blockStrategy = (value, type, data) =>
     .unwrapBlock('paragraph')
     .unwrapBlock('heading-one')
     .unwrapBlock('heading-two')
-    .unwrapBlock('examples_block')
-    .unwrapBlock('aside_block')
 
 const BlockButton = ({
   block, data, title, icon, value, onChange, insideTable,
