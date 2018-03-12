@@ -10,12 +10,14 @@ import VoidPlugin from './plugins/VoidPlugin'
 
 const TopicConfiguration = {
   plugins: [
-    KeyPlugin({ hotkeys: {
-      bold: 'mod+b',
-      italic: 'mod+i',
-      underline: 'mod+u',
-      color_red: 'mod+shift+1'
-    } }),
+    KeyPlugin({
+      hotkeys: {
+        bold: 'mod+b',
+        italic: 'mod+i',
+        underline: 'mod+u',
+        color_red: 'mod+shift+1',
+      },
+    }),
     TablePlugin(),
     AlignPlugin(),
     VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
@@ -40,7 +42,7 @@ const TopicConfiguration = {
         nodes: [{ objects: ['text'] }],
       },
     },
-  }
+  },
 }
 
 export default TopicConfiguration

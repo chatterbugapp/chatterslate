@@ -26,5 +26,4 @@ const ColorStrategy = (value, color) => {
   return change
 }
 
-
 export default ColorStrategy
