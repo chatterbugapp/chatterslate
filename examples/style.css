@@ -516,8 +516,15 @@ input:focus {
 }
 
 .mark_learningLanguage {
-  background: #eee;
-  padding: 5px;
+  position: relative;
+  padding: 0 5px 3px 6px;
+  background: rgba(0,0,0,0.07);
+  color: #303030;
+  border-radius: 20px 3px 3px 20px;
+}
+
+.mark_learningLanguage::before {
+  background-image: url('https://d3bx9tms0wzpag.cloudfront.net/assets/common/flags/fr@2x-84090a7e6756686b99830397733044a2160f7d9aebe25e43a31f24af313fe71b.png');
 }
 
 .align_left {
