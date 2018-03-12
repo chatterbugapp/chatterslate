@@ -9,9 +9,9 @@ const markHotkeys = Object.entries({
   underline: isKeyHotkey('mod+u'),
 })
 
-const colorHotkeys = Object.entries(TopicColors).
-  filter(([color, colorProps]) => colorProps.hotkey).
-  map(([color, colorProps]) => [color, isKeyHotkey(colorProps.hotkey)])
+const colorHotkeys = Object.entries(TopicColors)
+  .filter(([color, colorProps]) => colorProps.hotkey)
+  .map(([color, colorProps]) => [color, isKeyHotkey(colorProps.hotkey)])
 
 const KeyPlugin = () => ({
   onKeyDown (event, data, editor) {
@@ -26,7 +26,7 @@ const KeyPlugin = () => ({
       return editor.onChange(ColorStrategy(editor.state.value, colorMatch[0]))
     }
     return null
-  }
+  },
 })
 
 export default KeyPlugin
