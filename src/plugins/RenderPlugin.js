@@ -1,6 +1,21 @@
 import React from 'react'
 
-const PatternPlugin = () => ({
+const RenderPlugin = () => ({
+  renderMark (markProps) {
+    const { marks, attributes, children } = markProps
+    if (marks.size > 0 && typeof (children) === 'string') {
+      const classNames = marks.map(mark => {
+        if (mark.type === 'color') {
+          return `color_${mark.data.get('color')}`
+        }
+        return `mark_${mark.type}`
+      }).join(' ')
+
+      return <span className={classNames} {...attributes}>{children}</span>
+    }
+    return null
+  },
+
   renderNode (nodeProps) {
     const {
       attributes, node, children, parent,
@@ -38,4 +53,4 @@ const PatternPlugin = () => ({
   },
 })
 
-export default PatternPlugin
+export default RenderPlugin

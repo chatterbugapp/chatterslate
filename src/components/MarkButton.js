@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ToolbarButton from './ToolbarButton'
+import MarkStrategy from '../strategies/MarkStrategy'
 
 const hasMark = (value, foundMark) => value.marks.some(mark => mark.type === foundMark)
-const markStrategy = (change, mark) => change
-  .toggleMark(mark)
-  .focus()
 
 const MarkButton = ({
   mark, icon, title, value, onChange,
@@ -14,7 +12,7 @@ const MarkButton = ({
     icon={icon}
     title={title}
     onMouseDown={e => {
-      return onChange(markStrategy(value.change(), mark))
+      return onChange(MarkStrategy(value.change(), mark))
     }}
     active={hasMark(value, mark)}
   />

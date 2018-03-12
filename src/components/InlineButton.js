@@ -12,12 +12,10 @@ const inlineStrategy = (value, inline) => {
   if (value.isExpanded) {
     if (hasInline(value, inline)) {
       return change.unwrapInline(inline)
-    } else {
-      return change.unwrapInline(inline).wrapInline(inline)
     }
-  } else {
-    return change
+    return change.unwrapInline(inline).wrapInline(inline)
   }
+  return change
 }
 
 const InlineButton = ({
