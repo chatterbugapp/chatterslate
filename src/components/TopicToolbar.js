@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import SlateEditTable from 'slate-edit-table'
 import EditListPlugin from '../plugins/EditListPlugin'
 import TopicColors from '../TopicColors'
+import ClearStrategy from '../strategies/ClearStrategy'
 
 import AlignButton from './AlignButton'
 import BlockButton from './BlockButton'
@@ -130,6 +131,12 @@ const TopicToolbar = ({
           {insideTable && <TableToolbarMenu {...sharedProps} />}
         </ToolbarMenu>
         <ToolbarMenu type="patterns" icon="paint-brush" title="Patterns" {...menuProps}>
+          <ToolbarButton
+            text="Clear Formatting"
+            title="Clear Formatting"
+            icon="paragraph"
+            onMouseDown={e => onChange(ClearStrategy(value))}
+          />
           {insideExamples && renderInExamples(sharedProps)}
           {insideConversation && renderInConversation(sharedProps)}
           {!insideTable && renderPatterns(insideExamples, sharedProps)}

@@ -17,7 +17,7 @@ const KeyPlugin = () => ({
   onKeyDown (event, data, editor) {
     const markMatch = markHotkeys.find(([mark, hotkey]) => hotkey(event))
     if (markMatch) {
-      return editor.onChange(MarkStrategy(editor.state.value.change(), markMatch[0]))
+      return editor.onChange(MarkStrategy(editor.state.value, markMatch[0]))
     }
 
     const colorMatch = colorHotkeys.find(([mark, hotkey]) => hotkey(event))

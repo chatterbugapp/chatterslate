@@ -12,7 +12,7 @@ const MarkButton = ({
     icon={icon}
     title={title}
     onMouseDown={e => {
-      return onChange(MarkStrategy(value.change(), mark))
+      return onChange(MarkStrategy(value, mark))
     }}
     active={hasMark(value, mark)}
   />

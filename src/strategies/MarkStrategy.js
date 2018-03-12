@@ -1,4 +1,5 @@
-const MarkStrategy = (change, mark) => change
+const MarkStrategy = (value, mark) => value
+  .change()
   .toggleMark(mark)
   .focus()
 
