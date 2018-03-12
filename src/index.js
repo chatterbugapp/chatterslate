@@ -3,18 +3,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
-import EditTable from 'slate-edit-table'
-import SoftBreak from 'slate-soft-break'
 
-import ErrorBoundary from './components/ErrorBoundary'
+import TopicConfiguration from './TopicConfiguration'
 import TopicToolbar from './components/TopicToolbar'
-
-import AlignPlugin from './plugins/AlignPlugin'
-import EditListPlugin from './plugins/EditListPlugin'
-import MarkPlugin from './plugins/MarkPlugin'
-import PatternPlugin from './plugins/PatternPlugin'
-import TablePlugin from './plugins/TablePlugin'
-import VoidPlugin from './plugins/VoidPlugin'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const LocalStorageKey = `chatterslate:v1:content:${window.location.pathname}`
 const DefaultValue = {
@@ -28,34 +20,6 @@ const DefaultValue = {
     ],
   },
 }
-
-// Enforce no marks on a header
-const schema = {
-  blocks: {
-    'heading-one': {
-      marks: [{}],
-      nodes: [{ objects: ['text'] }],
-    },
-    'heading-two': {
-      marks: [{}],
-      nodes: [{ objects: ['text'] }],
-    },
-  },
-}
-
-const plugins = [
-  MarkPlugin({ hotkeys: { bold: 'mod+b', italic: 'mod+i', underline: 'mod+u' } }),
-  TablePlugin(),
-  AlignPlugin(),
-  VoidPlugin({ type: 'horizontal-rule', tag: 'hr' }),
-  VoidPlugin({ type: 'underbar', tag: 'span', attributes: { className: 'underbar' } }),
-  VoidPlugin({ type: 'underbar_l', tag: 'span', attributes: { className: 'underbar_l' } }),
-  VoidPlugin({ type: 'underbar_xl', tag: 'span', attributes: { className: 'underbar_xl' } }),
-  PatternPlugin(),
-  SoftBreak({ shift: true, onlyIn: ['paragraph', 'table_cell'] }),
-  EditTable(),
-  EditListPlugin,
-]
 
 class TopicEditor extends React.Component {
   static propTypes = {
@@ -170,8 +134,8 @@ class TopicEditor extends React.Component {
               className={className}
               value={value}
               onChange={this.handleChange}
-              plugins={plugins}
-              schema={schema}
+              plugins={TopicConfiguration.plugins}
+              schema={TopicConfiguration.schema}
               autoFocus
               spellCheck
             />

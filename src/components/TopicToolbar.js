@@ -2,12 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SlateEditTable from 'slate-edit-table'
 import EditListPlugin from '../plugins/EditListPlugin'
+import TopicColors from '../TopicColors'
+import ClearStrategy from '../strategies/ClearStrategy'
 
 import AlignButton from './AlignButton'
 import BlockButton from './BlockButton'
 import ColorButton from './ColorButton'
 import ListItemButton from './ListItemButton'
 import ListBlockButton from './ListBlockButton'
+import InlineButton from './InlineButton'
 import MarkButton from './MarkButton'
 import PlainButton from './PlainButton'
 import ToolbarButton from './ToolbarButton'
@@ -87,7 +90,7 @@ const TopicToolbar = ({
         <MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
         <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
         <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
-        <MarkButton mark="learningLanguage" icon="language" title="Learning Language" {...sharedProps} />
+        <InlineButton inline="learning-language" icon="language" title="Learning Language" {...sharedProps} />
         <div className="separator" />
         <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
         <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />
@@ -96,25 +99,8 @@ const TopicToolbar = ({
         <ListBlockButton block="ul_list" icon="list-ul" title="Bulleted List" {...sharedProps} />
         <div className="separator" />
         <ToolbarMenu type="color" icon="eyedropper" title="Font Color" {...menuProps}>
-          <div className="menu">
-            <ColorButton color="black" icon="font" title="Black" {...sharedProps} />
-            <ColorButton color="grey" icon="font" title="Grey" {...sharedProps} />
-            <ColorButton color="darkgrey" icon="font" title="Dark Grey" {...sharedProps} />
-          </div>
-          <div className="menu">
-            <ColorButton color="red" icon="font" title="Red" {...sharedProps} />
-            <ColorButton color="yellow" icon="font" title="Yellow" {...sharedProps} />
-            <ColorButton color="blue" icon="font" title="Blue" {...sharedProps} />
-          </div>
-          <div className="menu">
-            <ColorButton color="male" icon="font" title="Male" {...sharedProps} />
-            <ColorButton color="female" icon="font" title="Female" {...sharedProps} />
-            <ColorButton color="neuter" icon="font" title="Neuter" {...sharedProps} />
-          </div>
-          <div className="menu">
-            <ColorButton color="dative" icon="font" title="Dative" {...sharedProps} />
-            <ColorButton color="accusative" icon="font" title="Accusative" {...sharedProps} />
-          </div>
+          {Object.entries(TopicColors).map(([color, colorProps]) =>
+            <ColorButton color={color} key={color} title={`${colorProps.title} (${colorProps.hotkey || 'No shortcut'})`} icon="font" {...sharedProps} />)}
         </ToolbarMenu>
         <ToolbarMenu type="character" icon="keyboard-o" title="Character Map" {...menuProps}>
           <div className="menu">
@@ -145,6 +131,12 @@ const TopicToolbar = ({
           {insideTable && <TableToolbarMenu {...sharedProps} />}
         </ToolbarMenu>
         <ToolbarMenu type="patterns" icon="paint-brush" title="Patterns" {...menuProps}>
+          <ToolbarButton
+            text="Clear Formatting"
+            title="Clear Formatting"
+            icon="paragraph"
+            onMouseDown={e => onChange(ClearStrategy(value))}
+          />
           {insideExamples && renderInExamples(sharedProps)}
           {insideConversation && renderInConversation(sharedProps)}
           {!insideTable && renderPatterns(insideExamples, sharedProps)}
