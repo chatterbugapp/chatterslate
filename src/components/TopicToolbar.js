@@ -8,6 +8,7 @@ import BlockButton from './BlockButton'
 import ColorButton from './ColorButton'
 import ListItemButton from './ListItemButton'
 import ListBlockButton from './ListBlockButton'
+import InlineButton from './InlineButton'
 import MarkButton from './MarkButton'
 import PlainButton from './PlainButton'
 import ToolbarButton from './ToolbarButton'
@@ -87,7 +88,7 @@ const TopicToolbar = ({
         <MarkButton mark="italic" icon="italic" title="Italic" {...sharedProps} />
         <MarkButton mark="underline" icon="underline" title="Underline" {...sharedProps} />
         <MarkButton mark="strikethrough" icon="strikethrough" title="Strikethrough" {...sharedProps} />
-        <MarkButton mark="learningLanguage" icon="language" title="Learning Language" {...sharedProps} />
+        <InlineButton inline="learning-language" icon="language" title="Learning Language" {...sharedProps} />
         <div className="separator" />
         <AlignButton align="left" icon="align-left" title="Left Align" {...sharedProps} />
         <AlignButton align="center" icon="align-center" title="Center Align" {...sharedProps} />

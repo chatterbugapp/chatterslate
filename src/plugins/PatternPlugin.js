@@ -7,6 +7,8 @@ const PatternPlugin = () => ({
     } = nodeProps
 
     switch (node.type) {
+      case 'learning-language':
+        return <span className="pattern__learning_language" {...attributes}>{children}</span>
       case 'heading-one':
         return <header className="heading-one" {...attributes}>{children}</header>
       case 'heading-two':
