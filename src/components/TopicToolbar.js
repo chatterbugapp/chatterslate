@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SlateEditTable from 'slate-edit-table'
 import EditListPlugin from '../plugins/EditListPlugin'
+import TopicColors from '../TopicColors'
 
 import AlignButton from './AlignButton'
 import BlockButton from './BlockButton'
@@ -97,25 +98,8 @@ const TopicToolbar = ({
         <ListBlockButton block="ul_list" icon="list-ul" title="Bulleted List" {...sharedProps} />
         <div className="separator" />
         <ToolbarMenu type="color" icon="eyedropper" title="Font Color" {...menuProps}>
-          <div className="menu">
-            <ColorButton color="black" icon="font" title="Black" {...sharedProps} />
-            <ColorButton color="grey" icon="font" title="Grey" {...sharedProps} />
-            <ColorButton color="darkgrey" icon="font" title="Dark Grey" {...sharedProps} />
-          </div>
-          <div className="menu">
-            <ColorButton color="red" icon="font" title="Red" {...sharedProps} />
-            <ColorButton color="yellow" icon="font" title="Yellow" {...sharedProps} />
-            <ColorButton color="blue" icon="font" title="Blue" {...sharedProps} />
-          </div>
-          <div className="menu">
-            <ColorButton color="male" icon="font" title="Male" {...sharedProps} />
-            <ColorButton color="female" icon="font" title="Female" {...sharedProps} />
-            <ColorButton color="neuter" icon="font" title="Neuter" {...sharedProps} />
-          </div>
-          <div className="menu">
-            <ColorButton color="dative" icon="font" title="Dative" {...sharedProps} />
-            <ColorButton color="accusative" icon="font" title="Accusative" {...sharedProps} />
-          </div>
+          {Object.entries(TopicColors).map(([color, colorProps]) =>
+            <ColorButton color={color} key={color} title={`${colorProps.title} (${colorProps.hotkey || 'No shortcut'})`} icon="font" {...sharedProps} />)}
         </ToolbarMenu>
         <ToolbarMenu type="character" icon="keyboard-o" title="Character Map" {...menuProps}>
           <div className="menu">
