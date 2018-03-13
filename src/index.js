@@ -51,9 +51,12 @@ class TopicEditor extends React.Component {
    * Load a value into the editor, for example when clearing changes
    *
    * @param {object} value - parsed into a SlateJS {Value}
+   * @return {Promise} - fired after the editor has finished setting this value
    */
   setValue (value) {
-    this.setState({ value: Value.fromJSON(value) })
+    return new Promise(resolve => {
+      this.setState({ value: Value.fromJSON(value) }, () => { resolve() })
+    })
   }
 
   /**
