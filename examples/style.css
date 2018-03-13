@@ -398,40 +398,40 @@ input:focus {
 }
 
 .color_black {
-  color: #000;
+  color: #000 !important;
 }
 .color_grey {
-  color: #ccc;
+  color: #ccc !important;
 }
 .color_darkgrey {
-  color: #555;
+  color: #555 !important;
 }
 
 .color_red {
-  color: #FD4242;
+  color: #FD4242 !important;
 }
 .color_yellow {
-  color: #FEDA32;
+  color: #FEDA32 !important;
 }
 .color_blue {
-  color: #25CCED;
+  color: #25CCED !important;
 }
 
 .color_male {
-  color: #25CCED;
+  color: #25CCED !important;
 }
 .color_female {
-  color: #FD426E;
+  color: #FD426E !important;
 }
 .color_neuter {
-  color: #B3B3B3;
+  color: #B3B3B3 !important;
 }
 
 .color_dative {
-  color: #00E6C2;
+  color: #00E6C2 !important;
 }
 .color_accusative {
-  color: #baa2ee;
+  color: #baa2ee !important;
 }
 
 .table_active,
