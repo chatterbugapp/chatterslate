@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', event => {
   const clearLink = document.getElementById('clear')
   clearLink.onclick = () => {
     global.editor.clearStorage()
-    global.editor.setValue(initialValue)
+    global.editor.setValue(initialValue).then(() => console.log("Loaded!"))
   }
 })
 
