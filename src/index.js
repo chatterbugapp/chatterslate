@@ -1,4 +1,3 @@
-/* global localStorage */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Editor } from 'slate-react'
@@ -38,10 +37,9 @@ class TopicEditor extends React.Component {
   constructor (props) {
     super(props)
 
-    const existingValue = JSON.parse(localStorage.getItem(LocalStorageKey))
     this.state = {
       mobileView: false,
-      value: Value.fromJSON(existingValue || props.initialValue || DefaultValue),
+      value: Value.fromJSON(props.initialValue || DefaultValue),
       menus: {},
       debug: false,
     }
@@ -72,7 +70,6 @@ class TopicEditor extends React.Component {
     }
 
     if (value.document !== this.state.value.document) {
-      localStorage.setItem(LocalStorageKey, jsonContent)
       if (this.props.onEditorChanged) {
         this.props.onEditorChanged.call(LocalStorageKey)
       }
@@ -159,9 +156,9 @@ class TopicEditor extends React.Component {
     return this.editor.querySelector('[data-slate-editor]').innerHTML
   };
 
-  // Public: Reset local storage, usually after the editor has saved via the DB
+  // Deprecated! Public: Reset local storage, usually after the editor has saved via the DB
   clearStorage = () => {
-    localStorage.removeItem(LocalStorageKey)
+    console.warn('Deprecated! No longer trusting localStorage.')
   }
 }
 
