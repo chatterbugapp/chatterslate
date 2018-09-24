@@ -2,7 +2,7 @@
 
 SlateJS editor for [Chatterbug](https://chatterbug.com).
 
-![Chatterslate Demo](https://user-images.githubusercontent.com/12610/45893903-c60aa600-bd9a-11e8-9577-fbd1d8846f7d.gif)
+![Chatterslate Demo](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/chatterslate.gif)
 
 We use this editor at Chatterbug for our "Topic Explanations",
 which are mini-blog posts that teach our curriculum to students.
