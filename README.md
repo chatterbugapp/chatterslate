@@ -25,16 +25,21 @@ These are "inline" edits. Chatterslate supports:
 
 Examples of these:
 
+![marks](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/marks.png)
+
 ### Voids
 
 "Void" blocks in Chatterslate are just easy ways to insert chars
 into the editor. Chatterslate comes with:
 
 * Several kinds of arrows
+* Easy access to different quote styles
 * Underscore lines to denote a fill-in-the-blank
 * Horizontal rule
 
 Examples of these:
+
+![voids](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/voids.png)
 
 ### Blocks
 
@@ -49,6 +54,10 @@ includes:
 
 Examples of these:
 
+![bullets](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/bullets1.png)
+
+![header](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/header1.png)
+
 ### Patterns
 
 Patterns are also blocks, but these are how we teach language
@@ -56,15 +65,23 @@ concepts in a  more concise + design focused way.
 
 * "Examples"
 
+![examples](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/examples.png)
+
 * "Conversation"
 
-* "Centered" aside
+![conversation](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/conversation.png)
 
 * "Watch Out" aside
 
+![watchout](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/watchout.png)
+
 * "Cultural" aside
 
+![cultural](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/cultural.png)
+
 * "Note" aside
+
+![note](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/note.png)
 
 ### Tables
 
@@ -74,9 +91,15 @@ table if necessary. Tables included are:
 
 * Arrow table
 
+![arrow](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/arrow.png)
+
 * Two Column table
 
+![twocolumn](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/twocolumn.png)
+
 * Three Column table
+
+![threecolumn](https://raw.githubusercontent.com/chatterbugapp/chatterslate/master/images/threecolumn.png)
 
 ## Install
 
