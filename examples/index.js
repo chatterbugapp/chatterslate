@@ -29,12 +29,12 @@ document.addEventListener('DOMContentLoaded', event => {
 })
 
 const initialValue = {
-  kind: 'value',
+  object: 'value',
   document: {
-    kind: 'document',
+    object: 'document',
     data: {},
     nodes: [{
-      kind: 'block', type: 'paragraph', isVoid: false, data: {}, nodes: [{ kind: 'text', leaves: [{ kind: 'leaf', text: 'hi', marks: [{ kind: 'mark', type: 'bold', data: {} }] }] }],
+      object: 'block', type: 'paragraph', isVoid: false, data: {}, nodes: [{ object: 'text', leaves: [{ object: 'leaf', text: 'hi', marks: [{ object: 'mark', type: 'bold', data: {} }] }] }],
     }],
   },
 }

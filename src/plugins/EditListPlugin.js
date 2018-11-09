@@ -1,4 +1,4 @@
-import EditList from 'slate-edit-list'
+import EditList from '@gitbook/slate-edit-list'
 
 const EditListPlugin = EditList({
   types: [

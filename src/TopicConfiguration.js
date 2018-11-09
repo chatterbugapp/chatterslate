@@ -1,4 +1,4 @@
-import EditTable from 'slate-edit-table'
+import EditTable from '@gitbook/slate-edit-table'
 import SoftBreak from 'slate-soft-break'
 
 import AlignPlugin from './plugins/AlignPlugin'
