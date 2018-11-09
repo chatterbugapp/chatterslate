@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SlateEditTable from 'slate-edit-table'
+import SlateEditTable from '@gitbook/slate-edit-table'
 import EditListPlugin from '../plugins/EditListPlugin'
 import TopicColors from '../TopicColors'
 import ClearStrategy from '../strategies/ClearStrategy'

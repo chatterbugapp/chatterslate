@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SlateEditTable from 'slate-edit-table'
+import SlateEditTable from '@gitbook/slate-edit-table'
 import ToolbarButton from './ToolbarButton'
 
 const { insertRow, removeRow, removeTable } = SlateEditTable().changes

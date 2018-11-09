@@ -60,6 +60,87 @@
   dependencies:
     acorn "^5.2.1"
 
+"@gitbook/slate-base64-serializer@^0.2.45-0":
+  version "0.2.45-0"
+  resolved "https://registry.npmjs.org/@gitbook/slate-base64-serializer/-/slate-base64-serializer-0.2.45-0.tgz#5ea1f71527ea199dd5409903bbb3b7fdddcc7344"
+  dependencies:
+    isomorphic-base64 "^1.0.2"
+
+"@gitbook/slate-dev-environment@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/@gitbook/slate-dev-environment/-/slate-dev-environment-0.1.3.tgz#eed305abd717d6386a7496287600ed705e304464"
+  dependencies:
+    is-in-browser "^1.1.3"
+
+"@gitbook/slate-dev-logger@^0.1.40":
+  version "0.1.40"
+  resolved "https://registry.npmjs.org/@gitbook/slate-dev-logger/-/slate-dev-logger-0.1.40.tgz#960ede184272329eb977a11aa6a601621c8b7a6d"
+
+"@gitbook/slate-edit-list@^0.12.2":
+  version "0.12.2"
+  resolved "https://registry.npmjs.org/@gitbook/slate-edit-list/-/slate-edit-list-0.12.2.tgz#a98de2637de75450b0d45112d7159c965145c3f4"
+
+"@gitbook/slate-edit-table@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.npmjs.org/@gitbook/slate-edit-table/-/slate-edit-table-0.18.0.tgz#2369d0db08dc4ea58d3818b0bb468b5d694ec3c7"
+
+"@gitbook/slate-hotkeys@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/@gitbook/slate-hotkeys/-/slate-hotkeys-0.1.3.tgz#fc28216ddad0d88e86bec42cdf78d20db741e0a8"
+  dependencies:
+    "@gitbook/slate-dev-environment" "^0.1.3"
+    is-hotkey "^0.1.1"
+
+"@gitbook/slate-plain-serializer@^0.5.26-0":
+  version "0.5.26-0"
+  resolved "https://registry.npmjs.org/@gitbook/slate-plain-serializer/-/slate-plain-serializer-0.5.26-0.tgz#cb442df0467ac8ce4aafce4d1ccca5b5d05f1aec"
+  dependencies:
+    "@gitbook/slate-dev-logger" "^0.1.40"
+
+"@gitbook/slate-prop-types@^0.4.43-0":
+  version "0.4.43-0"
+  resolved "https://registry.npmjs.org/@gitbook/slate-prop-types/-/slate-prop-types-0.4.43-0.tgz#d64f6f6deae00932baf7b0b8ec325adf39062586"
+  dependencies:
+    "@gitbook/slate-dev-logger" "^0.1.40"
+
+"@gitbook/slate-react@^0.13.9-0":
+  version "0.13.9-0"
+  resolved "https://registry.npmjs.org/@gitbook/slate-react/-/slate-react-0.13.9-0.tgz#96b52cf800373720da9bd0b2a04af03775d41114"
+  dependencies:
+    "@gitbook/slate-base64-serializer" "^0.2.45-0"
+    "@gitbook/slate-dev-environment" "^0.1.3"
+    "@gitbook/slate-dev-logger" "^0.1.40"
+    "@gitbook/slate-hotkeys" "^0.1.3"
+    "@gitbook/slate-plain-serializer" "^0.5.26-0"
+    "@gitbook/slate-prop-types" "^0.4.43-0"
+    debug "^3.1.0"
+    get-window "^1.1.1"
+    is-window "^1.0.2"
+    keycode "^2.1.2"
+    lodash "^4.1.1"
+    prop-types "^15.5.8"
+    react-immutable-proptypes "^2.1.0"
+    react-portal "^3.1.0"
+    selection-is-backward "^1.0.0"
+
+"@gitbook/slate-schema-violations@^0.1.24-0":
+  version "0.1.24-0"
+  resolved "https://registry.npmjs.org/@gitbook/slate-schema-violations/-/slate-schema-violations-0.1.24-0.tgz#e699603019a189aa4aa3cf21c9dd0504779d2fe3"
+
+"@gitbook/slate@^0.34.11-0":
+  version "0.34.11-0"
+  resolved "https://registry.npmjs.org/@gitbook/slate/-/slate-0.34.11-0.tgz#ffd42cc40bf9c84ee935adabf2cfca7aa8a39e44"
+  dependencies:
+    "@gitbook/slate-dev-logger" "^0.1.40"
+    "@gitbook/slate-schema-violations" "^0.1.24-0"
+    debug "^3.1.0"
+    direction "^0.1.5"
+    esrever "^0.2.0"
+    is-empty "^1.0.0"
+    is-plain-object "^2.0.4"
+    lodash "^4.17.4"
+    type-of "^2.0.1"
+
 JSONStream@^1.0.3:
   version "1.3.2"
   resolved "https://registry.npmjs.org/JSONStream/-/JSONStream-1.3.2.tgz#c102371b6ec3a7cf3b847ca00c20bb0fce4c6dea"
@@ -1460,7 +1541,7 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.npmjs.org/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
-debug@^2.2.0, debug@^2.3.2, debug@^2.6.8:
+debug@^2.2.0, debug@^2.6.8:
   version "2.6.9"
   resolved "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   dependencies:
@@ -1471,6 +1552,12 @@ debug@^3.0.1:
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   dependencies:
     ms "2.0.0"
+
+debug@^3.1.0:
+  version "3.2.6"
+  resolved "https://registry.npmjs.org/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
+  dependencies:
+    ms "^2.1.1"
 
 decamelize@^1.1.1:
   version "1.2.0"
@@ -2606,8 +2693,8 @@ jsx-ast-utils@^2.0.0:
     array-includes "^3.0.3"
 
 keycode@^2.1.2:
-  version "2.1.9"
-  resolved "https://registry.npmjs.org/keycode/-/keycode-2.1.9.tgz#964a23c54e4889405b4861a5c9f0480d45141dfa"
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/keycode/-/keycode-2.2.0.tgz#3d0af56dc7b8b8e5cba8d0a97f107204eec22b04"
 
 kind-of@^3.0.2:
   version "3.2.2"
@@ -2692,7 +2779,11 @@ lodash.unescape@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.unescape/-/lodash.unescape-4.0.1.tgz#bf2249886ce514cda112fae9218cdc065211fc9c"
 
-lodash@^4.1.1, lodash@^4.17.4:
+lodash@^4.1.1:
+  version "4.17.11"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+
+lodash@^4.17.4:
   version "4.17.5"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -2879,6 +2970,10 @@ module-deps@^6.0.0:
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+
+ms@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
 
 mute-stream@0.0.7:
   version "0.0.7"
@@ -3279,11 +3374,18 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
     fbjs "^0.8.16"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
+prop-types@^15.5.8:
+  version "15.6.2"
+  resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
+  dependencies:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
@@ -3701,77 +3803,9 @@ slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
-slate-base64-serializer@^0.2.23:
-  version "0.2.23"
-  resolved "https://registry.npmjs.org/slate-base64-serializer/-/slate-base64-serializer-0.2.23.tgz#d19b8a29ac800135d8c359f9153ba4af6210c407"
-  dependencies:
-    isomorphic-base64 "^1.0.2"
-
-slate-dev-logger@^0.1.39:
-  version "0.1.39"
-  resolved "https://registry.npmjs.org/slate-dev-logger/-/slate-dev-logger-0.1.39.tgz#744a69b85034244713e6de51483af5713c345af4"
-
-slate-edit-list@^0.11.2:
-  version "0.11.2"
-  resolved "https://registry.npmjs.org/slate-edit-list/-/slate-edit-list-0.11.2.tgz#c67b961d98435f9f7747d20b870cbc51d25af7a8"
-
-slate-edit-table@^0.14.3:
-  version "0.14.3"
-  resolved "https://registry.npmjs.org/slate-edit-table/-/slate-edit-table-0.14.3.tgz#54769bc060531ba4a6e1d8df9a0e16216b0102fc"
-
-slate-plain-serializer@^0.5.4:
-  version "0.5.4"
-  resolved "https://registry.npmjs.org/slate-plain-serializer/-/slate-plain-serializer-0.5.4.tgz#ba5a1713a50e6e9020e080c10e5869f38820dc96"
-  dependencies:
-    slate-dev-logger "^0.1.39"
-
-slate-prop-types@^0.4.21:
-  version "0.4.21"
-  resolved "https://registry.npmjs.org/slate-prop-types/-/slate-prop-types-0.4.21.tgz#618214e867d44469fb7da9b8ac4ea68e9e0fa56b"
-  dependencies:
-    slate-dev-logger "^0.1.39"
-
-slate-react@^0.11.4:
-  version "0.11.4"
-  resolved "https://registry.npmjs.org/slate-react/-/slate-react-0.11.4.tgz#c24d2cb8a3724e9a41c1f3566136ab8d3fa1ac8e"
-  dependencies:
-    debug "^2.3.2"
-    get-window "^1.1.1"
-    is-hotkey "^0.1.1"
-    is-in-browser "^1.1.3"
-    is-window "^1.0.2"
-    keycode "^2.1.2"
-    lodash "^4.1.1"
-    prop-types "^15.5.8"
-    react-immutable-proptypes "^2.1.0"
-    react-portal "^3.1.0"
-    selection-is-backward "^1.0.0"
-    slate-base64-serializer "^0.2.23"
-    slate-dev-logger "^0.1.39"
-    slate-plain-serializer "^0.5.4"
-    slate-prop-types "^0.4.21"
-
-slate-schema-violations@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.npmjs.org/slate-schema-violations/-/slate-schema-violations-0.1.2.tgz#45f2e6ed2e77c98925bb1e159bf24cad9dc7f8ac"
-
 slate-soft-break@^0.6.0:
   version "0.6.0"
   resolved "https://registry.npmjs.org/slate-soft-break/-/slate-soft-break-0.6.0.tgz#1e44815b7ff4ddada055bba14cd0d2d4ef0fd463"
-
-slate@^0.32.4:
-  version "0.32.4"
-  resolved "https://registry.npmjs.org/slate/-/slate-0.32.4.tgz#dcc971d1cf4e4b7ac158b5bac9c39c9915805435"
-  dependencies:
-    debug "^2.3.2"
-    direction "^0.1.5"
-    esrever "^0.2.0"
-    is-empty "^1.0.0"
-    is-plain-object "^2.0.4"
-    lodash "^4.17.4"
-    slate-dev-logger "^0.1.39"
-    slate-schema-violations "^0.1.2"
-    type-of "^2.0.1"
 
 slice-ansi@1.0.0:
   version "1.0.0"

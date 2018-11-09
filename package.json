@@ -37,12 +37,12 @@
   },
   "homepage": "https://github.com/chatterbugapp/chatterslate#readme",
   "dependencies": {
+    "@gitbook/slate": "^0.34.11-0",
+    "@gitbook/slate-edit-list": "^0.12.2",
+    "@gitbook/slate-edit-table": "^0.18.0",
+    "@gitbook/slate-react": "^0.13.9-0",
     "immutable": "^3.8.2",
     "is-hotkey": "^0.1.1",
-    "slate": "^0.32.4",
-    "slate-edit-list": "^0.11.2",
-    "slate-edit-table": "^0.14.3",
-    "slate-react": "^0.11.4",
     "slate-soft-break": "^0.6.0"
   },
   "devDependencies": {
@@ -53,6 +53,7 @@
     "babel-preset-react": "^6.24.1",
     "browserify": "^16.1.0",
     "concurrently": "^3.5.1",
+    "eslint": "^4.11.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
@@ -61,14 +62,13 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-standard": "^3.0.1",
-    "eslint": "^4.11.0",
     "livereload": "^0.6.3",
     "node-static": "^0.7.10",
-    "prettier-eslint-cli": "^4.4.0",
     "prettier-eslint": "^8.2.2",
+    "prettier-eslint-cli": "^4.4.0",
     "prop-types": "^15.6.1",
-    "react-dom": "^15.6.1",
     "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "watchify": "^3.9.0"
   }
 }
