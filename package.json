@@ -4,7 +4,7 @@
   "description": "SlateJS editor for Chatterbug",
   "main": "index.js",
   "engines": {
-    "node": "8.x"
+    "node": "10.x"
   },
   "files": [
     "index.js",
