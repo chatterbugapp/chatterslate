@@ -52,8 +52,8 @@ const renderInConversation = sharedProps => {
   return (
     <div>
       <small>Conversations</small>
-      <ListItemButton data={{ className: 'student' }} icon="user" title="Student" {...sharedProps} />
-      <ListItemButton data={{ className: 'tutor' }} icon="user" title="Tutor" {...sharedProps} />
+      <ListItemButton data={{ className: 'student', role: 'student' }} icon="user" title="Student" {...sharedProps} />
+      <ListItemButton data={{ className: 'tutor', role: 'tutor' }} icon="user" title="Tutor" {...sharedProps} />
     </div>
   )
 }

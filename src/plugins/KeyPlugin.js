@@ -1,6 +1,7 @@
 import { isKeyHotkey } from 'is-hotkey'
 import MarkStrategy from '../strategies/MarkStrategy'
 import ColorStrategy from '../strategies/ColorStrategy'
+import SpeakerStrategy from '../strategies/SpeakerStrategy'
 import TopicColors from '../TopicColors'
 
 const markHotkeys = Object.entries({
