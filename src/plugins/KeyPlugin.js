@@ -14,6 +14,7 @@ const colorHotkeys = Object.entries(TopicColors)
   .map(([color, colorProps]) => [color, isKeyHotkey(colorProps.hotkey)])
 
 const lastColorHotkey = isKeyHotkey('mod+shift+x')
+const switchSpeakerHotkey = isKeyHotkey('mod+k')
 
 const KeyPlugin = () => ({
   onKeyDown (event, data, editor) {
@@ -32,6 +33,11 @@ const KeyPlugin = () => ({
     if (lastColorHotkey(event)) {
       event.preventDefault()
       return editor.onChange(ColorStrategy(editor.state.value))
+    }
+
+    if (switchSpeakerHotkey(event)) {
+      event.preventDefault()
+      return editor.onChange(SpeakerStrategy(editor.state.value))
     }
 
     return null
